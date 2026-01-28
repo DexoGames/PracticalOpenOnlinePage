@@ -618,6 +618,29 @@ body {
 .project-links {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
+}
+
+/* ==========================================
+   DYNAMIC LOADING STATES
+   ========================================== */
+
+.loading-text,
+.error-text,
+.no-content {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: var(--text-secondary);
+    font-family: "HP Simplified", sans-serif;
+    font-size: 1.2rem;
+}
+
+.error-text {
+    color: var(--danger-color);
+    background: rgba(255, 138, 138, 0.1);
+    border-radius: 15px;
+    border: 2px dashed var(--danger-color);
 }
 
 /* ==========================================
