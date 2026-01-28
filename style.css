@@ -1,22 +1,29 @@
 /* ==========================================
-   DEXTER SMITH PORTFOLIO - STYLES
+   DEXTER SMITH PORTFOLIO - PASTEL NOTEBOOK STYLE
    ========================================== */
 
-/* CSS Variables */
+/* CSS Variables - Pastel Palette */
 :root {
-    --primary-color: #6c5ce7;
-    --secondary-color: #a29bfe;
-    --accent-color: #fd79a8;
-    --dark-bg: #0a0a0f;
-    --card-bg: #16161f;
-    --text-primary: #ffffff;
-    --text-secondary: #b0b0b0;
-    --danger-color: #ff4757;
-    --success-color: #2ed573;
-    --warning-color: #ffa502;
-    --gradient-1: linear-gradient(135deg, #6c5ce7, #a29bfe);
-    --gradient-2: linear-gradient(135deg, #fd79a8, #6c5ce7);
-    --shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    --primary-color: #a8d8ea;
+    --secondary-color: #aa96da;
+    --accent-color: #fcbad3;
+    --mint: #bbe1c3;
+    --peach: #ffd8be;
+    --lavender: #e2d1f9;
+    --cream: #fef9ef;
+    --paper: #fffef7;
+    --paper-lines: #e8e4db;
+    --text-primary: #5a5a5a;
+    --text-secondary: #888888;
+    --text-dark: #4a4a4a;
+    --danger-color: #ff8a8a;
+    --success-color: #98d4a3;
+    --warning-color: #ffd093;
+    --gradient-1: linear-gradient(135deg, #a8d8ea, #aa96da);
+    --gradient-2: linear-gradient(135deg, #fcbad3, #aa96da);
+    --gradient-3: linear-gradient(135deg, #bbe1c3, #a8d8ea);
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
     --transition: all 0.3s ease;
 }
 
@@ -32,12 +39,18 @@ html {
 }
 
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--dark-bg);
+    font-family: "Patrick Hand", "Comic Sans MS", "Segoe UI", cursive, sans-serif;
+    background: var(--cream);
+    background-image: 
+        linear-gradient(var(--paper-lines) 1px, transparent 1px);
+    background-size: 100% 28px;
     color: var(--text-primary);
-    line-height: 1.6;
+    line-height: 1.8;
     overflow-x: hidden;
 }
+
+/* Import handwriting-style font */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@400;600&display=swap');
 
 /* Shake Animation for bomb countdown */
 body.shake {
@@ -51,7 +64,7 @@ body.shake {
 }
 
 /* ==========================================
-   TIME BOMB WIDGET
+   TIME BOMB WIDGET - Cute Pastel Version
    ========================================== */
 
 .bomb-container {
@@ -59,34 +72,34 @@ body.shake {
     top: 20px;
     right: 20px;
     z-index: 9999;
-    background: linear-gradient(135deg, #1a1a2e, #16213e);
-    border: 3px solid var(--primary-color);
-    border-radius: 15px;
+    background: var(--paper);
+    border: 3px dashed var(--secondary-color);
+    border-radius: 20px;
     padding: 15px 20px;
-    box-shadow: 0 0 30px rgba(108, 92, 231, 0.3);
+    box-shadow: var(--shadow), 4px 4px 0px var(--lavender);
     transition: var(--transition);
 }
 
 .bomb-container.warning {
     border-color: var(--warning-color);
-    box-shadow: 0 0 30px rgba(255, 165, 2, 0.5);
+    box-shadow: var(--shadow), 4px 4px 0px var(--peach);
     animation: pulse-warning 1s infinite;
 }
 
 .bomb-container.critical {
     border-color: var(--danger-color);
-    box-shadow: 0 0 40px rgba(255, 71, 87, 0.7);
+    box-shadow: 0 0 20px rgba(255, 138, 138, 0.4), 4px 4px 0px var(--danger-color);
     animation: pulse-critical 0.5s infinite;
 }
 
 @keyframes pulse-warning {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.03) rotate(1deg); }
 }
 
 @keyframes pulse-critical {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(255, 71, 87, 0.7); }
-    50% { transform: scale(1.1); box-shadow: 0 0 60px rgba(255, 71, 87, 1); }
+    0%, 100% { transform: scale(1) rotate(-1deg); }
+    50% { transform: scale(1.05) rotate(1deg); }
 }
 
 .bomb-display {
@@ -101,14 +114,14 @@ body.shake {
 }
 
 @keyframes bomb-wobble {
-    0%, 100% { transform: rotate(-5deg); }
-    50% { transform: rotate(5deg); }
+    0%, 100% { transform: rotate(-10deg); }
+    50% { transform: rotate(10deg); }
 }
 
 .timer {
     font-size: 2rem;
     font-weight: bold;
-    font-family: "Courier New", monospace;
+    font-family: "Caveat", cursive;
     color: var(--success-color);
     min-width: 50px;
     text-align: center;
@@ -116,24 +129,26 @@ body.shake {
 
 .defuse-btn {
     background: var(--gradient-1);
-    color: white;
-    border: none;
+    color: var(--text-dark);
+    border: 2px solid rgba(0,0,0,0.1);
     padding: 10px 20px;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
     font-weight: bold;
     font-size: 0.9rem;
+    font-family: "Patrick Hand", cursive;
     transition: var(--transition);
     text-transform: uppercase;
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
 }
 
 .defuse-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 5px 20px rgba(108, 92, 231, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
 
 .reset-btn {
-    background: linear-gradient(135deg, #ff6b6b, #ff4757) !important;
+    background: linear-gradient(135deg, #ffb3b3, #ff8a8a) !important;
 }
 
 .bomb-warning {
@@ -141,17 +156,18 @@ body.shake {
     color: var(--text-secondary);
     text-align: center;
     margin-top: 8px;
+    font-style: italic;
 }
 
 .explosion-message {
     font-size: 1.5rem;
     font-weight: bold;
+    font-family: "Caveat", cursive;
     color: var(--danger-color);
-    text-shadow: 0 0 20px var(--danger-color);
 }
 
 /* ==========================================
-   EXPLOSION OVERLAY
+   EXPLOSION OVERLAY - Pastel Version
    ========================================== */
 
 .explosion-overlay {
@@ -160,7 +176,7 @@ body.shake {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: radial-gradient(circle, #ff4757, #ff6b6b, #ffa502, transparent);
+    background: radial-gradient(circle, #ffb3b3, #ffd8be, #fff5e6, transparent);
     z-index: 99999;
     display: flex;
     justify-content: center;
@@ -177,19 +193,20 @@ body.shake {
 .explosion-text {
     font-size: 5rem;
     font-weight: bold;
-    color: white;
-    text-shadow: 0 0 50px #ff4757, 0 0 100px #ffa502;
+    font-family: "Caveat", cursive;
+    color: var(--danger-color);
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
     animation: explosion-pulse 0.5s ease-out;
 }
 
 @keyframes explosion-pulse {
-    0% { transform: scale(0.5); opacity: 0; }
-    50% { transform: scale(1.5); opacity: 1; }
-    100% { transform: scale(1); opacity: 1; }
+    0% { transform: scale(0.5) rotate(-10deg); opacity: 0; }
+    50% { transform: scale(1.3) rotate(5deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
 }
 
 /* ==========================================
-   NAVIGATION
+   NAVIGATION - Notebook Tab Style
    ========================================== */
 
 .navbar {
@@ -207,25 +224,24 @@ body.shake {
 }
 
 .navbar.scrolled {
-    background: rgba(10, 10, 15, 0.95);
+    background: rgba(255, 254, 247, 0.95);
     backdrop-filter: blur(10px);
     padding: 15px 50px;
-    box-shadow: var(--shadow);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-bottom: 2px dashed var(--paper-lines);
 }
 
 .nav-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-    background: var(--gradient-1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: 1.8rem;
+    font-weight: 600;
+    font-family: "Caveat", cursive;
+    color: var(--secondary-color);
 }
 
 .nav-links {
     display: flex;
     list-style: none;
-    gap: 30px;
+    gap: 10px;
 }
 
 .nav-links a {
@@ -233,26 +249,23 @@ body.shake {
     text-decoration: none;
     font-weight: 500;
     transition: var(--transition);
-    position: relative;
+    padding: 8px 16px;
+    border-radius: 8px 8px 0 0;
+    background: var(--paper);
+    border: 2px solid var(--paper-lines);
+    border-bottom: none;
+    font-family: "Patrick Hand", cursive;
+    font-size: 1.1rem;
 }
 
-.nav-links a::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--gradient-1);
-    transition: var(--transition);
-}
-
-.nav-links a:hover::after {
-    width: 100%;
+.nav-links a:hover {
+    background: var(--primary-color);
+    color: var(--text-dark);
+    transform: translateY(-3px);
 }
 
 /* ==========================================
-   HERO SECTION
+   HERO SECTION - Notebook Page Style
    ========================================== */
 
 .hero {
@@ -262,10 +275,18 @@ body.shake {
     justify-content: center;
     text-align: center;
     padding: 100px 20px;
-    background: 
-        radial-gradient(ellipse at top, rgba(108, 92, 231, 0.15), transparent 50%),
-        radial-gradient(ellipse at bottom, rgba(253, 121, 168, 0.1), transparent 50%),
-        var(--dark-bg);
+    background: var(--paper);
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    left: 80px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #ffb3b3;
 }
 
 .hero-content {
@@ -278,14 +299,15 @@ body.shake {
     margin: 0 auto 30px;
     border-radius: 50%;
     overflow: hidden;
-    border: 4px solid var(--primary-color);
-    box-shadow: 0 0 40px rgba(108, 92, 231, 0.4);
+    border: 5px solid var(--accent-color);
+    box-shadow: var(--shadow), 6px 6px 0px var(--lavender);
     transition: var(--transition);
+    background: var(--cream);
 }
 
 .profile-image:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 60px rgba(108, 92, 231, 0.6);
+    transform: scale(1.05) rotate(3deg);
+    box-shadow: var(--shadow-hover), 8px 8px 0px var(--lavender);
 }
 
 .profile-image img {
@@ -295,22 +317,22 @@ body.shake {
 }
 
 .hero h1 {
-    font-size: 3.5rem;
+    font-size: 4rem;
     margin-bottom: 15px;
-    background: var(--gradient-2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-family: "Caveat", cursive;
+    color: var(--secondary-color);
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
 }
 
 .tagline {
-    font-size: 1.3rem;
-    color: var(--secondary-color);
+    font-size: 1.4rem;
+    color: var(--text-secondary);
     margin-bottom: 20px;
+    font-family: "Patrick Hand", cursive;
 }
 
 .hero-description {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: var(--text-secondary);
     margin-bottom: 30px;
     max-width: 600px;
@@ -319,60 +341,89 @@ body.shake {
 }
 
 /* ==========================================
-   SOCIAL LINKS
+   SOCIAL LINKS - Sticker Style
    ========================================== */
 
 .social-links {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px;
     flex-wrap: wrap;
 }
 
 .social-links a {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--card-bg);
-    border-radius: 50%;
+    background: var(--paper);
+    border-radius: 15px;
     color: var(--text-primary);
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     transition: var(--transition);
-    border: 2px solid transparent;
+    border: 3px solid var(--paper-lines);
+    box-shadow: 3px 3px 0px var(--lavender);
 }
 
+.social-links a:nth-child(1) { background: var(--primary-color); }
+.social-links a:nth-child(2) { background: var(--secondary-color); }
+.social-links a:nth-child(3) { background: var(--accent-color); }
+.social-links a:nth-child(4) { background: var(--mint); }
+.social-links a:nth-child(5) { background: var(--peach); }
+.social-links a:nth-child(6) { background: var(--lavender); }
+
 .social-links a:hover {
-    background: var(--gradient-1);
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 10px 30px rgba(108, 92, 231, 0.4);
+    transform: translateY(-5px) rotate(5deg);
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
 }
 
 .social-links.large a {
-    width: 60px;
-    height: 60px;
-    font-size: 1.5rem;
+    width: 65px;
+    height: 65px;
+    font-size: 1.6rem;
 }
 
 /* ==========================================
-   SECTIONS
+   SECTIONS - Notebook Pages
    ========================================== */
 
 .section {
     padding: 100px 50px;
     max-width: 1400px;
     margin: 0 auto;
+    position: relative;
+}
+
+.section::before {
+    content: "";
+    position: absolute;
+    left: 80px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #ffb3b3;
 }
 
 .section-title {
-    font-size: 2.5rem;
+    font-size: 3rem;
     text-align: center;
     margin-bottom: 60px;
-    background: var(--gradient-1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-family: "Caveat", cursive;
+    color: var(--secondary-color);
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: var(--accent-color);
+    margin: 10px auto 0;
+    border-radius: 2px;
 }
 
 /* ==========================================
@@ -382,19 +433,25 @@ body.shake {
 .about-content {
     max-width: 900px;
     margin: 0 auto;
+    background: var(--paper);
+    padding: 40px;
+    border-radius: 20px;
+    border: 3px dashed var(--paper-lines);
+    box-shadow: var(--shadow), 6px 6px 0px var(--lavender);
 }
 
 .about-text p {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--text-secondary);
     margin-bottom: 20px;
-    line-height: 1.8;
+    line-height: 2;
 }
 
 .about-text h3 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     margin: 40px 0 20px;
-    color: var(--text-primary);
+    color: var(--text-dark);
+    font-family: "Caveat", cursive;
 }
 
 .skills-container {
@@ -405,23 +462,29 @@ body.shake {
 }
 
 .skill-tag {
-    background: var(--card-bg);
-    color: var(--secondary-color);
+    background: var(--mint);
+    color: var(--text-dark);
     padding: 10px 20px;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    border: 1px solid var(--primary-color);
+    border-radius: 20px;
+    font-size: 1rem;
+    border: 2px solid rgba(0,0,0,0.05);
     transition: var(--transition);
+    box-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+    font-family: "Patrick Hand", cursive;
 }
 
+.skill-tag:nth-child(2n) { background: var(--primary-color); }
+.skill-tag:nth-child(3n) { background: var(--accent-color); }
+.skill-tag:nth-child(4n) { background: var(--peach); }
+.skill-tag:nth-child(5n) { background: var(--lavender); }
+
 .skill-tag:hover {
-    background: var(--primary-color);
-    color: white;
-    transform: translateY(-3px);
+    transform: translateY(-3px) rotate(2deg);
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
 }
 
 /* ==========================================
-   PROJECTS GRID
+   PROJECTS GRID - Sticky Notes Style
    ========================================== */
 
 .projects-grid {
@@ -431,23 +494,41 @@ body.shake {
 }
 
 .project-card {
-    background: var(--card-bg);
-    border-radius: 20px;
+    background: var(--paper);
+    border-radius: 5px 5px 20px 20px;
     overflow: hidden;
     transition: var(--transition);
-    border: 1px solid rgba(108, 92, 231, 0.2);
+    border: none;
+    box-shadow: var(--shadow), 5px 5px 0px var(--lavender);
+    position: relative;
 }
 
+.project-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: var(--primary-color);
+}
+
+.project-card:nth-child(2)::before { background: var(--accent-color); }
+.project-card:nth-child(3)::before { background: var(--mint); }
+.project-card:nth-child(4)::before { background: var(--peach); }
+.project-card:nth-child(5)::before { background: var(--lavender); }
+.project-card:nth-child(6)::before { background: var(--secondary-color); }
+
 .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 50px rgba(108, 92, 231, 0.2);
-    border-color: var(--primary-color);
+    transform: translateY(-8px) rotate(1deg);
+    box-shadow: var(--shadow-hover), 8px 8px 0px var(--lavender);
 }
 
 .project-image {
     width: 100%;
     height: 200px;
     overflow: hidden;
+    border-bottom: 3px dashed var(--paper-lines);
 }
 
 .project-image img {
@@ -458,7 +539,7 @@ body.shake {
 }
 
 .project-card:hover .project-image img {
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .project-info {
@@ -466,22 +547,24 @@ body.shake {
 }
 
 .project-info h3 {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin-bottom: 10px;
-    color: var(--text-primary);
+    color: var(--text-dark);
+    font-family: "Caveat", cursive;
 }
 
 .project-genre {
-    color: var(--accent-color);
-    font-size: 0.9rem;
+    color: var(--secondary-color);
+    font-size: 1rem;
     margin-bottom: 10px;
+    font-family: "Patrick Hand", cursive;
 }
 
 .project-description {
     color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 1rem;
     margin-bottom: 15px;
-    line-height: 1.6;
+    line-height: 1.8;
 }
 
 .project-tags {
@@ -492,11 +575,13 @@ body.shake {
 }
 
 .project-tags span {
-    background: rgba(108, 92, 231, 0.2);
-    color: var(--secondary-color);
+    background: var(--cream);
+    color: var(--text-secondary);
     padding: 5px 12px;
-    border-radius: 15px;
-    font-size: 0.8rem;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    border: 2px dashed var(--paper-lines);
+    font-family: "Patrick Hand", cursive;
 }
 
 .project-links {
@@ -505,40 +590,42 @@ body.shake {
 }
 
 /* ==========================================
-   BUTTONS
+   BUTTONS - Cute Pastel Style
    ========================================== */
 
 .btn {
     display: inline-block;
     padding: 12px 24px;
-    border-radius: 8px;
+    border-radius: 12px;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1rem;
     transition: var(--transition);
     cursor: pointer;
-    border: none;
+    border: 2px solid rgba(0,0,0,0.05);
+    font-family: "Patrick Hand", cursive;
+    box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
 }
 
 .btn-primary {
     background: var(--gradient-1);
-    color: white;
+    color: var(--text-dark);
 }
 
 .btn-primary:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(108, 92, 231, 0.4);
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
 }
 
 .btn-secondary {
-    background: transparent;
-    color: var(--secondary-color);
-    border: 2px solid var(--secondary-color);
+    background: var(--paper);
+    color: var(--text-secondary);
+    border: 2px dashed var(--secondary-color);
 }
 
 .btn-secondary:hover {
-    background: var(--secondary-color);
-    color: var(--dark-bg);
+    background: var(--lavender);
+    color: var(--text-dark);
 }
 
 /* ==========================================
@@ -549,10 +636,15 @@ body.shake {
     text-align: center;
     max-width: 700px;
     margin: 0 auto;
+    background: var(--paper);
+    padding: 50px;
+    border-radius: 20px;
+    border: 3px dashed var(--accent-color);
+    box-shadow: var(--shadow), 6px 6px 0px var(--accent-color);
 }
 
 .contact-content > p {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     color: var(--text-secondary);
     margin-bottom: 40px;
 }
@@ -569,19 +661,22 @@ body.shake {
     display: flex;
     align-items: center;
     gap: 12px;
-    background: var(--card-bg);
+    background: var(--cream);
     padding: 15px 25px;
-    border-radius: 12px;
+    border-radius: 15px;
     color: var(--text-primary);
     text-decoration: none;
     transition: var(--transition);
-    border: 1px solid rgba(108, 92, 231, 0.2);
+    border: 2px dashed var(--paper-lines);
+    box-shadow: 3px 3px 0px var(--lavender);
+    font-family: "Patrick Hand", cursive;
+    font-size: 1.1rem;
 }
 
 .contact-item:hover {
     background: var(--primary-color);
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(108, 92, 231, 0.3);
+    transform: translateY(-5px) rotate(2deg);
+    box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
 }
 
 .contact-item i {
@@ -590,22 +685,37 @@ body.shake {
 }
 
 .contact-item:hover i {
-    color: white;
+    color: var(--text-dark);
 }
 
 /* ==========================================
-   FOOTER
+   FOOTER - Torn Paper Effect
    ========================================== */
 
 .footer {
     text-align: center;
     padding: 40px 20px;
-    background: rgba(0, 0, 0, 0.3);
+    background: var(--lavender);
     color: var(--text-secondary);
+    position: relative;
+    margin-top: 50px;
+}
+
+.footer::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 20'%3E%3Cpath fill='%23e2d1f9' d='M0,20 Q10,15 20,20 T40,20 T60,20 T80,20 T100,20 L100,0 L0,0 Z'/%3E%3C/svg%3E");
+    background-size: 100px 20px;
 }
 
 .footer p {
     margin: 5px 0;
+    font-family: "Patrick Hand", cursive;
+    font-size: 1.1rem;
 }
 
 /* ==========================================
@@ -620,11 +730,18 @@ body.shake {
     }
     
     .nav-links {
-        gap: 15px;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
     }
     
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 3rem;
+    }
+    
+    .hero::before,
+    .section::before {
+        display: none;
     }
     
     .section {
@@ -632,7 +749,7 @@ body.shake {
     }
     
     .section-title {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
     
     .projects-grid {
@@ -650,21 +767,26 @@ body.shake {
         flex-direction: column;
         align-items: center;
     }
+    
+    .about-content,
+    .contact-content {
+        padding: 25px;
+    }
 }
 
 @media (max-width: 480px) {
     .hero h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
     
     .tagline {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
     
     .social-links a {
-        width: 45px;
-        height: 45px;
-        font-size: 1.1rem;
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
     }
     
     .bomb-display {
