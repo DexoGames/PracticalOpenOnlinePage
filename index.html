@@ -6,6 +6,9 @@
     <title>Dexter Smith | Game Developer & Creator</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Load data files -->
+    <script src="data/games.js"></script>
+    <script src="data/projects.js"></script>
 </head>
 <body>
     <!-- Time Bomb Widget -->
@@ -352,42 +355,28 @@
             `;
         }
 
-        // Load games from JSON
-        async function loadGames() {
+        // Load games from data file
+        function loadGames() {
             const gamesGrid = document.getElementById('gamesGrid');
-            try {
-                const response = await fetch('data/games.json');
-                const games = await response.json();
-                
-                if (games.length === 0) {
-                    gamesGrid.innerHTML = '<p class="no-content">No games yet - check back soon!</p>';
-                    return;
-                }
-                
-                gamesGrid.innerHTML = games.map(createGameCard).join('');
-            } catch (error) {
-                console.error('Error loading games:', error);
-                gamesGrid.innerHTML = '<p class="error-text">Could not load games. Make sure you\'re running from a web server.</p>';
+            
+            if (!GAMES_DATA || GAMES_DATA.length === 0) {
+                gamesGrid.innerHTML = '<p class="no-content">No games yet - check back soon!</p>';
+                return;
             }
+            
+            gamesGrid.innerHTML = GAMES_DATA.map(createGameCard).join('');
         }
 
-        // Load projects from JSON
-        async function loadProjects() {
+        // Load projects from data file
+        function loadProjects() {
             const projectsGrid = document.getElementById('projectsGrid');
-            try {
-                const response = await fetch('data/projects.json');
-                const projects = await response.json();
-                
-                if (projects.length === 0) {
-                    projectsGrid.innerHTML = '<p class="no-content">No projects yet - check back soon!</p>';
-                    return;
-                }
-                
-                projectsGrid.innerHTML = projects.map(createProjectCard).join('');
-            } catch (error) {
-                console.error('Error loading projects:', error);
-                projectsGrid.innerHTML = '<p class="error-text">Could not load projects. Make sure you\'re running from a web server.</p>';
+            
+            if (!PROJECTS_DATA || PROJECTS_DATA.length === 0) {
+                projectsGrid.innerHTML = '<p class="no-content">No projects yet - check back soon!</p>';
+                return;
             }
+            
+            projectsGrid.innerHTML = PROJECTS_DATA.map(createProjectCard).join('');
         }
 
         // Load content when page loads
