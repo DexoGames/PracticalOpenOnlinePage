@@ -39,7 +39,7 @@ html {
 }
 
 body {
-    font-family: "Patrick Hand", "Comic Sans MS", "Segoe UI", cursive, sans-serif;
+    font-family: "HP Simplified", "Segoe UI", Arial, sans-serif;
     background: var(--cream);
     background-image: 
         linear-gradient(var(--paper-lines) 1px, transparent 1px);
@@ -49,11 +49,42 @@ body {
     overflow-x: hidden;
 }
 
-/* Import handwriting-style font */
-@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Caveat:wght@400;600&display=swap');
+/* Custom Fonts - Add your font files to a 'fonts' folder */
+@font-face {
+    font-family: 'Dealerplate California';
+    src: url('fonts/dealerplate%20california.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
-/* Shake Animation for bomb countdown */
-body.shake {
+@font-face {
+    font-family: 'HP Simplified';
+    src: url('fonts/HPSimplified.woff2') format('woff2'),
+         url('fonts/HPSimplified.woff') format('woff'),
+         url('fonts/HPSimplified.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'HP Simplified';
+    src: url('fonts/HPSimplified-Bold.woff2') format('woff2'),
+         url('fonts/HPSimplified-Bold.woff') format('woff'),
+         url('fonts/HPSimplified-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Page Wrapper - contains all content except bomb */
+.page-wrapper {
+    position: relative;
+}
+
+/* Shake Animation for bomb countdown - applies to page wrapper, not body */
+.page-wrapper.shake {
     animation: shake 0.5s infinite;
 }
 
@@ -69,7 +100,7 @@ body.shake {
 
 .bomb-container {
     position: fixed;
-    top: 20px;
+    bottom: 20px;
     right: 20px;
     z-index: 9999;
     background: var(--paper);
@@ -121,7 +152,7 @@ body.shake {
 .timer {
     font-size: 2rem;
     font-weight: bold;
-    font-family: "Caveat", cursive;
+    font-family: "Dealerplate California", "Caveat", cursive;
     color: var(--success-color);
     min-width: 50px;
     text-align: center;
@@ -136,7 +167,7 @@ body.shake {
     cursor: pointer;
     font-weight: bold;
     font-size: 0.9rem;
-    font-family: "Patrick Hand", cursive;
+    font-family: "HP Simplified", sans-serif;
     transition: var(--transition);
     text-transform: uppercase;
     box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
@@ -162,7 +193,7 @@ body.shake {
 .explosion-message {
     font-size: 1.5rem;
     font-weight: bold;
-    font-family: "Caveat", cursive;
+    font-family: "Dealerplate California", cursive;
     color: var(--danger-color);
 }
 
@@ -193,7 +224,7 @@ body.shake {
 .explosion-text {
     font-size: 5rem;
     font-weight: bold;
-    font-family: "Caveat", cursive;
+    font-family: "Dealerplate California", cursive;
     color: var(--danger-color);
     text-shadow: 3px 3px 0px rgba(0,0,0,0.1);
     animation: explosion-pulse 0.5s ease-out;
@@ -234,7 +265,7 @@ body.shake {
 .nav-brand {
     font-size: 1.8rem;
     font-weight: 600;
-    font-family: "Caveat", cursive;
+    font-family: "Dealerplate California", cursive;
     color: var(--secondary-color);
 }
 
@@ -254,7 +285,7 @@ body.shake {
     background: var(--paper);
     border: 2px solid var(--paper-lines);
     border-bottom: none;
-    font-family: "Patrick Hand", cursive;
+    font-family: "HP Simplified", sans-serif;
     font-size: 1.1rem;
 }
 
@@ -319,7 +350,7 @@ body.shake {
 .hero h1 {
     font-size: 4rem;
     margin-bottom: 15px;
-    font-family: "Caveat", cursive;
+    font-family: "Dealerplate California", cursive;
     color: var(--secondary-color);
     text-shadow: 2px 2px 0px rgba(0,0,0,0.05);
 }
@@ -328,7 +359,7 @@ body.shake {
     font-size: 1.4rem;
     color: var(--text-secondary);
     margin-bottom: 20px;
-    font-family: "Patrick Hand", cursive;
+    font-family: "HP Simplified", sans-serif;
 }
 
 .hero-description {
@@ -409,7 +440,7 @@ body.shake {
     font-size: 3rem;
     text-align: center;
     margin-bottom: 60px;
-    font-family: "Caveat", cursive;
+    font-family: "Dealerplate California", cursive;
     color: var(--secondary-color);
     position: relative;
     display: inline-block;
@@ -451,7 +482,7 @@ body.shake {
     font-size: 1.8rem;
     margin: 40px 0 20px;
     color: var(--text-dark);
-    font-family: "Caveat", cursive;
+    font-family: "Dealerplate California", cursive;
 }
 
 .skills-container {
@@ -470,7 +501,7 @@ body.shake {
     border: 2px solid rgba(0,0,0,0.05);
     transition: var(--transition);
     box-shadow: 2px 2px 0px rgba(0,0,0,0.05);
-    font-family: "Patrick Hand", cursive;
+    font-family: "HP Simplified", sans-serif;
 }
 
 .skill-tag:nth-child(2n) { background: var(--primary-color); }
@@ -550,14 +581,14 @@ body.shake {
     font-size: 1.6rem;
     margin-bottom: 10px;
     color: var(--text-dark);
-    font-family: "Caveat", cursive;
+    font-family: "Dealerplate California", cursive;
 }
 
 .project-genre {
     color: var(--secondary-color);
     font-size: 1rem;
     margin-bottom: 10px;
-    font-family: "Patrick Hand", cursive;
+    font-family: "HP Simplified", sans-serif;
 }
 
 .project-description {
@@ -581,7 +612,7 @@ body.shake {
     border-radius: 10px;
     font-size: 0.85rem;
     border: 2px dashed var(--paper-lines);
-    font-family: "Patrick Hand", cursive;
+    font-family: "HP Simplified", sans-serif;
 }
 
 .project-links {
@@ -603,7 +634,7 @@ body.shake {
     transition: var(--transition);
     cursor: pointer;
     border: 2px solid rgba(0,0,0,0.05);
-    font-family: "Patrick Hand", cursive;
+    font-family: "HP Simplified", sans-serif;
     box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
 }
 
@@ -669,7 +700,7 @@ body.shake {
     transition: var(--transition);
     border: 2px dashed var(--paper-lines);
     box-shadow: 3px 3px 0px var(--lavender);
-    font-family: "Patrick Hand", cursive;
+    font-family: "HP Simplified", sans-serif;
     font-size: 1.1rem;
 }
 
@@ -714,7 +745,7 @@ body.shake {
 
 .footer p {
     margin: 5px 0;
-    font-family: "Patrick Hand", cursive;
+    font-family: "HP Simplified", sans-serif;
     font-size: 1.1rem;
 }
 
@@ -757,10 +788,9 @@ body.shake {
     }
     
     .bomb-container {
-        top: auto;
         bottom: 20px;
-        right: 50%;
-        transform: translateX(50%);
+        right: 20px;
+        transform: none;
     }
     
     .contact-methods {

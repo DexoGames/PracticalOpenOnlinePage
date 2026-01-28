@@ -18,6 +18,9 @@
         <div class="bomb-warning">Reset before detonation!</div>
     </div>
 
+    <!-- Page Wrapper for shake effect -->
+    <div class="page-wrapper" id="pageWrapper">
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-brand">Dexter Smith</div>
@@ -287,6 +290,8 @@
         <p>Built with  and a lot of caffeine</p>
     </footer>
 
+    </div><!-- End page-wrapper -->
+
     <!-- Explosion Overlay -->
     <div class="explosion-overlay" id="explosionOverlay">
         <div class="explosion-text"> BOOM! </div>
@@ -328,7 +333,7 @@
                 
                 // Shake effect as time runs low
                 if (timeLeft <= 5) {
-                    document.body.classList.add('shake');
+                    document.getElementById('pageWrapper').classList.add('shake');
                 }
                 
                 if (timeLeft <= 0) {
@@ -341,8 +346,7 @@
         // Defuse (reset) the bomb
         function defuseBomb() {
             if (isExploded) {
-                // Reset the page if already exploded
-                location.reload();
+                // No second chances!
                 return;
             }
             
@@ -350,10 +354,10 @@
             timerDisplay.textContent = timeLeft;
             timerDisplay.style.color = '#00ff00';
             bombContainer.classList.remove('warning', 'critical');
-            document.body.classList.remove('shake');
+            document.getElementById('pageWrapper').classList.remove('shake');
             
             // Fun defuse animation
-            defuseBtn.textContent = ' DEFUSED!';
+            defuseBtn.textContent = 'DEFUSED!';
             defuseBtn.style.background = 'linear-gradient(135deg, #00ff00, #00aa00)';
             
             setTimeout(() => {
@@ -390,9 +394,10 @@
                 el.style.opacity = '0';
             });
             
-            // Update bomb display
-            bombContainer.innerHTML = '<div class="bomb-display exploded"><div class="bomb-icon"></div><div class="explosion-message">KABOOM!</div><button class="defuse-btn reset-btn" onclick="location.reload()"> RESTART</button></div>';
+            // Update bomb display - no restart option!
+            bombContainer.innerHTML = '<div class="bomb-display exploded"><div class="bomb-icon">💥</div><div class="explosion-message">GAME OVER</div></div>';
             
+            // Hide the defuse button permanently
             // Change background
             document.body.style.background = 'linear-gradient(135deg, #1a0000, #330000, #1a0000)';
         }
