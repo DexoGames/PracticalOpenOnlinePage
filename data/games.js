@@ -1,12 +1,14 @@
 // Games Data - Edit this file to add/remove games
+// Picture size rec. 800x450
 const GAMES_DATA = [
     {
         id: "game1",
-        title: "Game Title 1",
-        genre: "Action/RPG/Puzzle",
-        description: "A brief description of your game. What makes it unique? What's the gameplay like?",
-        image: "images/games/game1-screenshot.jpg",
-        tags: ["Unity", "2D", "Platformer"],
+        title: "Pile Up 2",
+        genre: "Physics-Based Puzzle",
+        description: "Use a wide variety of shapes to stack your way to the finish line. ",
+        year: "2023",
+        image: "images/games/pileup-cover.jpg",
+        tags: ["Unity", "Online Leaderboards"],
         links: {
             play: "#",
             source: "#"
@@ -14,11 +16,12 @@ const GAMES_DATA = [
     },
     {
         id: "game2",
-        title: "Game Title 2",
-        genre: "Adventure",
+        title: "Beanstalk!",
+        genre: "Endless Arcade",
         description: "Another amazing game you've created. Describe the concept, mechanics, and your role in development.",
-        image: "images/games/game2-screenshot.jpg",
-        tags: ["Unreal", "3D", "Adventure"],
+        image: "images/games/beanstalk-cover.jpg",
+        year: "2022",
+        tags: ["Unity", "Online Multiplayer", "Pixel Art"],
         links: {
             play: "#",
             source: "#"
@@ -26,11 +29,12 @@ const GAMES_DATA = [
     },
     {
         id: "game3",
-        title: "Game Title 3",
-        genre: "Roguelike",
-        description: "Your third game project. Maybe a game jam entry or a passion project?",
-        image: "images/games/game3-screenshot.jpg",
-        tags: ["Godot", "Pixel Art", "Roguelike"],
+        title: "Gridlock+",
+        genre: "Strategy",
+        description: "Player Gridlock, a game of dots and boxes on steroids, and compete against AI or random players to be the best. Or play a selection of other unique and challenging games.",
+        year: "2024",
+        image: "images/games/gridlock-cover.jpg",
+        tags: ["Unity", "Online Multiplayer", "Online Matchmaking", "AI Opponents"],
         links: {
             play: "#",
             source: "#"

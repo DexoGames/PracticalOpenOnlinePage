@@ -26,12 +26,17 @@
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
-        <div class="nav-brand">Dexter Smith</div>
+        <div class="nav-brand">Dexo.Games</div>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#games">Games</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li>
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </li>
         </ul>
     </nav>
 
@@ -43,7 +48,7 @@
                 <img src="https://via.placeholder.com/200x200?text=Your+Photo" alt="Dexter Smith">
             </div>
             <h1>Dexter Smith</h1>
-            <p class="tagline">Game Developer | Creative Coder | Digital Creator</p>
+            <p class="tagline">Software Engineering Student | Game Developer | Graphic Designer</p>
             <p class="hero-description">
                 <!-- TODO: Add your personal bio/introduction here -->
                 Welcome to my portfolio! I'm passionate about creating immersive gaming experiences 
@@ -108,7 +113,7 @@
 
     <!-- Games Section -->
     <section class="section games" id="games">
-        <h2 class="section-title">🎮 My Games</h2>
+        <h2 class="section-title">My Games</h2>
         <div class="projects-grid" id="gamesGrid">
             <!-- Games are loaded dynamically from data/games.json -->
             <p class="loading-text">Loading games...</p>
@@ -117,7 +122,7 @@
 
     <!-- Other Projects Section -->
     <section class="section projects" id="projects">
-        <h2 class="section-title">💻 Other Projects</h2>
+        <h2 class="section-title">Other Projects</h2>
         <div class="projects-grid" id="projectsGrid">
             <!-- Projects are loaded dynamically from data/projects.json -->
             <p class="loading-text">Loading projects...</p>
@@ -158,15 +163,13 @@
     <!-- Footer -->
     <footer class="footer" id="footer">
         <p>&copy; 2026 Dexter Smith. All rights reserved.</p>
-        <p>Built with  and a lot of caffeine</p>
+        <p>Built with love</p>
     </footer>
 
     </div><!-- End page-wrapper -->
 
-    <!-- Explosion Overlay -->
-    <div class="explosion-overlay" id="explosionOverlay">
-        <div class="explosion-text"> BOOM! </div>
-    </div>
+    <!-- Explosion Overlay - just a red flash -->
+    <div class="explosion-overlay" id="explosionOverlay"></div>
 
     <script>
         // ==========================================
@@ -241,36 +244,41 @@
         function explodePage() {
             isExploded = true;
             
-            // Show explosion overlay briefly
+            // Flash red overlay then fade to dark red
             explosionOverlay.classList.add('active');
             
+            // Change background to dark red
+            document.body.style.transition = 'background 1s ease';
+            document.body.style.background = 'linear-gradient(135deg, #2a0a0a, #4a1010, #2a0a0a)';
+            
+            // Fade out overlay after flash
             setTimeout(() => {
-                explosionOverlay.classList.remove('active');
-            }, 500);
+                explosionOverlay.style.transition = 'opacity 1.5s ease';
+                explosionOverlay.style.opacity = '0';
+            }, 400);
             
             // Make everything explode!
             const elements = getExplodableElements();
             
             elements.forEach((el, index) => {
-                // Random explosion direction
-                const angle = Math.random() * 360;
-                const distance = 500 + Math.random() * 1500;
-                const rotateAmount = (Math.random() - 0.5) * 1440; // Up to 4 full rotations
-                
-                const x = Math.cos(angle * Math.PI / 180) * distance;
-                const y = Math.sin(angle * Math.PI / 180) * distance + 1000; // Add gravity effect
-                
-                el.style.transition = 'transform ' + (1 + Math.random() * 2) + 's ease-out, opacity ' + (2 + Math.random()) + 's ease-out';
-                el.style.transform = 'translate(' + x + 'px, ' + y + 'px) rotate(' + rotateAmount + 'deg) scale(' + (Math.random() * 0.5) + ')';
-                el.style.opacity = '0';
+                // Small delay for cascading effect
+                setTimeout(() => {
+                    // Random explosion direction
+                    const angle = Math.random() * 360;
+                    const distance = 800 + Math.random() * 2000;
+                    const rotateAmount = (Math.random() - 0.5) * 1440; // Up to 4 full rotations
+                    
+                    const x = Math.cos(angle * Math.PI / 180) * distance;
+                    const y = Math.sin(angle * Math.PI / 180) * distance + 1500; // Add gravity effect
+                    
+                    el.style.transition = 'transform ' + (0.8 + Math.random() * 1.5) + 's ease-out, opacity ' + (1.5 + Math.random()) + 's ease-out';
+                    el.style.transform = 'translate(' + x + 'px, ' + y + 'px) rotate(' + rotateAmount + 'deg) scale(' + (Math.random() * 0.3) + ')';
+                    el.style.opacity = '0';
+                }, index * 20); // Stagger the explosions
             });
             
             // Update bomb display - no restart option!
             bombContainer.innerHTML = '<div class="bomb-display exploded"><div class="bomb-icon">💥</div><div class="explosion-message">GAME OVER</div></div>';
-            
-            // Hide the defuse button permanently
-            // Change background
-            document.body.style.background = 'linear-gradient(135deg, #1a0000, #330000, #1a0000)';
         }
         
         // Event listeners
@@ -279,6 +287,36 @@
         // Start the timer when page loads
         startTimer();
         
+        // ==========================================
+        // THEME TOGGLE
+        // ==========================================
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+        
+        // Check for saved theme preference or default to dark
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            html.setAttribute('data-theme', 'light');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        });
+
         // ==========================================
         // SMOOTH SCROLLING
         // ==========================================
