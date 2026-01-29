@@ -607,11 +607,29 @@ body {
     padding: 20px;
 }
 
+.project-title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
 .project-info h3 {
     font-size: 1.4rem;
-    margin-bottom: 8px;
+    margin-bottom: 0;
     color: var(--text-dark);
     font-family: "Dealerplate California", cursive;
+}
+
+.project-type {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
 }
 
 .project-genre {
@@ -879,8 +897,20 @@ body {
     animation: pulse-badge 2s ease-in-out infinite;
 }
 
+.dev-badge.inline {
+    position: static;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    animation: none;
+    box-shadow: 0 1px 4px rgba(243, 156, 18, 0.3);
+}
+
 .dev-badge i {
     font-size: 0.7rem;
+}
+
+.dev-badge.inline i {
+    font-size: 0.6rem;
 }
 
 @keyframes pulse-badge {
@@ -905,14 +935,14 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    max-width: 900px;
+    max-width: 750px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
 .featured-card {
     flex: 1;
-    max-width: 800px;
+    max-width: 650px;
     background: var(--bg-card);
     border-radius: 16px;
     overflow: hidden;
@@ -923,30 +953,35 @@ body {
 
 .featured-content {
     position: relative;
+    display: flex;
+    flex-direction: row;
 }
 
 .featured-content .dev-badge {
-    top: 16px;
-    left: 16px;
+    position: static;
+    display: inline-flex;
+    margin-left: 10px;
+    padding: 4px 10px;
+    font-size: 0.7rem;
+    animation: none;
 }
 
 .featured-type {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    background: var(--accent-color);
-    color: #fff;
-    padding: 4px 12px;
-    border-radius: 12px;
-    font-size: 0.75rem;
-    font-weight: 600;
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 500;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 4px;
 }
 
 .featured-image {
-    width: 100%;
-    aspect-ratio: 16/9;
+    width: 200px;
+    min-width: 200px;
+    aspect-ratio: 1/1;
     overflow: hidden;
+    order: 2;
 }
 
 .featured-image img {
@@ -961,28 +996,72 @@ body {
 }
 
 .featured-info {
-    padding: 24px;
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    order: 1;
+}
+
+.featured-info .featured-title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
 }
 
 .featured-info h3 {
-    font-size: 1.5rem;
-    margin-bottom: 8px;
+    font-size: 1.3rem;
+    margin-bottom: 0;
     color: var(--text-primary);
 }
 
+.featured-info .project-genre {
+    margin-bottom: 8px;
+}
+
 .featured-info .project-description {
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
 }
 
 .featured-info .project-tags {
-    margin-bottom: 16px;
+    margin-bottom: 12px;
+}
+
+.featured-info .project-tags span {
+    font-size: 0.75rem;
+    padding: 3px 8px;
 }
 
 .featured-info .project-links {
     display: flex;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
+}
+
+.featured-info .project-links .btn {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+    .featured-content {
+        flex-direction: column;
+    }
+    
+    .featured-image {
+        width: 100%;
+        min-width: unset;
+        order: 1;
+    }
+    
+    .featured-info {
+        order: 2;
+    }
 }
 
 .carousel-btn {

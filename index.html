@@ -199,16 +199,20 @@
         // Create a game card HTML
         function createGameCard(game) {
             const tagsHTML = game.tags.map(tag => `<span>${tag}</span>`).join('');
-            const devBadge = game.inDevelopment ? '<span class="dev-badge"><i class="fas fa-code"></i> In Development</span>' : '';
+            const devBadge = game.inDevelopment ? '<span class="dev-badge inline"><i class="fas fa-code"></i> In Development</span>' : '';
+            const platformLabel = game.platform === 'mobile' ? 'Mobile Game' : game.platform === 'pc' ? 'PC Game' : 'Game';
             
             return `
                 <div class="project-card ${game.inDevelopment ? 'in-development' : ''}" data-id="${game.id}">
-                    ${devBadge}
                     <div class="project-image">
-                        <img src="${game.image}" alt="${game.title}" onerror="this.src='https://via.placeholder.com/400x225?text=${encodeURIComponent(game.title)}'">
+                        <img src="${game.image}" alt="${game.title}" onerror="this.src='https://via.placeholder.com/400x400?text=${encodeURIComponent(game.title)}'">
                     </div>
                     <div class="project-info">
-                        <h3>${game.title}</h3>
+                        <div class="project-title-row">
+                            <h3>${game.title}</h3>
+                            ${devBadge}
+                        </div>
+                        <span class="project-type">${platformLabel}</span>
                         <p class="project-genre">Genre: ${game.genre}</p>
                         <p class="project-description">${game.description}</p>
                         <div class="project-tags">${tagsHTML}</div>
@@ -224,16 +228,19 @@
         // Create a project card HTML
         function createProjectCard(project) {
             const tagsHTML = project.tags.map(tag => `<span>${tag}</span>`).join('');
-            const devBadge = project.inDevelopment ? '<span class="dev-badge"><i class="fas fa-code"></i> In Development</span>' : '';
+            const devBadge = project.inDevelopment ? '<span class="dev-badge inline"><i class="fas fa-code"></i> In Development</span>' : '';
             
             return `
                 <div class="project-card ${project.inDevelopment ? 'in-development' : ''}" data-id="${project.id}">
-                    ${devBadge}
                     <div class="project-image">
-                        <img src="${project.image}" alt="${project.title}" onerror="this.src='https://via.placeholder.com/400x225?text=${encodeURIComponent(project.title)}'">
+                        <img src="${project.image}" alt="${project.title}" onerror="this.src='https://via.placeholder.com/400x400?text=${encodeURIComponent(project.title)}'">
                     </div>
                     <div class="project-info">
-                        <h3>${project.title}</h3>
+                        <div class="project-title-row">
+                            <h3>${project.title}</h3>
+                            ${devBadge}
+                        </div>
+                        <span class="project-type">Project</span>
                         <p class="project-description">${project.description}</p>
                         <div class="project-tags">${tagsHTML}</div>
                         <div class="project-links">
@@ -279,7 +286,13 @@
         
         function createFeaturedCard(item, isGame = false) {
             const devBadge = item.inDevelopment ? '<span class="dev-badge"><i class="fas fa-code"></i> In Development</span>' : '';
-            const typeLabel = isGame ? 'Game' : 'Project';
+            let typeLabel = '';
+            if (isGame) {
+                const platformLabel = item.platform === 'mobile' ? 'Mobile Game' : item.platform === 'pc' ? 'PC Game' : 'Game';
+                typeLabel = platformLabel;
+            } else {
+                typeLabel = 'Project';
+            }
             const tagsHTML = item.tags.map(tag => `<span>${tag}</span>`).join('');
             
             let linksHTML = '';
@@ -297,13 +310,15 @@
             
             return `
                 <div class="featured-content ${item.inDevelopment ? 'in-development' : ''}">
-                    ${devBadge}
-                    <span class="featured-type">${typeLabel}</span>
                     <div class="featured-image">
-                        <img src="${item.image}" alt="${item.title}" onerror="this.src='https://via.placeholder.com/600x340?text=${encodeURIComponent(item.title)}'">
+                        <img src="${item.image}" alt="${item.title}" onerror="this.src='https://via.placeholder.com/400x400?text=${encodeURIComponent(item.title)}'">
                     </div>
                     <div class="featured-info">
-                        <h3>${item.title}</h3>
+                        <div class="featured-title-row">
+                            <h3>${item.title}</h3>
+                            ${devBadge}
+                        </div>
+                        <span class="featured-type">${typeLabel}</span>
                         ${isGame ? `<p class="project-genre">Genre: ${item.genre}</p>` : ''}
                         <p class="project-description">${item.description}</p>
                         <div class="project-tags">${tagsHTML}</div>

@@ -17,6 +17,8 @@ const SKILLS_DATA = {
         title: "Software",
         skills: [
             "Unity",
+            "Git",
+            "VSCode",
             "Photoshop",
             "Illustrator",
             "Git"
@@ -25,9 +27,13 @@ const SKILLS_DATA = {
     other: {
         title: "Other",
         skills: [
-            "Game Design",
-            "Pixel Art",
-            "UI/UX Design"
+            "Game Development",
+            "Algorithmics",
+            "Minimax Search",
+            "Functional Programming",
+            "UI/UX Design",
+            "Graphic Design",
+            ""
         ]
     }
 };

@@ -8,7 +8,7 @@ const PROJECTS_DATA = [
         description: "A web app, tool, or other creative project you've built.",
         image: "images/projects/project1-screenshot.jpg",
         tags: ["JavaScript", "React", "API"],
-        featured: true,
+        featured: false,
         inDevelopment: false,
         links: {
             demo: "#",
