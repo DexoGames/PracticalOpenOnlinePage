@@ -7,20 +7,14 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Load data files -->
+    <script src="data/profile.js"></script>
+    <script src="data/skills.js"></script>
+    <script src="data/socials.js"></script>
     <script src="data/games.js"></script>
     <script src="data/projects.js"></script>
+    <script src="data/photos.js"></script>
 </head>
 <body>
-    <!-- Time Bomb Widget -->
-    <div class="bomb-container" id="bombContainer">
-        <div class="bomb-display">
-            <div class="bomb-icon"></div>
-            <div class="timer" id="timer">60</div>
-            <button class="defuse-btn" id="defuseBtn">DEFUSE</button>
-        </div>
-        <div class="bomb-warning">Reset before detonation!</div>
-    </div>
-
     <!-- Page Wrapper for shake effect -->
     <div class="page-wrapper" id="pageWrapper">
 
@@ -31,6 +25,7 @@
             <li><a href="#about">About</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#games">Games</a></li>
+            <li><a href="#photos">Photos</a></li>
             <li><a href="#contact">Contact</a></li>
             <li>
                 <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
@@ -44,69 +39,40 @@
     <header class="hero" id="hero">
         <div class="hero-content">
             <div class="profile-image">
-                <!-- TODO: Replace with your actual photo -->
-                <img src="https://via.placeholder.com/200x200?text=Your+Photo" alt="Dexter Smith">
+                <img id="heroPhoto" src="" alt="">
             </div>
-            <h1>Dexter Smith</h1>
-            <p class="tagline">Software Engineering Student | Game Developer | Graphic Designer</p>
-            <p class="hero-description">
-                <!-- TODO: Add your personal bio/introduction here -->
-                Welcome to my portfolio! I'm passionate about creating immersive gaming experiences 
-                and innovative digital projects. Explore my work below.
-            </p>
-            <div class="social-links">
-                <!-- TODO: Update these links with your actual profiles -->
-                <a href="https://github.com/YOUR_USERNAME" target="_blank" title="GitHub">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://linkedin.com/in/YOUR_USERNAME" target="_blank" title="LinkedIn">
-                    <i class="fab fa-linkedin"></i>
-                </a>
-                <a href="https://twitter.com/YOUR_USERNAME" target="_blank" title="Twitter/X">
-                    <i class="fab fa-twitter"></i>
-                </a>
-                <a href="https://itch.io/profile/YOUR_USERNAME" target="_blank" title="itch.io">
-                    <i class="fab fa-itch-io"></i>
-                </a>
-                <a href="https://discord.gg/YOUR_SERVER" target="_blank" title="Discord">
-                    <i class="fab fa-discord"></i>
-                </a>
-                <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank" title="YouTube">
-                    <i class="fab fa-youtube"></i>
-                </a>
+            <h1 id="heroName"></h1>
+            <p class="tagline" id="heroTagline"></p>
+            <p class="hero-description" id="heroBio"></p>
+            <div class="social-links" id="heroSocials">
+                <!-- Loaded dynamically from data/socials.js -->
             </div>
         </div>
     </header>
+
+    <!-- Featured Projects Carousel -->
+    <section class="section featured" id="featured">
+        <h2 class="section-title">Featured Work</h2>
+        <div class="featured-carousel">
+            <button class="carousel-btn prev" id="carouselPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="featured-card" id="featuredCard">
+                <!-- Loaded dynamically -->
+            </div>
+            <button class="carousel-btn next" id="carouselNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+        <div class="carousel-dots" id="carouselDots"></div>
+    </section>
 
     <!-- About Section -->
     <section class="section about" id="about">
         <h2 class="section-title">About Me</h2>
         <div class="about-content">
-            <div class="about-text">
-                <!-- TODO: Write your detailed about section -->
-                <p>
-                    Hello! I'm Dexter Smith, a passionate game developer and creative coder. 
-                    I love bringing ideas to life through interactive experiences and pushing 
-                    the boundaries of what's possible in digital media.
-                </p>
-                <p>
-                    My journey in game development started [YOUR STORY HERE]. Since then, 
-                    I've worked on various projects ranging from [TYPES OF PROJECTS].
-                </p>
-                <h3>Skills & Technologies</h3>
-                <div class="skills-container">
-                    <!-- TODO: Update with your actual skills -->
-                    <span class="skill-tag">Unity</span>
-                    <span class="skill-tag">Unreal Engine</span>
-                    <span class="skill-tag">C#</span>
-                    <span class="skill-tag">C++</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">Blender</span>
-                    <span class="skill-tag">Pixel Art</span>
-                    <span class="skill-tag">Game Design</span>
-                    <span class="skill-tag">Level Design</span>
-                </div>
+            <div class="about-text" id="aboutText">
+                <!-- Loaded dynamically from data/profile.js -->
             </div>
         </div>
     </section>
@@ -129,164 +95,46 @@
         </div>
     </section>
 
+    <!-- Dexo Photos Section -->
+    <section class="section photos" id="photos">
+        <h2 class="section-title">Dexo Photos</h2>
+        <div class="photos-scroll-wrapper">
+            <div class="photos-scroll-track" id="photosTrack">
+                <!-- Loaded dynamically from data/photos.js -->
+            </div>
+        </div>
+        <a href="photos.html" class="view-more-btn">
+            <span>View All Photos</span>
+            <i class="fas fa-arrow-right"></i>
+        </a>
+    </section>
+
     <!-- Contact Section -->
     <section class="section contact" id="contact">
         <h2 class="section-title">Get In Touch</h2>
         <div class="contact-content">
             <p>Interested in working together or just want to say hi? Feel free to reach out!</p>
-            <div class="contact-methods">
-                <!-- TODO: Update with your actual email -->
-                <a href="mailto:your.email@example.com" class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <span>your.email@example.com</span>
-                </a>
-                <a href="https://linkedin.com/in/YOUR_USERNAME" target="_blank" class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn</span>
-                </a>
-                <a href="https://twitter.com/YOUR_USERNAME" target="_blank" class="contact-item">
-                    <i class="fab fa-twitter"></i>
-                    <span>Twitter/X</span>
-                </a>
+            <div class="contact-methods" id="contactMethods">
+                <!-- Loaded dynamically from data/socials.js -->
             </div>
-            <div class="social-links large">
-                <a href="https://github.com/YOUR_USERNAME" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="https://linkedin.com/in/YOUR_USERNAME" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://twitter.com/YOUR_USERNAME" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="https://itch.io/profile/YOUR_USERNAME" target="_blank"><i class="fab fa-itch-io"></i></a>
-                <a href="https://discord.gg/YOUR_SERVER" target="_blank"><i class="fab fa-discord"></i></a>
-                <a href="https://youtube.com/@YOUR_CHANNEL" target="_blank"><i class="fab fa-youtube"></i></a>
+            <div class="social-links large" id="contactSocials">
+                <!-- Loaded dynamically from data/socials.js -->
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer" id="footer">
-        <p>&copy; 2026 Dexter Smith. All rights reserved.</p>
-        <p>Built with love</p>
+        <p id="footerCopyright"></p>
+        <p id="footerText"></p>
     </footer>
 
     </div><!-- End page-wrapper -->
 
-    <!-- Explosion Overlay - just a red flash -->
-    <div class="explosion-overlay" id="explosionOverlay"></div>
+    <!-- Bomb script - shared across all pages -->
+    <script src="bomb.js"></script>
 
     <script>
-        // ==========================================
-        // TIME BOMB FUNCTIONALITY
-        // ==========================================
-        
-        let timeLeft = 60;
-        let timerInterval;
-        let isExploded = false;
-        
-        const timerDisplay = document.getElementById('timer');
-        const defuseBtn = document.getElementById('defuseBtn');
-        const bombContainer = document.getElementById('bombContainer');
-        const explosionOverlay = document.getElementById('explosionOverlay');
-        
-        // Get all explodable elements
-        function getExplodableElements() {
-            return document.querySelectorAll('.navbar, .hero, .section, .footer, .project-card, .social-links a, .skill-tag, h1, h2, h3, p, img');
-        }
-        
-        // Start the countdown
-        function startTimer() {
-            timerInterval = setInterval(() => {
-                timeLeft--;
-                timerDisplay.textContent = timeLeft;
-                
-                // Add urgency effects
-                if (timeLeft <= 10) {
-                    bombContainer.classList.add('critical');
-                    timerDisplay.style.color = '#ff0000';
-                } else if (timeLeft <= 30) {
-                    bombContainer.classList.add('warning');
-                    timerDisplay.style.color = '#ff6600';
-                }
-                
-                // Shake effect as time runs low
-                if (timeLeft <= 5) {
-                    document.getElementById('pageWrapper').classList.add('shake');
-                }
-                
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                    explodePage();
-                }
-            }, 1000);
-        }
-        
-        // Defuse (reset) the bomb
-        function defuseBomb() {
-            if (isExploded) {
-                // No second chances!
-                return;
-            }
-            
-            timeLeft = 60;
-            timerDisplay.textContent = timeLeft;
-            timerDisplay.style.color = '#00ff00';
-            bombContainer.classList.remove('warning', 'critical');
-            document.getElementById('pageWrapper').classList.remove('shake');
-            
-            // Fun defuse animation
-            defuseBtn.textContent = 'DEFUSED!';
-            defuseBtn.style.background = 'linear-gradient(135deg, #00ff00, #00aa00)';
-            
-            setTimeout(() => {
-                defuseBtn.textContent = 'DEFUSE';
-                defuseBtn.style.background = '';
-            }, 1000);
-        }
-        
-        // EXPLODE THE PAGE!
-        function explodePage() {
-            isExploded = true;
-            
-            // Flash red overlay then fade to dark red
-            explosionOverlay.classList.add('active');
-            
-            // Change background to dark red
-            document.body.style.transition = 'background 1s ease';
-            document.body.style.background = 'linear-gradient(135deg, #2a0a0a, #4a1010, #2a0a0a)';
-            
-            // Fade out overlay after flash
-            setTimeout(() => {
-                explosionOverlay.style.transition = 'opacity 1.5s ease';
-                explosionOverlay.style.opacity = '0';
-            }, 400);
-            
-            // Make everything explode!
-            const elements = getExplodableElements();
-            
-            elements.forEach((el, index) => {
-                // Small delay for cascading effect
-                setTimeout(() => {
-                    // Random explosion direction
-                    const angle = Math.random() * 360;
-                    const distance = 800 + Math.random() * 2000;
-                    const rotateAmount = (Math.random() - 0.5) * 1440; // Up to 4 full rotations
-                    
-                    const x = Math.cos(angle * Math.PI / 180) * distance;
-                    const y = Math.sin(angle * Math.PI / 180) * distance + 1500; // Add gravity effect
-                    
-                    el.style.transition = 'transform ' + (0.8 + Math.random() * 1.5) + 's ease-out, opacity ' + (1.5 + Math.random()) + 's ease-out';
-                    el.style.transform = 'translate(' + x + 'px, ' + y + 'px) rotate(' + rotateAmount + 'deg) scale(' + (Math.random() * 0.3) + ')';
-                    el.style.opacity = '0';
-                }, index * 20); // Stagger the explosions
-            });
-            
-            // Update bomb display - no restart option!
-            bombContainer.innerHTML = '<div class="bomb-display exploded"><div class="bomb-icon">💥</div><div class="explosion-message">GAME OVER</div></div>';
-        }
-        
-        // Event listeners
-        defuseBtn.addEventListener('click', defuseBomb);
-        
-        // Start the timer when page loads
-        startTimer();
-        
         // ==========================================
         // THEME TOGGLE
         // ==========================================
@@ -351,9 +199,11 @@
         // Create a game card HTML
         function createGameCard(game) {
             const tagsHTML = game.tags.map(tag => `<span>${tag}</span>`).join('');
+            const devBadge = game.inDevelopment ? '<span class="dev-badge"><i class="fas fa-code"></i> In Development</span>' : '';
             
             return `
-                <div class="project-card" data-id="${game.id}">
+                <div class="project-card ${game.inDevelopment ? 'in-development' : ''}" data-id="${game.id}">
+                    ${devBadge}
                     <div class="project-image">
                         <img src="${game.image}" alt="${game.title}" onerror="this.src='https://via.placeholder.com/400x225?text=${encodeURIComponent(game.title)}'">
                     </div>
@@ -374,9 +224,11 @@
         // Create a project card HTML
         function createProjectCard(project) {
             const tagsHTML = project.tags.map(tag => `<span>${tag}</span>`).join('');
+            const devBadge = project.inDevelopment ? '<span class="dev-badge"><i class="fas fa-code"></i> In Development</span>' : '';
             
             return `
-                <div class="project-card" data-id="${project.id}">
+                <div class="project-card ${project.inDevelopment ? 'in-development' : ''}" data-id="${project.id}">
+                    ${devBadge}
                     <div class="project-image">
                         <img src="${project.image}" alt="${project.title}" onerror="this.src='https://via.placeholder.com/400x225?text=${encodeURIComponent(project.title)}'">
                     </div>
@@ -417,10 +269,284 @@
             projectsGrid.innerHTML = PROJECTS_DATA.map(createProjectCard).join('');
         }
 
+        // ==========================================
+        // FEATURED CAROUSEL
+        // ==========================================
+        
+        let featuredItems = [];
+        let currentFeaturedIndex = 0;
+        let carouselInterval;
+        
+        function createFeaturedCard(item, isGame = false) {
+            const devBadge = item.inDevelopment ? '<span class="dev-badge"><i class="fas fa-code"></i> In Development</span>' : '';
+            const typeLabel = isGame ? 'Game' : 'Project';
+            const tagsHTML = item.tags.map(tag => `<span>${tag}</span>`).join('');
+            
+            let linksHTML = '';
+            if (isGame) {
+                linksHTML = `
+                    ${item.links.play ? `<a href="${item.links.play}" class="btn btn-primary" target="_blank">Play Now</a>` : ''}
+                    ${item.links.source ? `<a href="${item.links.source}" class="btn btn-secondary" target="_blank">View Source</a>` : ''}
+                `;
+            } else {
+                linksHTML = `
+                    ${item.links.demo ? `<a href="${item.links.demo}" class="btn btn-primary" target="_blank">Live Demo</a>` : ''}
+                    ${item.links.github ? `<a href="${item.links.github}" class="btn btn-secondary" target="_blank">GitHub</a>` : ''}
+                `;
+            }
+            
+            return `
+                <div class="featured-content ${item.inDevelopment ? 'in-development' : ''}">
+                    ${devBadge}
+                    <span class="featured-type">${typeLabel}</span>
+                    <div class="featured-image">
+                        <img src="${item.image}" alt="${item.title}" onerror="this.src='https://via.placeholder.com/600x340?text=${encodeURIComponent(item.title)}'">
+                    </div>
+                    <div class="featured-info">
+                        <h3>${item.title}</h3>
+                        ${isGame ? `<p class="project-genre">Genre: ${item.genre}</p>` : ''}
+                        <p class="project-description">${item.description}</p>
+                        <div class="project-tags">${tagsHTML}</div>
+                        <div class="project-links">${linksHTML}</div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        function loadFeaturedCarousel() {
+            // Collect all featured items
+            featuredItems = [];
+            
+            if (GAMES_DATA) {
+                GAMES_DATA.filter(g => g.featured).forEach(g => {
+                    featuredItems.push({ ...g, isGame: true });
+                });
+            }
+            
+            if (PROJECTS_DATA) {
+                PROJECTS_DATA.filter(p => p.featured).forEach(p => {
+                    featuredItems.push({ ...p, isGame: false });
+                });
+            }
+            
+            if (featuredItems.length === 0) {
+                document.getElementById('featured').style.display = 'none';
+                return;
+            }
+            
+            // Create dots
+            const dotsContainer = document.getElementById('carouselDots');
+            dotsContainer.innerHTML = featuredItems.map((_, i) => 
+                `<button class="carousel-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></button>`
+            ).join('');
+            
+            // Add dot click listeners
+            dotsContainer.querySelectorAll('.carousel-dot').forEach(dot => {
+                dot.addEventListener('click', () => {
+                    goToFeatured(parseInt(dot.dataset.index));
+                });
+            });
+            
+            // Show first item
+            showFeatured(0);
+            
+            // Auto-rotate every 6 seconds
+            startCarouselAutoRotate();
+            
+            // Pause on hover
+            const carousel = document.querySelector('.featured-carousel');
+            carousel.addEventListener('mouseenter', () => clearInterval(carouselInterval));
+            carousel.addEventListener('mouseleave', startCarouselAutoRotate);
+        }
+        
+        function startCarouselAutoRotate() {
+            clearInterval(carouselInterval);
+            carouselInterval = setInterval(() => {
+                currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredItems.length;
+                showFeatured(currentFeaturedIndex);
+            }, 6000);
+        }
+        
+        function showFeatured(index) {
+            const item = featuredItems[index];
+            const card = document.getElementById('featuredCard');
+            card.innerHTML = createFeaturedCard(item, item.isGame);
+            
+            // Update dots
+            document.querySelectorAll('.carousel-dot').forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+        
+        function goToFeatured(index) {
+            currentFeaturedIndex = index;
+            showFeatured(index);
+            startCarouselAutoRotate();
+        }
+        
+        // Carousel navigation
+        document.getElementById('carouselPrev').addEventListener('click', () => {
+            currentFeaturedIndex = (currentFeaturedIndex - 1 + featuredItems.length) % featuredItems.length;
+            goToFeatured(currentFeaturedIndex);
+        });
+        
+        document.getElementById('carouselNext').addEventListener('click', () => {
+            currentFeaturedIndex = (currentFeaturedIndex + 1) % featuredItems.length;
+            goToFeatured(currentFeaturedIndex);
+        });
+
+        // ==========================================
+        // PHOTOS SECTION
+        // ==========================================
+        
+        function loadPhotos() {
+            const track = document.getElementById('photosTrack');
+            
+            if (!PHOTOS_DATA || !PHOTOS_DATA.featured || PHOTOS_DATA.featured.length === 0) {
+                document.getElementById('photos').style.display = 'none';
+                return;
+            }
+            
+            // Duplicate photos for seamless infinite scroll
+            const photos = [...PHOTOS_DATA.featured, ...PHOTOS_DATA.featured];
+            
+            track.innerHTML = photos.map(photo => `
+                <div class="photo-item">
+                    <img src="${photo.image}" alt="${photo.alt}" onerror="this.src='https://via.placeholder.com/300x200?text=${encodeURIComponent(photo.title)}'">
+                    <div class="photo-overlay">
+                        <span>${photo.title}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ==========================================
+        // PROFILE & SOCIAL LINKS LOADING
+        // ==========================================
+        
+        // Load profile data into hero section
+        function loadProfile() {
+            if (!PROFILE_DATA) return;
+            
+            // Hero section
+            document.getElementById('heroPhoto').src = PROFILE_DATA.photo;
+            document.getElementById('heroPhoto').alt = PROFILE_DATA.name;
+            document.getElementById('heroName').textContent = PROFILE_DATA.name;
+            document.getElementById('heroTagline').textContent = PROFILE_DATA.tagline;
+            document.getElementById('heroBio').textContent = PROFILE_DATA.heroBio;
+            
+            // Footer
+            document.getElementById('footerCopyright').innerHTML = `&copy; ${PROFILE_DATA.footerYear} ${PROFILE_DATA.name}. All rights reserved.`;
+            document.getElementById('footerText').textContent = PROFILE_DATA.footerText;
+        }
+        
+        // Load about section
+        function loadAbout() {
+            const aboutText = document.getElementById('aboutText');
+            if (!PROFILE_DATA) return;
+            
+            // Generate paragraphs
+            const paragraphsHTML = PROFILE_DATA.aboutParagraphs
+                .map(p => `<p>${p}</p>`)
+                .join('');
+            
+            // Generate skills by category
+            let skillsHTML = '';
+            if (SKILLS_DATA && typeof SKILLS_DATA === 'object') {
+                Object.keys(SKILLS_DATA).forEach(categoryKey => {
+                    const category = SKILLS_DATA[categoryKey];
+                    if (category.skills && category.skills.length > 0) {
+                        const tagsHTML = category.skills
+                            .map(skill => `<span class="skill-tag">${skill}</span>`)
+                            .join('');
+                        skillsHTML += `
+                            <div class="skill-category" data-category="${categoryKey}">
+                                <h4>${category.title}</h4>
+                                <div class="skills-container">${tagsHTML}</div>
+                            </div>
+                        `;
+                    }
+                });
+            }
+            
+            if (!skillsHTML) {
+                skillsHTML = '<div class="skills-container"><span class="skill-tag">No skills listed</span></div>';
+            }
+            
+            aboutText.innerHTML = `
+                ${paragraphsHTML}
+                <h3>Skills & Technologies</h3>
+                <div class="skills-all">${skillsHTML}</div>
+            `;
+        }
+        
+        // Generate social link HTML
+        function createSocialLink(social, showLabel = false) {
+            if (!social.url) return '';
+            return `
+                <a href="${social.url}" target="_blank" title="${social.name}">
+                    <i class="${social.icon}"></i>${showLabel ? `<span>${social.name}</span>` : ''}
+                </a>
+            `;
+        }
+        
+        // Load social links
+        function loadSocials() {
+            if (!SOCIALS_DATA) return;
+            
+            const heroSocials = document.getElementById('heroSocials');
+            const contactSocials = document.getElementById('contactSocials');
+            const contactMethods = document.getElementById('contactMethods');
+            
+            // Filter out socials with no URL
+            const activeSocials = SOCIALS_DATA.filter(s => s.url);
+            
+            // Hero social links (icons only)
+            heroSocials.innerHTML = activeSocials.map(s => createSocialLink(s)).join('');
+            
+            // Contact section social links (icons only)
+            contactSocials.innerHTML = activeSocials.map(s => createSocialLink(s)).join('');
+            
+            // Contact methods (email + selected socials with labels)
+            let methodsHTML = '';
+            
+            // Add email first
+            if (PROFILE_DATA && PROFILE_DATA.email) {
+                methodsHTML += `
+                    <a href="mailto:${PROFILE_DATA.email}" class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>${PROFILE_DATA.email}</span>
+                    </a>
+                `;
+            }
+            
+            // Add selected contact methods
+            if (CONTACT_METHODS) {
+                CONTACT_METHODS.forEach(methodId => {
+                    const social = SOCIALS_DATA.find(s => s.id === methodId);
+                    if (social && social.url) {
+                        methodsHTML += `
+                            <a href="${social.url}" target="_blank" class="contact-item">
+                                <i class="${social.icon}"></i>
+                                <span>${social.name}</span>
+                            </a>
+                        `;
+                    }
+                });
+            }
+            
+            contactMethods.innerHTML = methodsHTML;
+        }
+
         // Load content when page loads
         document.addEventListener('DOMContentLoaded', () => {
+            loadProfile();
+            loadAbout();
+            loadSocials();
+            loadFeaturedCarousel();
             loadGames();
             loadProjects();
+            loadPhotos();
         });
     </script>
 </body>

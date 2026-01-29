@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dexo Photos | Dexter Smith</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Load data files -->
+    <script src="data/profile.js"></script>
+    <script src="data/photos.js"></script>
+    <style>
+        /* Photos Page Specific Styles */
+        .photos-page {
+            padding-top: 100px;
+            min-height: 100vh;
+        }
+        
+        .photos-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .photos-header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        .photos-header p {
+            color: var(--text-secondary);
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .back-link:hover {
+            color: var(--accent-hover);
+        }
+        
+        .back-link i {
+            transition: transform 0.3s ease;
+        }
+        
+        .back-link:hover i {
+            transform: translateX(-5px);
+        }
+        
+        .gallery-section {
+            margin-bottom: 60px;
+        }
+        
+        .gallery-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            color: var(--accent-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        /* Featured section keeps the overlay style */
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 4/3;
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(transparent 50%, rgba(0,0,0,0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+        
+        .gallery-item:hover .gallery-item-overlay {
+            opacity: 1;
+        }
+        
+        .gallery-item-overlay h3 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+        
+        /* Gallery section - natural aspect ratios, no overlay */
+        #galleryGrid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+        }
+        
+        #galleryGrid .gallery-item {
+            aspect-ratio: unset;
+            border-radius: 0;
+            height: 250px;
+            flex-grow: 0;
+            flex-shrink: 0;
+            box-shadow: none;
+        }
+        
+        #galleryGrid .gallery-item:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        
+        #galleryGrid .gallery-item img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+        
+        #galleryGrid .gallery-item:hover img {
+            transform: none;
+            opacity: 0.85;
+        }
+        
+        .gallery-item-overlay span {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
+            text-transform: capitalize;
+        }
+        
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        
+        .lightbox.active {
+            display: flex;
+        }
+        
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+        
+        .lightbox-close:hover {
+            color: var(--accent-color);
+        }
+        
+        .lightbox-caption {
+            text-align: center;
+            color: #fff;
+            margin-top: 16px;
+            font-size: 1.1rem;
+        }
+        
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: background 0.3s ease;
+        }
+        
+        .lightbox-nav:hover {
+            background: var(--accent-color);
+        }
+        
+        .lightbox-nav.prev {
+            left: -70px;
+        }
+        
+        .lightbox-nav.next {
+            right: -70px;
+        }
+        
+        @media (max-width: 768px) {
+            .lightbox-nav {
+                display: none;
+            }
+            
+            .photos-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar scrolled" id="navbar">
+        <div class="nav-brand">Dexo.Games</div>
+        <ul class="nav-links">
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#games">Games</a></li>
+            <li><a href="index.html#photos">Photos</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li>
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Photos Page Content -->
+    <main class="photos-page section">
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </a>
+        
+        <div class="photos-header">
+            <h1>Dexo Photos</h1>
+            <p>A collection of my photography work</p>
+            <p>instagram @dexo.photos</p>
+        </div>
+        
+        <!-- All Photos -->
+        <div class="gallery-section" id="allGallery">
+            <div class="gallery-grid" id="galleryGrid">
+                <!-- Loaded dynamically -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightboxClose">&times;</button>
+            <button class="lightbox-nav prev" id="lightboxPrev"><i class="fas fa-chevron-left"></i></button>
+            <img src="" alt="" id="lightboxImg">
+            <button class="lightbox-nav next" id="lightboxNext"><i class="fas fa-chevron-right"></i></button>
+            <p class="lightbox-caption" id="lightboxCaption"></p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p id="footerCopyright"></p>
+        <p id="footerText"></p>
+    </footer>
+
+    <!-- Bomb script - shared across all pages -->
+    <script src="bomb.js"></script>
+
+    <script>
+        // Theme toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+        
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            html.setAttribute('data-theme', 'light');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            if (currentTheme === 'light') {
+                html.removeAttribute('data-theme');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            } else {
+                html.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            }
+        });
+
+        // All photos for lightbox navigation
+        let allPhotos = [];
+        let currentPhotoIndex = 0;
+
+        // Create gallery item (no overlay, natural aspect ratio)
+        function createGalleryItem(photo, index) {
+            return `
+                <div class="gallery-item" data-index="${index}" onclick="openLightbox(${index})">
+                    <img src="${photo.image}" alt="${photo.alt}" onerror="this.src='https://via.placeholder.com/400x300?text=${encodeURIComponent(photo.title)}'">
+                </div>
+            `;
+        }
+
+        // Load gallery
+        function loadGalleries() {
+            if (!PHOTOS_DATA) return;
+            
+            // Combine all photos for lightbox
+            allPhotos = [];
+            
+            // Gallery photos (no overlay, natural aspect ratios)
+            if (PHOTOS_DATA.gallery && PHOTOS_DATA.gallery.length > 0) {
+                PHOTOS_DATA.gallery.forEach(photo => allPhotos.push(photo));
+                document.getElementById('galleryGrid').innerHTML = 
+                    PHOTOS_DATA.gallery.map((photo, i) => createGalleryItem(photo, i)).join('');
+            } else {
+                document.getElementById('allGallery').style.display = 'none';
+            }
+        }
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+        const lightboxCaption = document.getElementById('lightboxCaption');
+
+        function openLightbox(index) {
+            currentPhotoIndex = index;
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function updateLightbox() {
+            const photo = allPhotos[currentPhotoIndex];
+            lightboxImg.src = photo.image;
+            lightboxImg.alt = photo.alt;
+            lightboxCaption.textContent = photo.title;
+        }
+
+        function nextPhoto() {
+            currentPhotoIndex = (currentPhotoIndex + 1) % allPhotos.length;
+            updateLightbox();
+        }
+
+        function prevPhoto() {
+            currentPhotoIndex = (currentPhotoIndex - 1 + allPhotos.length) % allPhotos.length;
+            updateLightbox();
+        }
+
+        document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+        document.getElementById('lightboxNext').addEventListener('click', nextPhoto);
+        document.getElementById('lightboxPrev').addEventListener('click', prevPhoto);
+        
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextPhoto();
+            if (e.key === 'ArrowLeft') prevPhoto();
+        });
+
+        // Load footer
+        function loadFooter() {
+            if (!PROFILE_DATA) return;
+            document.getElementById('footerCopyright').innerHTML = 
+                `&copy; ${PROFILE_DATA.footerYear} ${PROFILE_DATA.name}. All rights reserved.`;
+            document.getElementById('footerText').textContent = PROFILE_DATA.footerText;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGalleries();
+            loadFooter();
+        });
+    </script>
+</body>
+</html>
