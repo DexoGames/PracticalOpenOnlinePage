@@ -291,7 +291,7 @@ body {
     font-weight: 600;
     font-family: "Dealerplate California", cursive;
     color: var(--accent-color);
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 .nav-links {
@@ -624,7 +624,7 @@ body {
     margin-bottom: 0;
     color: var(--text-dark);
     font-family: "Dealerplate California", cursive;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 .project-type {
