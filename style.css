@@ -291,6 +291,7 @@ body {
     font-weight: 600;
     font-family: "Dealerplate California", cursive;
     color: var(--accent-color);
+    letter-spacing: 1px;
 }
 
 .nav-links {
@@ -384,6 +385,7 @@ body {
     margin-bottom: 15px;
     font-family: "Dealerplate California", cursive;
     color: var(--text-dark);
+    letter-spacing: 2px;
 }
 
 .tagline {
@@ -430,6 +432,7 @@ body {
     font-size: 1.3rem;
     transition: var(--transition);
     border: 1px solid var(--border-color);
+    text-decoration: none;
 }
 
 /* Social colors - using brand colors */
@@ -437,8 +440,8 @@ body {
 .social-links a:nth-child(2) { background: var(--social-linkedin); color: white; border: none; }
 .social-links a:nth-child(3) { background: var(--social-twitter); color: white; border: none; }
 .social-links a:nth-child(4) { background: var(--social-itch); color: white; border: none; }
-.social-links a:nth-child(5) { background: var(--social-youtube); color: white; border: none; }
-.social-links a:nth-child(6) { background: var(--social-discord); color: white; border: none; }
+.social-links a:nth-child(5) { background: var(--social-discord); color: white; border: none; }
+.social-links a:nth-child(6) { background: var(--social-youtube); color: white; border: none; }
 
 .social-links a:hover {
     transform: translateY(-3px);
@@ -456,7 +459,7 @@ body {
    ========================================== */
 
 .section {
-    padding: 80px 50px;
+    padding: 60px 50px;
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
@@ -465,12 +468,13 @@ body {
 .section-title {
     font-size: 2.5rem;
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 35px;
     font-family: "Dealerplate California", cursive;
     color: var(--text-dark);
     position: relative;
     display: inline-block;
     width: 100%;
+    letter-spacing: 2px;
 }
 
 .section-title::after {
@@ -620,6 +624,7 @@ body {
     margin-bottom: 0;
     color: var(--text-dark);
     font-family: "Dealerplate California", cursive;
+    letter-spacing: 1px;
 }
 
 .project-type {
@@ -935,14 +940,14 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
-    max-width: 750px;
+    max-width: 900px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
 .featured-card {
     flex: 1;
-    max-width: 650px;
+    max-width: 800px;
     background: var(--bg-card);
     border-radius: 16px;
     overflow: hidden;
@@ -977,9 +982,10 @@ body {
 }
 
 .featured-image {
-    width: 200px;
-    min-width: 200px;
-    aspect-ratio: 1/1;
+    width: 250px;
+    height: 250px;
+    min-width: 250px;
+    flex-shrink: 0;
     overflow: hidden;
     order: 2;
 }
@@ -1012,9 +1018,11 @@ body {
 }
 
 .featured-info h3 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     margin-bottom: 0;
     color: var(--text-primary);
+    font-family: "Dealerplate California", cursive;
+    letter-spacing: 2px;
 }
 
 .featured-info .project-genre {
@@ -1214,6 +1222,8 @@ body {
     align-items: center;
     gap: 10px;
     margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
     padding: 12px 28px;
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -1236,6 +1246,12 @@ body {
 
 .view-more-btn:hover i {
     transform: translateX(5px);
+}
+
+.photos-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
 }
 
 /* ==========================================

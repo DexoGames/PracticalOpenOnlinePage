@@ -20,10 +20,10 @@
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
-        <div class="nav-brand">Dexo.Games</div>
+        <div class="nav-brand">Dexo.<span id="navBrandSuffix">Games</span></div>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
+            <!-- <li><a href="#projects">Projects</a></li> -->
             <li><a href="#games">Games</a></li>
             <li><a href="#photos">Photos</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -86,14 +86,14 @@
         </div>
     </section>
 
-    <!-- Other Projects Section -->
+    <!-- Other Projects Section (hidden for now)
     <section class="section projects" id="projects">
         <h2 class="section-title">Other Projects</h2>
         <div class="projects-grid" id="projectsGrid">
-            <!-- Projects are loaded dynamically from data/projects.json -->
             <p class="loading-text">Loading projects...</p>
         </div>
     </section>
+    -->
 
     <!-- Dexo Photos Section -->
     <section class="section photos" id="photos">
@@ -103,10 +103,12 @@
                 <!-- Loaded dynamically from data/photos.js -->
             </div>
         </div>
-        <a href="photos.html" class="view-more-btn">
-            <span>View All Photos</span>
-            <i class="fas fa-arrow-right"></i>
-        </a>
+        <div class="photos-btn-wrapper">
+            <a href="photos.html" class="view-more-btn">
+                <span>View All Photos</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
     </section>
 
     <!-- Contact Section -->
@@ -135,6 +137,55 @@
     <script src="bomb.js"></script>
 
     <script>
+        // ==========================================
+        // NAV BRAND TYPING ANIMATION
+        // ==========================================
+        const navBrandSuffix = document.getElementById('navBrandSuffix');
+        const suffixes = ['Games', 'Photos', 'Software', 'Drums', "Smith"];
+        const holdTimes = [6000, 2000, 2000, 2000, 2000]; // Games holds longer
+        let currentSuffixIndex = 0;
+        
+        function typeText(text, callback) {
+            let i = 0;
+            navBrandSuffix.textContent = '';
+            const typeInterval = setInterval(() => {
+                navBrandSuffix.textContent += text[i];
+                i++;
+                if (i >= text.length) {
+                    clearInterval(typeInterval);
+                    if (callback) callback();
+                }
+            }, 100); // Typing speed
+        }
+        
+        function deleteText(callback) {
+            const deleteInterval = setInterval(() => {
+                const currentText = navBrandSuffix.textContent;
+                if (currentText.length > 0) {
+                    navBrandSuffix.textContent = currentText.slice(0, -1);
+                } else {
+                    clearInterval(deleteInterval);
+                    if (callback) callback();
+                }
+            }, 50); // Deleting speed (faster)
+        }
+        
+        function cycleNavBrand() {
+            const holdTime = holdTimes[currentSuffixIndex];
+            
+            setTimeout(() => {
+                deleteText(() => {
+                    currentSuffixIndex = (currentSuffixIndex + 1) % suffixes.length;
+                    setTimeout(() => {
+                        typeText(suffixes[currentSuffixIndex], cycleNavBrand);
+                    }, 300); // Pause before typing new word
+                });
+            }, holdTime);
+        }
+        
+        // Start the animation cycle
+        cycleNavBrand();
+
         // ==========================================
         // THEME TOGGLE
         // ==========================================

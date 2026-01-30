@@ -145,6 +145,10 @@ function explodePage() {
     const explosionOverlay = document.getElementById('explosionOverlay');
     const bombContainer = document.getElementById('bombContainer');
     
+    // Lock scrolling during explosion
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    
     // Flash red overlay then fade to dark red
     explosionOverlay.classList.add('active');
     
@@ -161,34 +165,65 @@ function explodePage() {
     // Get only nearby visible elements for performance
     const elements = getExplodableElements();
     
+    // Disable pointer events on all elements to prevent interaction during explosion
+    const pageWrapper = document.getElementById('pageWrapper');
+    if (pageWrapper) {
+        pageWrapper.style.pointerEvents = 'none';
+    }
+    
     // Batch DOM reads first
     const elementData = elements.map(el => {
         const rect = el.getBoundingClientRect();
         return { el, rect };
     });
     
+    // Pre-calculate all animation values to avoid recalculating in loop
+    const animations = elementData.map((_, index) => ({
+        angle: Math.random() * 360,
+        distance: 800 + Math.random() * 2000,
+        rotateAmount: (Math.random() - 0.5) * 1440,
+        duration: 0.8 + Math.random() * 1.5,
+        opacityDuration: 1.5 + Math.random(),
+        scale: Math.random() * 0.3,
+        delay: index * 15
+    }));
+    
+    // Use will-change to hint browser about upcoming animations
+    elementData.forEach(({ el }) => {
+        el.style.willChange = 'transform, opacity';
+    });
+    
     // Then batch DOM writes with requestAnimationFrame for smoother animation
     requestAnimationFrame(() => {
         elementData.forEach(({ el }, index) => {
+            const anim = animations[index];
+            
             // Small delay for cascading effect
             setTimeout(() => {
-                // Random explosion direction
-                const angle = Math.random() * 360;
-                const distance = 800 + Math.random() * 2000;
-                const rotateAmount = (Math.random() - 0.5) * 1440;
+                const x = Math.cos(anim.angle * Math.PI / 180) * anim.distance;
+                const y = Math.sin(anim.angle * Math.PI / 180) * anim.distance + 1500;
                 
-                const x = Math.cos(angle * Math.PI / 180) * distance;
-                const y = Math.sin(angle * Math.PI / 180) * distance + 1500;
-                
-                el.style.transition = `transform ${0.8 + Math.random() * 1.5}s ease-out, opacity ${1.5 + Math.random()}s ease-out`;
-                el.style.transform = `translate(${x}px, ${y}px) rotate(${rotateAmount}deg) scale(${Math.random() * 0.3})`;
+                el.style.transition = `transform ${anim.duration}s ease-out, opacity ${anim.opacityDuration}s ease-out`;
+                el.style.transform = `translate(${x}px, ${y}px) rotate(${anim.rotateAmount}deg) scale(${anim.scale})`;
                 el.style.opacity = '0';
-            }, index * 15); // Slightly faster stagger
+            }, anim.delay);
         });
+        
+        // Clean up will-change after animations complete to free memory
+        setTimeout(() => {
+            elementData.forEach(({ el }) => {
+                el.style.willChange = 'auto';
+            });
+        }, 3000);
     });
     
-    // Update bomb display
-    bombContainer.innerHTML = '<div class="bomb-display exploded"><div class="bomb-icon">💥</div><div class="explosion-message">GAME OVER</div></div>';
+    // Hide bomb container with fade out
+    bombContainer.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    bombContainer.style.opacity = '0';
+    bombContainer.style.transform = 'scale(0.8)';
+    setTimeout(() => {
+        bombContainer.style.display = 'none';
+    }, 500);
 }
 
 // Initialize when DOM is ready

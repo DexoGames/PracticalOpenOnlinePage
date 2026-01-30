@@ -33,7 +33,7 @@ const SKILLS_DATA = {
             "Functional Programming",
             "UI/UX Design",
             "Graphic Design",
-            ""
+            "Music"
         ]
     }
 };
