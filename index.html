@@ -11,7 +11,6 @@
     <script src="data/skills.js"></script>
     <script src="data/socials.js"></script>
     <script src="data/games.js"></script>
-    <script src="data/projects.js"></script>
     <script src="data/photos.js"></script>
 </head>
 <body>
@@ -383,13 +382,13 @@
             // Collect all featured items
             featuredItems = [];
             
-            if (GAMES_DATA) {
+            if (typeof GAMES_DATA !== 'undefined' && GAMES_DATA) {
                 GAMES_DATA.filter(g => g.featured).forEach(g => {
                     featuredItems.push({ ...g, isGame: true });
                 });
             }
-            
-            if (PROJECTS_DATA) {
+            // Only include projects if PROJECTS_DATA is defined
+            if (typeof PROJECTS_DATA !== 'undefined' && PROJECTS_DATA) {
                 PROJECTS_DATA.filter(p => p.featured).forEach(p => {
                     featuredItems.push({ ...p, isGame: false });
                 });
@@ -478,7 +477,7 @@
             
             track.innerHTML = photos.map(photo => `
                 <div class="photo-item">
-                    <img src="${photo.image}" alt="${photo.alt}" onerror="this.src='https://via.placeholder.com/300x200?text=${encodeURIComponent(photo.title)}'">
+                    <img src="${encodeURI(photo.image)}" alt="${photo.alt}" onerror="this.src='https://via.placeholder.com/300x200?text=${encodeURIComponent(photo.title)}'">
                     <div class="photo-overlay">
                         <span>${photo.title}</span>
                     </div>
@@ -611,7 +610,6 @@
             loadSocials();
             loadFeaturedCarousel();
             loadGames();
-            loadProjects();
             loadPhotos();
         });
     </script>
