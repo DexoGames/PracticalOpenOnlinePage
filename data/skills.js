@@ -21,7 +21,7 @@ const SKILLS_DATA = {
             "VSCode",
             "Photoshop",
             "Illustrator",
-            "Git"
+            "Godot"
         ]
     },
     other: {

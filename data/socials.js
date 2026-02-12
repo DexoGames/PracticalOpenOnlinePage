@@ -4,13 +4,13 @@ const SOCIALS_DATA = [
     {
         id: "github",
         name: "GitHub",
-        url: "https://github.com/YOUR_USERNAME",
+        url: "https://github.com/DexoGames",
         icon: "fab fa-github"
     },
     {
         id: "linkedin",
         name: "LinkedIn",
-        url: "https://linkedin.com/in/YOUR_USERNAME",
+        url: "https://www.linkedin.com/in/dextersmith126/",
         icon: "fab fa-linkedin"
     },
     {
@@ -22,7 +22,7 @@ const SOCIALS_DATA = [
     {
         id: "itchio",
         name: "itch.io",
-        url: "https://itch.io/profile/YOUR_USERNAME",
+        url: "https://dexo-games.itch.io",
         icon: "fab fa-itch-io"
     },
     {
@@ -36,9 +36,13 @@ const SOCIALS_DATA = [
         name: "YouTube",
         url: "https://youtube.com/@YOUR_CHANNEL",
         icon: "fab fa-youtube"
+    },
+    {
+        id: "linktree",
+        name: "Linktree",
+        url: "https://linktr.ee/dexogames",
+        icon: "fab fa-linktree"
     }
 ];
 
-// Contact methods - which socials to show in the contact section with labels
-// Uses the ids from SOCIALS_DATA above
-const CONTACT_METHODS = ["linkedin", "twitter"];
+const CONTACT_METHODS = ["linkedin"];

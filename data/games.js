@@ -1,7 +1,3 @@
-// Games Data - Edit this file to add/remove games
-// Picture size rec. 800x450
-// Set featured: true for games to appear in the featured carousel
-// Set inDevelopment: true for games currently being developed
 const GAMES_DATA = [
     {
         id: "game0",
@@ -37,7 +33,7 @@ const GAMES_DATA = [
         title: "Beanstalk!",
         genre: "Endless Arcade",
         platform: "mobile",
-        description: "Another amazing game you've created. Describe the concept, mechanics, and your role in development.",
+        description: "Climb up a 4-sided beanstalk, switching the sides and avoiding the birds.",
         image: "images/games/beanstalk-cover.jpg",
         year: "2022",
         tags: ["Unity", "Online Multiplayer", "Pixel Art"],
@@ -52,7 +48,7 @@ const GAMES_DATA = [
         title: "Gridlock+",
         genre: "Strategy",
         platform: "mobile",
-        description: "Play Gridlock, a game of dots and boxes on steroids, and compete against AI or random players to be the best. Or play a selection of other unique and challenging games.",
+        description: "Play Gridlock (dots and boxes on steroids) and compete online or against AI. Or play a selection of other unique and challenging games.",
         year: "2024",
         image: "images/games/gridlock-cover.jpg",
         tags: ["Unity", "Online Multiplayer", "Online Matchmaking", "AI Opponents"],
