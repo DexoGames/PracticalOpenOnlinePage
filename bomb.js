@@ -57,16 +57,21 @@ let isExploded = false;
 function loadTimerState() {
     const savedTime = localStorage.getItem('bombTimeLeft');
     const savedTimestamp = localStorage.getItem('bombTimestamp');
-    const wasExploded = localStorage.getItem('bombExploded');
-    
-    if (wasExploded === 'true') {
-        isExploded = true;
-        return;
-    }
     
     if (savedTime && savedTimestamp) {
         const elapsed = Math.floor((Date.now() - parseInt(savedTimestamp)) / 1000);
-        timeLeft = Math.max(0, parseInt(savedTime) - elapsed);
+        const calculatedTime = Math.max(0, parseInt(savedTime) - elapsed);
+        
+        // If timer hit 0, reset everything on page load
+        if (calculatedTime <= 0) {
+            clearTimerState();
+            timeLeft = 60;
+            isExploded = false;
+            return;
+        }
+        
+        // Otherwise restore the timer
+        timeLeft = calculatedTime;
     }
 }
 
@@ -74,16 +79,12 @@ function loadTimerState() {
 function saveTimerState() {
     localStorage.setItem('bombTimeLeft', timeLeft);
     localStorage.setItem('bombTimestamp', Date.now());
-    if (isExploded) {
-        localStorage.setItem('bombExploded', 'true');
-    }
 }
 
 // Clear timer state from localStorage
 function clearTimerState() {
     localStorage.removeItem('bombTimeLeft');
     localStorage.removeItem('bombTimestamp');
-    localStorage.removeItem('bombExploded');
 }
 
 // Get all explodable elements - optimized to only get visible ones near scroll
@@ -118,14 +119,6 @@ function startBombTimer() {
     
     // Load saved state
     loadTimerState();
-    
-    // If already exploded, trigger explosion immediately
-    if (isExploded || timeLeft <= 0) {
-        timeLeft = 0;
-        timerDisplay.textContent = timeLeft;
-        explodePage();
-        return;
-    }
     
     // Display current time
     timerDisplay.textContent = timeLeft;
@@ -196,7 +189,6 @@ function defuseBomb() {
 // EXPLODE THE PAGE! - Optimized version
 function explodePage() {
     isExploded = true;
-    saveTimerState(); // Persist exploded state
     
     const explosionOverlay = document.getElementById('explosionOverlay');
     const bombContainer = document.getElementById('bombContainer');
