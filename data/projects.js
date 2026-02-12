@@ -5,7 +5,7 @@ const PROJECTS_DATA = [
         subtext: "Game Jam Project",
         description: "A game made by me and a team for GGJ26. It won the Players Choice Award for Southampton.",
         image: "images/projects/damaskus-cover.jpg",
-        tags: ["Godot", "Git", "Game Jam"],
+        tags: ["Godot", "Git", "Puzzle Design", "Game Jam"],
         featured: true,
         featuredOrder: 1,
         inDevelopment: false,

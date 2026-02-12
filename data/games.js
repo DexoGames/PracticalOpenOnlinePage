@@ -68,7 +68,7 @@ const GAMES_DATA = [
         description: "Make a graph formula to dodge obstacles and get to the end.",
         year: "2025",
         image: "images/games/foriom-cover.jpg",
-        tags: ["Unity", "Made In Game Jam"],
+        tags: ["Unity", "Game Jam"],
         featured: false,
         inDevelopment: false,
         links: {

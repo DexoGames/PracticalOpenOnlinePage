@@ -19,6 +19,8 @@ const SKILLS_DATA = {
             "Unity",
             "Git",
             "VSCode",
+            "IntelliJ",
+            "LaTeX",
             "Photoshop",
             "Illustrator",
             "Godot"
@@ -30,12 +32,15 @@ const SKILLS_DATA = {
             "Game Development",
             "Algorithmics",
             "Online Networking",
+            "Data Management",
             "Agile",
             "Functional Programming",
             "Classical AI",
+            "Leetcode Challenges",
             "UI/UX Design",
+            "Game/Level Design",
             "Graphic Design",
-            "Music"
+            "Music Performance"
         ]
     }
 };
