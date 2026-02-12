@@ -9,6 +9,7 @@ const GAMES_DATA = [
         image: "images/games/pubteam-cover.jpg",
         tags: ["Unity", "Match Simulation", "Complex Data Structures",],
         featured: true,
+        featuredOrder: 2,
         inDevelopment: true,
         links: {
         }
@@ -23,6 +24,7 @@ const GAMES_DATA = [
         image: "images/games/pileup-cover.jpg",
         tags: ["Unity", "Online Leaderboards"],
         featured: true,
+        featuredOrder: 3,
         inDevelopment: false,
         links: {
             play: "#"

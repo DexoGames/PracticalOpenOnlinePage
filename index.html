@@ -144,8 +144,8 @@
         // NAV BRAND TYPING ANIMATION
         // ==========================================
         const navBrandSuffix = document.getElementById('navBrandSuffix');
-        const suffixes = ['Games', 'Photos', 'Software', 'Drums', "Smith"];
-        const holdTimes = [6000, 2000, 2000, 2000, 2000]; // Games holds longer
+        const suffixes = ['Games', 'Software', 'Photos', "Smith"];
+        const holdTimes = [7000, 2000, 2000, 2000, 2000]; // Games holds longer
         let currentSuffixIndex = 0;
         
         function typeText(text, callback) {
@@ -267,7 +267,6 @@
                             ${devBadge}
                         </div>
                         <span class="project-type">${platformLabel}</span>
-                        <p class="project-genre">Genre: ${game.genre}</p>
                         <p class="project-description">${game.description}</p>
                         <div class="project-tags">${tagsHTML}</div>
                         <div class="project-links">
@@ -282,7 +281,14 @@
         // Create a project card HTML
         function createProjectCard(project) {
             const tagsHTML = project.tags.map(tag => `<span>${tag}</span>`).join('');
-            const devBadge = project.inDevelopment ? '<span class="dev-badge inline"><i class="fas fa-code"></i> In Development</span>' : '';
+            let badgeHTML = '';
+            if (project.badge) {
+                const icon = project.badge.icon || 'fa-star';
+                badgeHTML = `<span class="dev-badge inline"><i class="fas ${icon}"></i> ${project.badge.text}</span>`;
+            } else if (project.inDevelopment) {
+                badgeHTML = '<span class="dev-badge inline"><i class="fas fa-code"></i> In Development</span>';
+            }
+            const subtext = project.subtext || 'Project';
             
             return `
                 <div class="project-card ${project.inDevelopment ? 'in-development' : ''}" data-id="${project.id}">
@@ -292,12 +298,13 @@
                     <div class="project-info">
                         <div class="project-title-row">
                             <h3>${project.title}</h3>
-                            ${devBadge}
+                            ${badgeHTML}
                         </div>
-                        <span class="project-type">Project</span>
+                        <span class="project-type">${subtext}</span>
                         <p class="project-description">${project.description}</p>
                         <div class="project-tags">${tagsHTML}</div>
                         <div class="project-links">
+                            ${project.links.play ? `<a href="${project.links.play}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Play Now</a>` : ''}
                             ${project.links.demo ? `<a href="${project.links.demo}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Live Demo</a>` : ''}
                             ${project.links.github ? `<a href="${project.links.github}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>` : ''}
                         </div>
@@ -339,13 +346,20 @@
         let carouselInterval;
         
         function createFeaturedCard(item, isGame = false) {
-            const devBadge = item.inDevelopment ? '<span class="dev-badge"><i class="fas fa-code"></i> In Development</span>' : '';
+            let badgeHTML = '';
+            if (item.badge) {
+                const icon = item.badge.icon || 'fa-star';
+                badgeHTML = `<span class="dev-badge"><i class="fas ${icon}"></i> ${item.badge.text}</span>`;
+            } else if (item.inDevelopment) {
+                badgeHTML = '<span class="dev-badge"><i class="fas fa-code"></i> In Development</span>';
+            }
+            
             let typeLabel = '';
             if (isGame) {
                 const platformLabel = item.platform === 'mobile' ? 'Mobile Game' : item.platform === 'pc' ? 'PC Game' : 'Game';
                 typeLabel = platformLabel;
             } else {
-                typeLabel = 'Project';
+                typeLabel = item.subtext || 'Project';
             }
             const tagsHTML = item.tags.map(tag => `<span>${tag}</span>`).join('');
             
@@ -357,6 +371,7 @@
                 `;
             } else {
                 linksHTML = `
+                    ${item.links.play ? `<a href="${item.links.play}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Play Now</a>` : ''}
                     ${item.links.demo ? `<a href="${item.links.demo}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Live Demo</a>` : ''}
                     ${item.links.github ? `<a href="${item.links.github}" class="btn btn-secondary" target="_blank">GitHub</a>` : ''}
                 `;
@@ -370,10 +385,9 @@
                     <div class="featured-info">
                         <div class="featured-title-row">
                             <h3>${item.title}</h3>
-                            ${devBadge}
+                            ${badgeHTML}
                         </div>
                         <span class="featured-type">${typeLabel}</span>
-                        ${isGame ? `<p class="project-genre">Genre: ${item.genre}</p>` : ''}
                         <p class="project-description">${item.description}</p>
                         <div class="project-tags">${tagsHTML}</div>
                         <div class="project-links">${linksHTML}</div>
@@ -397,6 +411,13 @@
                     featuredItems.push({ ...p, isGame: false });
                 });
             }
+            
+            // Sort by featuredOrder (lower numbers first)
+            featuredItems.sort((a, b) => {
+                const orderA = a.featuredOrder || 999;
+                const orderB = b.featuredOrder || 999;
+                return orderA - orderB;
+            });
             
             if (featuredItems.length === 0) {
                 document.getElementById('featured').style.display = 'none';
@@ -552,9 +573,12 @@
         // Generate social link HTML
         function createSocialLink(social, showLabel = false) {
             if (!social.url) return '';
+            const iconHTML = social.customImage 
+                ? `<img src="${social.icon}" alt="${social.name}" class="social-custom-icon">` 
+                : `<i class="${social.icon}"></i>`;
             return `
                 <a href="${social.url}" target="_blank" rel="noopener noreferrer" title="${social.name}">
-                    <i class="${social.icon}"></i>${showLabel ? `<span>${social.name}</span>` : ''}
+                    ${iconHTML}${showLabel ? `<span>${social.name}</span>` : ''}
                 </a>
             `;
         }
@@ -594,9 +618,12 @@
                 CONTACT_METHODS.forEach(methodId => {
                     const social = SOCIALS_DATA.find(s => s.id === methodId);
                     if (social && social.url) {
+                        const iconHTML = social.customImage 
+                            ? `<img src="${social.icon}" alt="${social.name}" class="social-custom-icon">` 
+                            : `<i class="${social.icon}"></i>`;
                         methodsHTML += `
                             <a href="${social.url}" target="_blank" rel="noopener noreferrer" class="contact-item">
-                                <i class="${social.icon}"></i>
+                                ${iconHTML}
                                 <span>${social.name}</span>
                             </a>
                         `;
