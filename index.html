@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self';">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Dexter Smith | Game Developer & Creator</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- Load data files -->
     <script src="data/profile.js"></script>
     <script src="data/skills.js"></script>
     <script src="data/socials.js"></script>
     <script src="data/games.js"></script>
+    <script src="data/projects.js"></script>
     <script src="data/photos.js"></script>
 </head>
 <body>
@@ -22,7 +27,7 @@
         <div class="nav-brand">Dexo.<span id="navBrandSuffix">Games</span></div>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
-            <!-- <li><a href="#projects">Projects</a></li> -->
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#games">Games</a></li>
             <li><a href="#photos">Photos</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -85,14 +90,13 @@
         </div>
     </section>
 
-    <!-- Other Projects Section (hidden for now)
+    <!-- Other Projects Section -->
     <section class="section projects" id="projects">
         <h2 class="section-title">Other Projects</h2>
         <div class="projects-grid" id="projectsGrid">
             <p class="loading-text">Loading projects...</p>
         </div>
     </section>
-    -->
 
     <!-- Dexo Photos Section -->
     <section class="section photos" id="photos">
@@ -267,8 +271,8 @@
                         <p class="project-description">${game.description}</p>
                         <div class="project-tags">${tagsHTML}</div>
                         <div class="project-links">
-                            ${game.links.play ? `<a href="${game.links.play}" class="btn btn-primary" target="_blank">Play Now</a>` : ''}
-                            ${game.links.source ? `<a href="${game.links.source}" class="btn btn-secondary" target="_blank">View Source</a>` : ''}
+                            ${game.links.play ? `<a href="${game.links.play}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Play Now</a>` : ''}
+                            ${game.links.source ? `<a href="${game.links.source}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">View Source</a>` : ''}
                         </div>
                     </div>
                 </div>
@@ -294,8 +298,8 @@
                         <p class="project-description">${project.description}</p>
                         <div class="project-tags">${tagsHTML}</div>
                         <div class="project-links">
-                            ${project.links.demo ? `<a href="${project.links.demo}" class="btn btn-primary" target="_blank">Live Demo</a>` : ''}
-                            ${project.links.github ? `<a href="${project.links.github}" class="btn btn-secondary" target="_blank">GitHub</a>` : ''}
+                            ${project.links.demo ? `<a href="${project.links.demo}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Live Demo</a>` : ''}
+                            ${project.links.github ? `<a href="${project.links.github}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>` : ''}
                         </div>
                     </div>
                 </div>
@@ -348,12 +352,12 @@
             let linksHTML = '';
             if (isGame) {
                 linksHTML = `
-                    ${item.links.play ? `<a href="${item.links.play}" class="btn btn-primary" target="_blank">Play Now</a>` : ''}
-                    ${item.links.source ? `<a href="${item.links.source}" class="btn btn-secondary" target="_blank">View Source</a>` : ''}
+                    ${item.links.play ? `<a href="${item.links.play}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Play Now</a>` : ''}
+                    ${item.links.source ? `<a href="${item.links.source}" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">View Source</a>` : ''}
                 `;
             } else {
                 linksHTML = `
-                    ${item.links.demo ? `<a href="${item.links.demo}" class="btn btn-primary" target="_blank">Live Demo</a>` : ''}
+                    ${item.links.demo ? `<a href="${item.links.demo}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Live Demo</a>` : ''}
                     ${item.links.github ? `<a href="${item.links.github}" class="btn btn-secondary" target="_blank">GitHub</a>` : ''}
                 `;
             }
@@ -549,7 +553,7 @@
         function createSocialLink(social, showLabel = false) {
             if (!social.url) return '';
             return `
-                <a href="${social.url}" target="_blank" title="${social.name}">
+                <a href="${social.url}" target="_blank" rel="noopener noreferrer" title="${social.name}">
                     <i class="${social.icon}"></i>${showLabel ? `<span>${social.name}</span>` : ''}
                 </a>
             `;
@@ -591,7 +595,7 @@
                     const social = SOCIALS_DATA.find(s => s.id === methodId);
                     if (social && social.url) {
                         methodsHTML += `
-                            <a href="${social.url}" target="_blank" class="contact-item">
+                            <a href="${social.url}" target="_blank" rel="noopener noreferrer" class="contact-item">
                                 <i class="${social.icon}"></i>
                                 <span>${social.name}</span>
                             </a>
@@ -610,6 +614,7 @@
             loadSocials();
             loadFeaturedCarousel();
             loadGames();
+            loadProjects();
             loadPhotos();
         });
     </script>
