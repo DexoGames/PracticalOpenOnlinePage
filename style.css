@@ -137,25 +137,59 @@ body {
     bottom: 20px;
     right: 20px;
     z-index: 9999;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 15px 20px;
-    box-shadow: var(--shadow);
+    width: 180px;
+    height: 180px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     transition: var(--transition);
+    border: none;
+    padding: 0;
+}
+
+/* Fuse Cap */
+.bomb-container::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 15px;
+    background: #222;
+    border-radius: 3px 3px 0 0;
+}
+
+/* Fuse Cord */
+.bomb-container::after {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    border-top: 3px solid #666;
+    border-right: 3px solid #666;
+    border-radius: 0 50% 0 0;
+    transform: translateX(5px);
+    z-index: -1;
 }
 
 .bomb-container.warning {
-    border-color: var(--warning-color);
-    box-shadow: 0 0 20px rgba(240, 173, 78, 0.3);
-    animation: pulse-warning 1s infinite;
+    /* Warning state removed as requested, keeping default look */
 }
+.bomb-container.warning::before { /* default color */ }
 
 .bomb-container.critical {
-    border-color: var(--danger-color);
-    box-shadow: 0 0 25px rgba(224, 85, 85, 0.5);
+    background: #800000; /* Darker red */
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
     animation: pulse-critical 0.5s infinite;
 }
+.bomb-container.critical::before { background: #800000; }
 
 @keyframes pulse-warning {
     0%, 100% { transform: scale(1); }
@@ -169,46 +203,43 @@ body {
 
 .bomb-display {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 8px;
+    width: 100%;
 }
 
-.bomb-icon {
-    font-size: 2.5rem;
-    animation: bomb-wobble 2s infinite;
-}
-
-@keyframes bomb-wobble {
-    0%, 100% { transform: rotate(-10deg); }
-    50% { transform: rotate(10deg); }
-}
+/* .bomb-icon removed */
 
 .timer {
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
     font-family: "Dealerplate California", monospace;
-    color: var(--success-color);
-    min-width: 50px;
+    color: #4caf50; /* Ensuring green color */
     text-align: center;
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
 }
 
 .defuse-btn {
     background: var(--accent-color);
     color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
+    padding: 8px 16px;
+    border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-family: "HP Simplified", sans-serif;
     transition: var(--transition);
     text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
 
 .defuse-btn:hover {
     background: var(--accent-hover);
     transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0,0,0,0.3);
 }
 
 .reset-btn {
@@ -216,11 +247,12 @@ body {
 }
 
 .bomb-warning {
-    font-size: 0.75rem;
-    color: var(--text-muted);
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
     text-align: center;
-    margin-top: 8px;
+    margin-top: 5px;
     font-style: italic;
+    max-width: 80%;
 }
 
 .explosion-message {

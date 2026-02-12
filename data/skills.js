@@ -29,8 +29,10 @@ const SKILLS_DATA = {
         skills: [
             "Game Development",
             "Algorithmics",
-            "Minimax Search",
+            "Online Networking",
+            "Agile",
             "Functional Programming",
+            "Classical AI",
             "UI/UX Design",
             "Graphic Design",
             "Music"

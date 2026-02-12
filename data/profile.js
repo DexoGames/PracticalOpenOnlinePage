@@ -9,10 +9,10 @@ const PROFILE_DATA = {
     
     // About section paragraphs (each string is a new paragraph)
     aboutParagraphs: [
-        "Hello! I'm Dexter Smith, a creative and passionate programmer who's been coding one way or another for most my life!",
-        "In the 2020 lockdowm I decided to learn Unity, and since then I've developed mobile games and released them on iOS and Android. I gained many of my skills through hands-on experience and self-taught tricks.",
+        "Hello! I'm Dexter, a creative and passionate programmer who's been coding one way or another for most my life!",
+        "In the 2020 lockdowm I decided to learn Unity, and since then I've developed mobile games and released them on iOS and Android. I gained many of my skills through hands-on experience and self-taught tricks. In recent years I have been learning industry standard techniques and programs.",
         "I decided to study Software Engineering at Southampton to gain a wider skill set in all aspects of computing, and have been trying to continue game development in my spare time.",
-        "I'm also Grade 8 drums, being on the committe for the uni's jazz and concert bands, and dabble in graphic design and photography (of which you can see further down)."
+        "I'm also Grade 8 drum kit, being a dedicated committe member for my university's jazz and concert bands, and dabble in graphic design and photography (of which you can see further down)."
     ],
     
     // Contact information

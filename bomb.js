@@ -11,7 +11,6 @@ function initBomb() {
     const bombHTML = `
         <div class="bomb-container" id="bombContainer">
             <div class="bomb-display">
-                <div class="bomb-icon">💣</div>
                 <div class="timer" id="timer">60</div>
                 <button class="defuse-btn" id="defuseBtn">DEFUSE</button>
             </div>
@@ -95,9 +94,6 @@ function startBombTimer() {
         if (timeLeft <= 10) {
             bombContainer.classList.add('critical');
             timerDisplay.style.color = '#ff0000';
-        } else if (timeLeft <= 30) {
-            bombContainer.classList.add('warning');
-            timerDisplay.style.color = '#ff6600';
         }
         
         // Shake effect as time runs low
