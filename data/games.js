@@ -27,7 +27,7 @@ const GAMES_DATA = [
         featuredOrder: 3,
         inDevelopment: false,
         links: {
-            play: "#"
+            play: "https://apps.apple.com/app/pile-up-2/id6473653290"
         }
     },
     {
@@ -42,7 +42,7 @@ const GAMES_DATA = [
         featured: false,
         inDevelopment: false,
         links: {
-            play: "#"
+            play: "https://apps.apple.com/app/beanstalk/id1603662985"
         }
     },
     {
@@ -57,7 +57,7 @@ const GAMES_DATA = [
         featured: false,
         inDevelopment: false,
         links: {
-            play: "#"
+            play: "https://apps.apple.com/app/gridlock/id6651863189"
         }
     },
     {
@@ -72,7 +72,7 @@ const GAMES_DATA = [
         featured: false,
         inDevelopment: false,
         links: {
-            play: "#"
+            play: "https://dexo-games.itch.io/foriom"
         }
     }
 ];

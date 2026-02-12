@@ -5,7 +5,7 @@ const PROFILE_DATA = {
     photo: "images/profile/headshot.jpeg",
     
     // Hero section bio
-    heroBio: "Hello There! I'm Dexter, a Software Engineering student at the University Of Southampton with a passion for coding and game development.",
+    heroBio: "I'm Dexter, a Software Engineering student at the University Of Southampton with a passion for coding and game development.",
     
     // About section paragraphs (each string is a new paragraph)
     aboutParagraphs: [
@@ -20,5 +20,5 @@ const PROFILE_DATA = {
     
     // Footer
     footerYear: 2026,
-    footerText: "poop"
+    footerText: "Nice is different than Good"
 };

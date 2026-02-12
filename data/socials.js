@@ -14,7 +14,7 @@ const SOCIALS_DATA = [
     {
         id: "itchio",
         name: "itch.io",
-        url: "https://dexo-games.itch.io",
+        url: "https://dexo-games.itch.io/",
         icon: "fab fa-itch-io"
     },
     {
