@@ -1,5 +1,3 @@
-// Social Links Data - Edit this file to update your social media links
-// Set url to null or empty string to hide that social link
 const SOCIALS_DATA = [
         {
         id: "linkedin",

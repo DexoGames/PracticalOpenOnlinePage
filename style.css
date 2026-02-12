@@ -179,11 +179,6 @@ body {
     z-index: -1;
 }
 
-.bomb-container.warning {
-    /* Warning state removed as requested, keeping default look */
-}
-.bomb-container.warning::before { /* default color */ }
-
 .bomb-container.critical {
     background: #800000; /* Darker red */
     box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
@@ -510,6 +505,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     position: relative;
+    scroll-margin-top: 80px;
 }
 
 .section-title {
@@ -545,6 +541,53 @@ body {
     padding: 30px;
     border-radius: 12px;
     border: 1px solid var(--border-color);
+}
+
+.about-paragraphs {
+    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.3s ease;
+}
+
+.about-paragraphs.collapsed {
+    max-height: 80px;
+    position: relative;
+}
+
+.about-paragraphs.collapsed::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(transparent, var(--bg-card));
+    pointer-events: none;
+}
+
+.about-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 8px 0;
+    margin-bottom: 20px;
+    transition: var(--transition);
+    font-family: "HP Simplified", sans-serif;
+}
+
+.about-toggle:hover {
+    color: var(--accent-hover);
+}
+
+.toggle-icon {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
 }
 
 .about-text p {
@@ -584,9 +627,9 @@ body {
 .skill-tag {
     background: var(--bg-hover);
     color: var(--text-primary);
-    padding: 8px 16px;
+    padding: 6px 12px;
     border-radius: 6px;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     border: 1px solid var(--border-color);
     transition: var(--transition);
     font-family: "HP Simplified", sans-serif;
@@ -868,30 +911,109 @@ body {
    ========================================== */
 
 @media (max-width: 768px) {
+    /* --- Navbar: compact single row --- */
     .navbar {
-        padding: 12px 20px;
-        flex-direction: column;
-        gap: 12px;
+        padding: 8px 12px;
+        flex-direction: row;
+        gap: 0;
+    }
+    
+    /* Prevent navbar animation shifts on scroll */
+    .navbar.scrolled {
+        padding: 8px 12px;
+    }
+    
+    .nav-brand {
+        font-size: 1.2rem;
     }
     
     .nav-links {
-        gap: 6px;
-        flex-wrap: wrap;
-        justify-content: center;
+        gap: 2px;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+    }
+    
+    .nav-links a {
+        font-size: 0.75rem;
+        padding: 5px 8px;
+    }
+    
+    .theme-toggle {
+        padding: 5px 8px;
+        font-size: 0.9rem;
+    }
+    
+    /* --- Hero --- */
+    .hero {
+        padding-top: 70px;
     }
     
     .hero h1 {
-        font-size: 2.5rem;
-    }
-    
-    .section {
-        padding: 50px 20px;
-    }
-    
-    .section-title {
         font-size: 2rem;
     }
     
+    .tagline {
+        font-size: 0.95rem;
+    }
+    
+    .hero-description {
+        font-size: 0.95rem;
+    }
+    
+    .profile-image {
+        width: 110px;
+        height: 110px;
+    }
+    
+    /* --- Sections --- */
+    .section {
+        padding: 30px 15px;
+        scroll-margin-top: 60px;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    /* --- About & Skills --- */
+    .about-content,
+    .contact-content {
+        padding: 16px;
+    }
+    
+    .about-paragraphs.collapsed {
+        max-height: 80px;
+    }
+    
+    .about-text p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        margin-bottom: 12px;
+    }
+    
+    .about-toggle {
+        font-size: 0.8rem;
+    }
+    
+    .about-text h3 {
+        font-size: 1.1rem;
+        margin: 18px 0 12px;
+    }
+    
+    .skill-tag {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+    
+    .skills-container {
+        gap: 6px;
+    }
+    
+    .skills-all {
+        gap: 5px;
+    }
+    
+    /* --- Projects --- */
     .projects-grid {
         justify-content: center;
     }
@@ -899,42 +1021,131 @@ body {
     .project-card {
         flex: 1 1 100%;
         max-width: 100%;
+        min-width: unset;
     }
     
+    .project-info h3 {
+        font-size: 1.2rem;
+    }
+    
+    .project-description {
+        font-size: 0.85rem;
+    }
+    
+    /* --- Bomb: shrink to 110px circle --- */
     .bomb-container {
-        bottom: 15px;
-        right: 15px;
+        bottom: 12px;
+        right: 12px;
+        width: 110px;
+        height: 110px;
     }
     
+    .bomb-container::before {
+        width: 26px;
+        height: 10px;
+        top: -8px;
+    }
+    
+    .bomb-container::after {
+        top: -26px;
+        width: 20px;
+        height: 20px;
+    }
+    
+    .timer {
+        font-size: 1.5rem;
+    }
+    
+    .defuse-btn {
+        padding: 5px 12px;
+        font-size: 0.7rem;
+    }
+    
+    .bomb-warning {
+        font-size: 0.55rem;
+        margin-top: 3px;
+    }
+    
+    /* --- Contact --- */
     .contact-methods {
         flex-direction: column;
         align-items: center;
     }
-    
-    .about-content,
-    .contact-content {
-        padding: 20px;
-    }
 }
 
 @media (max-width: 480px) {
+    .navbar {
+        padding: 6px 8px;
+    }
+    
+    .navbar.scrolled {
+        padding: 6px 8px;
+    }
+    
+    .nav-brand {
+        font-size: 1rem;
+    }
+    
+    .nav-links a {
+        font-size: 0.65rem;
+        padding: 4px 5px;
+    }
+    
+    .theme-toggle {
+        padding: 4px 6px;
+        font-size: 0.8rem;
+    }
+    
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 1.7rem;
     }
     
     .tagline {
-        font-size: 1.1rem;
+        font-size: 0.85rem;
+    }
+    
+    .section-title {
+        font-size: 1.4rem;
+    }
+    
+    .section {
+        scroll-margin-top: 50px;
     }
     
     .social-links a {
-        width: 50px;
-        height: 50px;
+        width: 42px;
+        height: 42px;
+        font-size: 1.1rem;
+    }
+    
+    .bomb-container {
+        width: 90px;
+        height: 90px;
+    }
+    
+    .bomb-container::before {
+        width: 22px;
+        height: 8px;
+        top: -6px;
+    }
+    
+    .bomb-container::after {
+        top: -22px;
+        width: 16px;
+        height: 16px;
+    }
+    
+    .timer {
         font-size: 1.2rem;
     }
     
-    .bomb-display {
-        flex-direction: column;
-        gap: 10px;
+    .defuse-btn {
+        padding: 4px 10px;
+        font-size: 0.6rem;
+    }
+    
+    .bomb-warning {
+        display: none;
     }
 }
 
@@ -1114,21 +1325,7 @@ body {
     font-size: 0.85rem;
 }
 
-@media (max-width: 600px) {
-    .featured-content {
-        flex-direction: column;
-    }
-    
-    .featured-image {
-        width: 100%;
-        min-width: unset;
-        order: 1;
-    }
-    
-    .featured-info {
-        order: 2;
-    }
-}
+/* Featured stays horizontal on mobile - handled in responsive section below */
 
 .carousel-btn {
     background: var(--bg-card);
@@ -1326,16 +1523,74 @@ body {
         display: none;
     }
     
-    .featured-info h3 {
-        font-size: 1.25rem;
+    /* Keep featured card horizontal, just shrink image */
+    .featured-content {
+        flex-direction: row;
     }
     
+    .featured-image {
+        width: 150px;
+        height: 150px;
+        min-width: 150px;
+    }
+    
+    .featured-info {
+        padding: 12px;
+    }
+    
+    .featured-info h3 {
+        font-size: 1.1rem;
+    }
+    
+    .featured-info .project-description {
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+    
+    .featured-info .project-links .btn {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+    
+    .featured-info .project-tags span {
+        font-size: 0.65rem;
+        padding: 2px 6px;
+    }
+    
+    .featured-type {
+        font-size: 0.7rem;
+    }
+    
+    /* Scrolling photos - match desktop gaps */
     .photo-item {
-        width: 250px;
         height: 170px;
     }
     
     .photos-scroll-track {
-        gap: 15px;
+        gap: 4px;
+    }
+    
+    .photos .section-title {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-image {
+        width: 120px;
+        height: 120px;
+        min-width: 120px;
+    }
+    
+    .featured-info h3 {
+        font-size: 1rem;
+    }
+    
+    .featured-info .project-description {
+        font-size: 0.75rem;
+    }
+    
+    .photo-item {
+        height: 140px;
     }
 }

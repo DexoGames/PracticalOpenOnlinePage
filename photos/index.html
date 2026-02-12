@@ -8,12 +8,12 @@
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self';">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Dexo Photos | Dexter Smith</title>
-    <link rel="icon" type="image/png" href="images/misc/main-icon.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="../images/misc/main-icon.png">
+    <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer">
     <!-- Load data files -->
-    <script src="data/profile.js"></script>
-    <script src="data/photos.js"></script>
+    <script src="../data/profile.js"></script>
+    <script src="../data/photos.js"></script>
     <style>
         /* Photos Page Specific Styles */
         .photos-page {
@@ -244,12 +244,73 @@
         }
         
         @media (max-width: 768px) {
+            /* Prevent navbar animation shifts on scroll */
+            .navbar.scrolled {
+                padding: 8px 12px;
+            }
+            
             .lightbox-nav {
                 display: none;
             }
             
             .photos-header h1 {
-                font-size: 2rem;
+                font-size: 1.6rem;
+            }
+            
+            .photos-header p {
+                font-size: 0.85rem;
+            }
+            
+            .gallery-section h2 {
+                font-size: 1.2rem;
+            }
+            
+            /* Featured gallery grid: 2-3 columns on mobile */
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+            
+            /* Gallery grid: scale images to fit, multiple per row */
+            #galleryGrid {
+                gap: 4px;
+            }
+            
+            #galleryGrid .gallery-item {
+                height: 120px;
+                max-width: 100%;
+            }
+            
+            #galleryGrid .gallery-item img {
+                max-width: 100%;
+            }
+            
+            .photos-page.section {
+                padding: 30px 12px;
+                padding-top: 70px;
+            }
+            
+            .lightbox {
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .navbar.scrolled {
+                padding: 6px 8px;
+            }
+            
+            .photos-header h1 {
+                font-size: 1.3rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            
+            #galleryGrid .gallery-item {
+                height: 100px;
             }
         }
     </style>
@@ -259,11 +320,11 @@
     <nav class="navbar scrolled" id="navbar">
         <div class="nav-brand">Dexo.Photos</div>
         <ul class="nav-links">
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#projects">Projects</a></li>
-            <li><a href="index.html#games">Games</a></li>
-            <li><a href="index.html#photos">Photos</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="../#about">About</a></li>
+            <li><a href="../#games">Games</a></li>
+            <li><a href="../#projects">Projects</a></li>
+            <li><a href="../#photos">Photos</a></li>
+            <li><a href="../#contact">Contact</a></li>
             <li>
                 <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode">
                     <i class="fas fa-moon" id="themeIcon"></i>
@@ -274,7 +335,7 @@
 
     <!-- Photos Page Content -->
     <main class="photos-page section">
-        <a href="index.html" class="back-link">
+        <a href="../" class="back-link">
             <i class="fas fa-arrow-left"></i>
             Back to Home
         </a>
@@ -311,7 +372,7 @@
     </footer>
 
     <!-- Bomb script - shared across all pages -->
-    <script src="bomb.js"></script>
+    <script src="../bomb.js"></script>
 
     <script>
         // Theme toggle
@@ -349,7 +410,7 @@
         function createGalleryItem(photo, index) {
             return `
                 <div class="gallery-item" data-index="${index}" onclick="openLightbox(${index})">
-                    <img src="${photo.image}" alt="${photo.alt}" onerror="this.src='https://via.placeholder.com/400x300?text=${encodeURIComponent(photo.title)}'">
+                    <img src="../${photo.image}" alt="${photo.alt}" onerror="this.src='https://via.placeholder.com/400x300?text=${encodeURIComponent(photo.title)}'">
                 </div>
             `;
         }
@@ -390,7 +451,7 @@
 
         function updateLightbox() {
             const photo = allPhotos[currentPhotoIndex];
-            lightboxImg.src = photo.image;
+            lightboxImg.src = '../' + photo.image;
             lightboxImg.alt = photo.alt;
             lightboxCaption.textContent = photo.title;
         }

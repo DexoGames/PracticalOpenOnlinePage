@@ -53,6 +53,39 @@ let timeLeft = 60;
 let timerInterval;
 let isExploded = false;
 
+// Load saved timer state from localStorage
+function loadTimerState() {
+    const savedTime = localStorage.getItem('bombTimeLeft');
+    const savedTimestamp = localStorage.getItem('bombTimestamp');
+    const wasExploded = localStorage.getItem('bombExploded');
+    
+    if (wasExploded === 'true') {
+        isExploded = true;
+        return;
+    }
+    
+    if (savedTime && savedTimestamp) {
+        const elapsed = Math.floor((Date.now() - parseInt(savedTimestamp)) / 1000);
+        timeLeft = Math.max(0, parseInt(savedTime) - elapsed);
+    }
+}
+
+// Save timer state to localStorage
+function saveTimerState() {
+    localStorage.setItem('bombTimeLeft', timeLeft);
+    localStorage.setItem('bombTimestamp', Date.now());
+    if (isExploded) {
+        localStorage.setItem('bombExploded', 'true');
+    }
+}
+
+// Clear timer state from localStorage
+function clearTimerState() {
+    localStorage.removeItem('bombTimeLeft');
+    localStorage.removeItem('bombTimestamp');
+    localStorage.removeItem('bombExploded');
+}
+
 // Get all explodable elements - optimized to only get visible ones near scroll
 function getExplodableElements() {
     const viewportHeight = window.innerHeight;
@@ -83,12 +116,33 @@ function startBombTimer() {
     
     if (!timerDisplay || !defuseBtn || !bombContainer) return;
     
+    // Load saved state
+    loadTimerState();
+    
+    // If already exploded, trigger explosion immediately
+    if (isExploded || timeLeft <= 0) {
+        timeLeft = 0;
+        timerDisplay.textContent = timeLeft;
+        explodePage();
+        return;
+    }
+    
+    // Display current time
+    timerDisplay.textContent = timeLeft;
+    
+    // Apply urgency effects based on current time
+    if (timeLeft <= 10) {
+        bombContainer.classList.add('critical');
+        timerDisplay.style.color = '#ff0000';
+    }
+    
     // Defuse handler
     defuseBtn.addEventListener('click', defuseBomb);
     
     timerInterval = setInterval(() => {
         timeLeft--;
         timerDisplay.textContent = timeLeft;
+        saveTimerState();
         
         // Add urgency effects
         if (timeLeft <= 10) {
@@ -104,6 +158,7 @@ function startBombTimer() {
         
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
+            saveTimerState();
             explodePage();
         }
     }, 1000);
@@ -124,6 +179,10 @@ function defuseBomb() {
     bombContainer.classList.remove('warning', 'critical');
     if (pageWrapper) pageWrapper.classList.remove('shake');
     
+    // Clear saved state
+    clearTimerState();
+    isExploded = false;
+    
     // Fun defuse animation
     defuseBtn.textContent = 'DEFUSED!';
     defuseBtn.style.background = 'linear-gradient(135deg, #00ff00, #00aa00)';
@@ -137,6 +196,7 @@ function defuseBomb() {
 // EXPLODE THE PAGE! - Optimized version
 function explodePage() {
     isExploded = true;
+    saveTimerState(); // Persist exploded state
     
     const explosionOverlay = document.getElementById('explosionOverlay');
     const bombContainer = document.getElementById('bombContainer');

@@ -28,8 +28,8 @@
         <div class="nav-brand">Dexo.<span id="navBrandSuffix">Games</span></div>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
             <li><a href="#games">Games</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#photos">Photos</a></li>
             <li><a href="#contact">Contact</a></li>
             <li>
@@ -108,7 +108,7 @@
             </div>
         </div>
         <div class="photos-btn-wrapper">
-            <a href="photos.html" class="view-more-btn">
+            <a href="photos/" class="view-more-btn">
                 <span>View All Photos</span>
                 <i class="fas fa-arrow-right"></i>
             </a>
@@ -565,10 +565,29 @@
             }
             
             aboutText.innerHTML = `
-                ${paragraphsHTML}
+                <div class="about-paragraphs collapsed" id="aboutParagraphs">
+                    ${paragraphsHTML}
+                </div>
+                <button class="about-toggle" id="aboutToggle">
+                    <span class="toggle-text">Read More</span>
+                    <i class="fas fa-chevron-down toggle-icon"></i>
+                </button>
                 <h3>Skills & Technologies</h3>
                 <div class="skills-all">${skillsHTML}</div>
             `;
+            
+            // Add toggle functionality
+            const toggleBtn = document.getElementById('aboutToggle');
+            const paragraphs = document.getElementById('aboutParagraphs');
+            const toggleText = toggleBtn.querySelector('.toggle-text');
+            const toggleIcon = toggleBtn.querySelector('.toggle-icon');
+            
+            toggleBtn.addEventListener('click', () => {
+                paragraphs.classList.toggle('collapsed');
+                const isCollapsed = paragraphs.classList.contains('collapsed');
+                toggleText.textContent = isCollapsed ? 'Read More' : 'Read Less';
+                toggleIcon.style.transform = isCollapsed ? 'rotate(0deg)' : 'rotate(180deg)';
+            });
         }
         
         // Generate social link HTML
