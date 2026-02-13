@@ -141,12 +141,9 @@
     <script src="bomb.js"></script>
 
     <script>
-        // ==========================================
-        // NAV BRAND TYPING ANIMATION
-        // ==========================================
         const navBrandSuffix = document.getElementById('navBrandSuffix');
         const suffixes = ['Games', 'Software', 'Photos', "Smith"];
-        const holdTimes = [8000, 3000, 3000, 3000, 3000]; // Games holds longer
+        const holdTimes = [8000, 3000, 3000, 3000, 3000];
         let currentSuffixIndex = 0;
         
         function typeText(text, callback) {
@@ -159,7 +156,7 @@
                     clearInterval(typeInterval);
                     if (callback) callback();
                 }
-            }, 100); // Typing speed
+            }, 100);
         }
         
         function deleteText(callback) {
@@ -171,7 +168,7 @@
                     clearInterval(deleteInterval);
                     if (callback) callback();
                 }
-            }, 50); // Deleting speed (faster)
+            }, 50);
         }
         
         function cycleNavBrand() {
@@ -182,22 +179,17 @@
                     currentSuffixIndex = (currentSuffixIndex + 1) % suffixes.length;
                     setTimeout(() => {
                         typeText(suffixes[currentSuffixIndex], cycleNavBrand);
-                    }, 300); // Pause before typing new word
+                    }, 300);
                 });
             }, holdTime);
         }
         
-        // Start the animation cycle
         cycleNavBrand();
 
-        // ==========================================
-        // THEME TOGGLE
-        // ==========================================
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         const html = document.documentElement;
         
-        // Check for saved theme preference or default to dark
         const savedTheme = localStorage.getItem('theme') || 'dark';
         if (savedTheme === 'light') {
             html.setAttribute('data-theme', 'light');
@@ -220,9 +212,6 @@
             }
         });
 
-        // ==========================================
-        // SMOOTH SCROLLING
-        // ==========================================
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -235,9 +224,6 @@
             });
         });
         
-        // ==========================================
-        // NAVBAR SCROLL EFFECT
-        // ==========================================
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -247,11 +233,6 @@
             }
         });
 
-        // ==========================================
-        // DYNAMIC CONTENT LOADING
-        // ==========================================
-        
-        // Create a game card HTML
         function createGameCard(game) {
             const tagsHTML = game.tags.map(tag => `<span>${tag}</span>`).join('');
             const devBadge = game.inDevelopment ? '<span class="dev-badge inline"><i class="fas fa-code"></i> In Development</span>' : '';
@@ -279,7 +260,6 @@
             `;
         }
 
-        // Create a project card HTML
         function createProjectCard(project) {
             const tagsHTML = project.tags.map(tag => `<span>${tag}</span>`).join('');
             let badgeHTML = '';
@@ -314,7 +294,6 @@
             `;
         }
 
-        // Load games from data file
         function loadGames() {
             const gamesGrid = document.getElementById('gamesGrid');
             
@@ -326,7 +305,6 @@
             gamesGrid.innerHTML = GAMES_DATA.map(createGameCard).join('');
         }
 
-        // Load projects from data file
         function loadProjects() {
             const projectsGrid = document.getElementById('projectsGrid');
             
@@ -338,10 +316,6 @@
             projectsGrid.innerHTML = PROJECTS_DATA.map(createProjectCard).join('');
         }
 
-        // ==========================================
-        // FEATURED CAROUSEL
-        // ==========================================
-        
         let featuredItems = [];
         let currentFeaturedIndex = 0;
         let carouselInterval;
@@ -398,7 +372,6 @@
         }
         
         function loadFeaturedCarousel() {
-            // Collect all featured items
             featuredItems = [];
             
             if (typeof GAMES_DATA !== 'undefined' && GAMES_DATA) {
@@ -406,14 +379,13 @@
                     featuredItems.push({ ...g, isGame: true });
                 });
             }
-            // Only include projects if PROJECTS_DATA is defined
+            
             if (typeof PROJECTS_DATA !== 'undefined' && PROJECTS_DATA) {
                 PROJECTS_DATA.filter(p => p.featured).forEach(p => {
                     featuredItems.push({ ...p, isGame: false });
                 });
             }
             
-            // Sort by featuredOrder (lower numbers first)
             featuredItems.sort((a, b) => {
                 const orderA = a.featuredOrder || 999;
                 const orderB = b.featuredOrder || 999;
@@ -425,26 +397,21 @@
                 return;
             }
             
-            // Create dots
             const dotsContainer = document.getElementById('carouselDots');
             dotsContainer.innerHTML = featuredItems.map((_, i) => 
                 `<button class="carousel-dot ${i === 0 ? 'active' : ''}" data-index="${i}"></button>`
             ).join('');
             
-            // Add dot click listeners
             dotsContainer.querySelectorAll('.carousel-dot').forEach(dot => {
                 dot.addEventListener('click', () => {
                     goToFeatured(parseInt(dot.dataset.index));
                 });
             });
             
-            // Show first item
             showFeatured(0);
             
-            // Auto-rotate every 6 seconds
             startCarouselAutoRotate();
             
-            // Pause on hover
             const carousel = document.querySelector('.featured-carousel');
             carousel.addEventListener('mouseenter', () => clearInterval(carouselInterval));
             carousel.addEventListener('mouseleave', startCarouselAutoRotate);
@@ -486,10 +453,6 @@
             goToFeatured(currentFeaturedIndex);
         });
 
-        // ==========================================
-        // PHOTOS SECTION
-        // ==========================================
-        
         function loadPhotos() {
             const track = document.getElementById('photosTrack');
             
@@ -498,7 +461,6 @@
                 return;
             }
             
-            // Duplicate photos for seamless infinite scroll
             const photos = [...PHOTOS_DATA.featured, ...PHOTOS_DATA.featured];
             
             track.innerHTML = photos.map(photo => `
@@ -511,37 +473,27 @@
             `).join('');
         }
 
-        // ==========================================
-        // PROFILE & SOCIAL LINKS LOADING
-        // ==========================================
-        
-        // Load profile data into hero section
         function loadProfile() {
             if (!PROFILE_DATA) return;
             
-            // Hero section
             document.getElementById('heroPhoto').src = PROFILE_DATA.photo;
             document.getElementById('heroPhoto').alt = PROFILE_DATA.name;
             document.getElementById('heroName').textContent = PROFILE_DATA.name;
             document.getElementById('heroTagline').textContent = PROFILE_DATA.tagline;
             document.getElementById('heroBio').textContent = PROFILE_DATA.heroBio;
             
-            // Footer
             document.getElementById('footerCopyright').innerHTML = `&copy; ${PROFILE_DATA.footerYear} ${PROFILE_DATA.name}. All rights reserved.`;
             document.getElementById('footerText').textContent = PROFILE_DATA.footerText;
         }
         
-        // Load about section
         function loadAbout() {
             const aboutText = document.getElementById('aboutText');
             if (!PROFILE_DATA) return;
             
-            // Generate paragraphs
             const paragraphsHTML = PROFILE_DATA.aboutParagraphs
                 .map(p => `<p>${p}</p>`)
                 .join('');
             
-            // Generate skills by category
             let skillsHTML = '';
             if (SKILLS_DATA && typeof SKILLS_DATA === 'object') {
                 Object.keys(SKILLS_DATA).forEach(categoryKey => {
@@ -576,7 +528,6 @@
                 <div class="skills-all">${skillsHTML}</div>
             `;
             
-            // Add toggle functionality
             const toggleBtn = document.getElementById('aboutToggle');
             const paragraphs = document.getElementById('aboutParagraphs');
             const toggleText = toggleBtn.querySelector('.toggle-text');
@@ -590,7 +541,6 @@
             });
         }
         
-        // Generate social link HTML
         function createSocialLink(social, showLabel = false) {
             if (!social.url) return '';
             const iconHTML = social.customImage 
@@ -603,7 +553,6 @@
             `;
         }
         
-        // Load social links
         function loadSocials() {
             if (!SOCIALS_DATA) return;
             
@@ -611,19 +560,14 @@
             const contactSocials = document.getElementById('contactSocials');
             const contactMethods = document.getElementById('contactMethods');
             
-            // Filter out socials with no URL
             const activeSocials = SOCIALS_DATA.filter(s => s.url);
             
-            // Hero social links (icons only)
             heroSocials.innerHTML = activeSocials.map(s => createSocialLink(s)).join('');
             
-            // Contact section social links (icons only)
             contactSocials.innerHTML = activeSocials.map(s => createSocialLink(s)).join('');
             
-            // Contact methods (email + selected socials with labels)
             let methodsHTML = '';
             
-            // Add email first
             if (PROFILE_DATA && PROFILE_DATA.email) {
                 methodsHTML += `
                     <a href="mailto:${PROFILE_DATA.email}" class="contact-item">
@@ -633,7 +577,6 @@
                 `;
             }
             
-            // Add selected contact methods
             if (CONTACT_METHODS) {
                 CONTACT_METHODS.forEach(methodId => {
                     const social = SOCIALS_DATA.find(s => s.id === methodId);
@@ -654,7 +597,6 @@
             contactMethods.innerHTML = methodsHTML;
         }
 
-        // Load content when page loads
         document.addEventListener('DOMContentLoaded', () => {
             loadProfile();
             loadAbout();

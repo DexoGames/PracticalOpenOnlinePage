@@ -1,5 +1,3 @@
-// Skills Data - Edit this file to add/remove skills
-// Organized by category for better presentation
 const SKILLS_DATA = {
     languages: {
         title: "Languages",

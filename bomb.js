@@ -1,13 +1,6 @@
-// ==========================================
-// TIME BOMB FUNCTIONALITY - Shared across all pages
-// ==========================================
-
-// Create and inject bomb HTML into the page
 function initBomb() {
-    // Check if bomb already exists (avoid double initialization)
     if (document.getElementById('bombContainer')) return;
     
-    // Create bomb container
     const bombHTML = `
         <div class="bomb-container" id="bombContainer">
             <div class="bomb-display">
@@ -19,33 +12,25 @@ function initBomb() {
         <div class="explosion-overlay" id="explosionOverlay"></div>
     `;
     
-    // Insert at the beginning of body
     document.body.insertAdjacentHTML('afterbegin', bombHTML);
     
-    // Check if page-wrapper already exists
     let pageWrapper = document.getElementById('pageWrapper');
     
-    // If no page-wrapper exists, create one and wrap all content
     if (!pageWrapper) {
-        // Get all direct children of body except bomb elements
         const bodyChildren = Array.from(document.body.children).filter(el => 
             !el.classList.contains('bomb-container') && 
             !el.classList.contains('explosion-overlay')
         );
         
-        // Create wrapper
         pageWrapper = document.createElement('div');
         pageWrapper.className = 'page-wrapper';
         pageWrapper.id = 'pageWrapper';
         
-        // Move all content into wrapper
         bodyChildren.forEach(child => pageWrapper.appendChild(child));
         
-        // Add wrapper to body (after bomb elements)
         document.body.appendChild(pageWrapper);
     }
     
-    // Initialize bomb functionality
     startBombTimer();
 }
 
@@ -53,7 +38,6 @@ let timeLeft = 60;
 let timerInterval;
 let isExploded = false;
 
-// Load saved timer state from localStorage
 function loadTimerState() {
     const savedTime = localStorage.getItem('bombTimeLeft');
     const savedTimestamp = localStorage.getItem('bombTimestamp');
@@ -62,7 +46,7 @@ function loadTimerState() {
         const elapsed = Math.floor((Date.now() - parseInt(savedTimestamp)) / 1000);
         const calculatedTime = Math.max(0, parseInt(savedTime) - elapsed);
         
-        // If timer hit 0, reset everything on page load
+        // reset timer when it hits 0, otherwise page stays permanently exploded
         if (calculatedTime <= 0) {
             clearTimerState();
             timeLeft = 60;
@@ -70,38 +54,33 @@ function loadTimerState() {
             return;
         }
         
-        // Otherwise restore the timer
         timeLeft = calculatedTime;
     }
 }
 
-// Save timer state to localStorage
 function saveTimerState() {
     localStorage.setItem('bombTimeLeft', timeLeft);
     localStorage.setItem('bombTimestamp', Date.now());
 }
 
-// Clear timer state from localStorage
 function clearTimerState() {
     localStorage.removeItem('bombTimeLeft');
     localStorage.removeItem('bombTimestamp');
 }
 
-// Get all explodable elements - optimized to only get visible ones near scroll
+// only grab elements near the viewport, otherwise fps tanks during explosion
 function getExplodableElements() {
     const viewportHeight = window.innerHeight;
     const scrollY = window.scrollY;
-    const buffer = viewportHeight; // Only explode elements within 1 viewport above/below
+    const buffer = viewportHeight;
     
     const allElements = document.querySelectorAll('.navbar, .hero, .section, .footer, .project-card, .social-links a, .skill-tag, .gallery-item, .photos-page, h1, h2, h3, p, img, .photo-item, .featured-card, .contact-item, .btn');
     
-    // Filter to only elements near the viewport
     return Array.from(allElements).filter(el => {
         const rect = el.getBoundingClientRect();
         const elementTop = rect.top + scrollY;
         const elementBottom = elementTop + rect.height;
         
-        // Check if element is within the visible range (with buffer)
         const visibleTop = scrollY - buffer;
         const visibleBottom = scrollY + viewportHeight + buffer;
         
@@ -109,7 +88,6 @@ function getExplodableElements() {
     });
 }
 
-// Start the countdown
 function startBombTimer() {
     const timerDisplay = document.getElementById('timer');
     const defuseBtn = document.getElementById('defuseBtn');
@@ -117,19 +95,15 @@ function startBombTimer() {
     
     if (!timerDisplay || !defuseBtn || !bombContainer) return;
     
-    // Load saved state
     loadTimerState();
     
-    // Display current time
     timerDisplay.textContent = timeLeft;
     
-    // Apply urgency effects based on current time
     if (timeLeft <= 10) {
         bombContainer.classList.add('critical');
         timerDisplay.style.color = '#ff0000';
     }
     
-    // Defuse handler
     defuseBtn.addEventListener('click', defuseBomb);
     
     timerInterval = setInterval(() => {
@@ -137,13 +111,11 @@ function startBombTimer() {
         timerDisplay.textContent = timeLeft;
         saveTimerState();
         
-        // Add urgency effects
         if (timeLeft <= 10) {
             bombContainer.classList.add('critical');
             timerDisplay.style.color = '#ff0000';
         }
         
-        // Shake effect as time runs low
         if (timeLeft <= 5) {
             const pageWrapper = document.getElementById('pageWrapper');
             if (pageWrapper) pageWrapper.classList.add('shake');
@@ -157,7 +129,6 @@ function startBombTimer() {
     }, 1000);
 }
 
-// Defuse (reset) the bomb
 function defuseBomb() {
     if (isExploded) return;
     
@@ -172,11 +143,9 @@ function defuseBomb() {
     bombContainer.classList.remove('warning', 'critical');
     if (pageWrapper) pageWrapper.classList.remove('shake');
     
-    // Clear saved state
     clearTimerState();
     isExploded = false;
     
-    // Fun defuse animation
     defuseBtn.textContent = 'DEFUSED!';
     defuseBtn.style.background = 'linear-gradient(135deg, #00ff00, #00aa00)';
     
@@ -186,46 +155,38 @@ function defuseBomb() {
     }, 1000);
 }
 
-// EXPLODE THE PAGE! - Optimized version
 function explodePage() {
     isExploded = true;
     
     const explosionOverlay = document.getElementById('explosionOverlay');
     const bombContainer = document.getElementById('bombContainer');
     
-    // Lock scrolling during explosion
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
     
-    // Flash red overlay then fade to dark red
     explosionOverlay.classList.add('active');
     
-    // Change background to dark red
     document.body.style.transition = 'background 1s ease';
     document.body.style.background = 'linear-gradient(135deg, #2a0a0a, #4a1010, #2a0a0a)';
     
-    // Fade out overlay after flash
     setTimeout(() => {
         explosionOverlay.style.transition = 'opacity 1.5s ease';
         explosionOverlay.style.opacity = '0';
     }, 400);
     
-    // Get only nearby visible elements for performance
     const elements = getExplodableElements();
     
-    // Disable pointer events on all elements to prevent interaction during explosion
     const pageWrapper = document.getElementById('pageWrapper');
     if (pageWrapper) {
         pageWrapper.style.pointerEvents = 'none';
     }
     
-    // Batch DOM reads first
+    // batching all the DOM reads/writes separately keeps animations smooth
     const elementData = elements.map(el => {
         const rect = el.getBoundingClientRect();
         return { el, rect };
     });
     
-    // Pre-calculate all animation values to avoid recalculating in loop
     const animations = elementData.map((_, index) => ({
         angle: Math.random() * 360,
         distance: 800 + Math.random() * 2000,
@@ -236,12 +197,10 @@ function explodePage() {
         delay: index * 15
     }));
     
-    // Use will-change to hint browser about upcoming animations
     elementData.forEach(({ el }) => {
         el.style.willChange = 'transform, opacity';
     });
     
-    // Then batch DOM writes with requestAnimationFrame for smoother animation
     requestAnimationFrame(() => {
         elementData.forEach(({ el }, index) => {
             const anim = animations[index];
@@ -257,7 +216,6 @@ function explodePage() {
             }, anim.delay);
         });
         
-        // Clean up will-change after animations complete to free memory
         setTimeout(() => {
             elementData.forEach(({ el }) => {
                 el.style.willChange = 'auto';
@@ -265,7 +223,6 @@ function explodePage() {
         }, 3000);
     });
     
-    // Hide bomb container with fade out
     bombContainer.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
     bombContainer.style.opacity = '0';
     bombContainer.style.transform = 'scale(0.8)';
@@ -274,7 +231,6 @@ function explodePage() {
     }, 500);
 }
 
-// Initialize when DOM is ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initBomb);
 } else {

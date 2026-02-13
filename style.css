@@ -1,10 +1,4 @@
-/* ==========================================
-   DEXTER SMITH PORTFOLIO - OBSIDIAN STYLE
-   ========================================== */
-
-/* CSS Variables - Dark Theme (Default) */
 :root {
-    /* Theme colors */
     --bg-primary: #1a1a24;
     --bg-secondary: #252532;
     --bg-card: #2a2a3a;
@@ -12,38 +6,33 @@
     --border-color: #3a3a4a;
     --border-light: #454560;
     
-    /* Text colors */
     --text-primary: #e0e0e0;
     --text-secondary: #a0a0a0;
     --text-muted: #707080;
     --text-dark: #ffffff;
     
-    /* Accent colors */
     --accent-color: #ff5f4a;
     --accent-hover: #ff8474;
     --accent-light: rgba(224, 122, 95, 0.15);
     --primary-color: #5dade2;
     --secondary-color: #7b8fa8;
     
-    /* Social Icon Colors (brand colors) */
+    /* social brand colors */
     --social-github: #6e7681;
     --social-linkedin: #0077b5;
     --social-itch: #fa5c5c;
     --social-linktree: #39e09b;
     --social-email: #e07a5f;
     
-    /* Status colors */
     --danger-color: #e05555;
     --success-color: #5cb85c;
     --warning-color: #f0ad4e;
     
-    /* Effects */
     --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
     --transition: all 0.3s ease;
 }
 
-/* Light Theme */
 [data-theme="light"] {
     --bg-primary: #f5f5f5;
     --bg-secondary: #ffffff;
@@ -63,7 +52,6 @@
     --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
-/* Reset & Base */
 * {
     margin: 0;
     padding: 0;
@@ -83,7 +71,7 @@ body {
     transition: background 0.3s ease, color 0.3s ease;
 }
 
-/* Custom Fonts - Add your font files to a 'fonts' folder */
+/* custom font files are in 'fonts' folder */
 @font-face {
     font-family: 'Dealerplate California';
     src: url('fonts/dealerplate%20california.otf') format('opentype');
@@ -112,12 +100,12 @@ body {
     font-display: swap;
 }
 
-/* Page Wrapper - contains all content except bomb */
+/* contains all content except bomb elements */
 .page-wrapper {
     position: relative;
 }
 
-/* Shake Animation for bomb countdown - applies to page wrapper, not body */
+/* shake applies to page wrapper, not body, so scrollbar doesn't shake */
 .page-wrapper.shake {
     animation: shake 0.5s infinite;
 }
@@ -127,10 +115,6 @@ body {
     25% { transform: translateX(-5px); }
     75% { transform: translateX(5px); }
 }
-
-/* ==========================================
-   TIME BOMB WIDGET
-   ========================================== */
 
 .bomb-container {
     position: fixed;
@@ -151,7 +135,7 @@ body {
     padding: 0;
 }
 
-/* Fuse Cap */
+/* fuse cap */
 .bomb-container::before {
     content: '';
     position: absolute;
@@ -164,7 +148,7 @@ body {
     border-radius: 3px 3px 0 0;
 }
 
-/* Fuse Cord */
+/* fuse cord */
 .bomb-container::after {
     content: '';
     position: absolute;
@@ -180,7 +164,7 @@ body {
 }
 
 .bomb-container.critical {
-    background: #800000; /* Darker red */
+    background: #800000;
     box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
     animation: pulse-critical 0.5s infinite;
 }
@@ -204,13 +188,11 @@ body {
     width: 100%;
 }
 
-/* .bomb-icon removed */
-
 .timer {
     font-size: 2.5rem;
     font-weight: bold;
     font-family: "Dealerplate California", monospace;
-    color: #4caf50; /* Ensuring green color */
+    color: #4caf50;
     text-align: center;
     line-height: 1;
     text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
@@ -257,9 +239,7 @@ body {
     color: var(--danger-color);
 }
 
-/* ==========================================
-   EXPLOSION OVERLAY - Red Flash
-   ========================================== */
+/* EXPLOSION OVERLAY - Red Flash */
 
 .explosion-overlay {
     position: fixed;
@@ -284,10 +264,6 @@ body {
     50% { background: rgba(200, 50, 50, 0.9); }
     100% { background: rgba(180, 30, 30, 0.85); }
 }
-
-/* ==========================================
-   NAVIGATION
-   ========================================== */
 
 .navbar {
     position: fixed;
@@ -343,7 +319,6 @@ body {
     color: var(--text-primary);
 }
 
-/* Theme Toggle Button */
 .theme-toggle {
     background: var(--bg-card);
     border: 1px solid var(--border-color);
@@ -362,10 +337,6 @@ body {
     background: var(--bg-hover);
     color: var(--text-primary);
 }
-
-/* ==========================================
-   HERO SECTION
-   ========================================== */
 
 .hero {
     min-height: 50vh;
@@ -430,14 +401,6 @@ body {
     line-height: 1.8;
 }
 
-/* ==========================================
-   SOCIAL LINKS - Sticker Style
-   ========================================== */
-
-/* ==========================================
-   SOCIAL LINKS
-   ========================================== */
-
 .social-links {
     display: flex;
     justify-content: center;
@@ -460,7 +423,6 @@ body {
     text-decoration: none;
 }
 
-/* Social colors - using brand colors */
 .social-links a:nth-child(1) { background: var(--social-linkedin); color: white; border: none; }
 .social-links a:nth-child(2) { background: var(--social-github); color: white; border: none; }
 .social-links a:nth-child(3) { background: var(--social-itch); color: white; border: none; }
@@ -496,10 +458,6 @@ body {
     height: 24px;
 }
 
-/* ==========================================
-   SECTIONS
-   ========================================== */
-
 .section {
     padding: 40px 50px;
     max-width: 1200px;
@@ -529,10 +487,6 @@ body {
     margin: 15px auto 0;
     border-radius: 2px;
 }
-
-/* ==========================================
-   ABOUT SECTION
-   ========================================== */
 
 .about-content {
     max-width: 800px;
@@ -614,7 +568,7 @@ body {
 }
 
 .skill-category h4 {
-    display: none; /* Hidden for subtle look */
+    display: none; /* keeps it subtle */
 }
 
 .skills-container {
@@ -635,7 +589,7 @@ body {
     font-family: "HP Simplified", sans-serif;
 }
 
-/* Subtle category colors via left border */
+/* subtle left border shows category */
 .skill-category[data-category="languages"] .skill-tag {
     border-left: 3px solid #5dade2;
 }
@@ -653,10 +607,6 @@ body {
     border-color: var(--accent-color);
     color: var(--accent-color);
 }
-
-/* ==========================================
-   PROJECTS GRID
-   ========================================== */
 
 .projects-grid {
     display: flex;
@@ -770,10 +720,6 @@ body {
     flex-wrap: wrap;
 }
 
-/* ==========================================
-   DYNAMIC LOADING STATES
-   ========================================== */
-
 .loading-text,
 .error-text,
 .no-content {
@@ -791,10 +737,6 @@ body {
     border-radius: 8px;
     border: 1px solid var(--danger-color);
 }
-
-/* ==========================================
-   BUTTONS
-   ========================================== */
 
 .btn {
     display: inline-block;
@@ -829,10 +771,6 @@ body {
     background: var(--border-color);
     color: var(--text-primary);
 }
-
-/* ==========================================
-   CONTACT SECTION
-   ========================================== */
 
 .contact-content {
     text-align: center;
@@ -887,10 +825,6 @@ body {
     color: var(--accent-color);
 }
 
-/* ==========================================
-   FOOTER
-   ========================================== */
-
 .footer {
     text-align: center;
     padding: 30px 20px;
@@ -906,19 +840,14 @@ body {
     font-size: 0.95rem;
 }
 
-/* ==========================================
-   RESPONSIVE DESIGN
-   ========================================== */
-
 @media (max-width: 768px) {
-    /* --- Navbar: compact single row --- */
     .navbar {
         padding: 8px 12px;
         flex-direction: row;
         gap: 0;
     }
     
-    /* Prevent navbar animation shifts on scroll */
+    /* prevent navbar shifts when scrolling */
     .navbar.scrolled {
         padding: 8px 12px;
     }
@@ -943,7 +872,6 @@ body {
         font-size: 0.9rem;
     }
     
-    /* --- Hero --- */
     .hero {
         padding-top: 70px;
     }
@@ -965,7 +893,6 @@ body {
         height: 110px;
     }
     
-    /* --- Sections --- */
     .section {
         padding: 30px 15px;
         scroll-margin-top: 60px;
@@ -975,7 +902,6 @@ body {
         font-size: 1.6rem;
     }
     
-    /* --- About & Skills --- */
     .about-content,
     .contact-content {
         padding: 16px;
@@ -1013,7 +939,6 @@ body {
         gap: 5px;
     }
     
-    /* --- Projects --- */
     .projects-grid {
         justify-content: center;
     }
@@ -1032,7 +957,6 @@ body {
         font-size: 0.85rem;
     }
     
-    /* --- Bomb: shrink to 110px circle --- */
     .bomb-container {
         bottom: 12px;
         right: 12px;
@@ -1066,7 +990,6 @@ body {
         margin-top: 3px;
     }
     
-    /* --- Contact --- */
     .contact-methods {
         flex-direction: column;
         align-items: center;
@@ -1149,10 +1072,6 @@ body {
     }
 }
 
-/* ==========================================
-   IN DEVELOPMENT BADGE
-   ========================================== */
-
 .dev-badge {
     position: absolute;
     top: 12px;
@@ -1195,10 +1114,6 @@ body {
 .project-card {
     position: relative;
 }
-
-/* ==========================================
-   FEATURED CAROUSEL
-   ========================================== */
 
 .featured {
     padding: 30px 0;
@@ -1374,20 +1289,12 @@ body {
     transform: scale(1.2);
 }
 
-/* ==========================================
-   SKILLS ALL WRAPPER
-   ========================================== */
-
 .skills-all {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
 }
-
-/* ==========================================
-   PHOTOS SECTION
-   ========================================== */
 
 .photos {
     padding: 60px 0;
@@ -1509,10 +1416,6 @@ body {
     width: 100%;
 }
 
-/* ==========================================
-   RESPONSIVE - FEATURED & PHOTOS
-   ========================================== */
-
 @media (max-width: 768px) {
     .featured-carousel {
         flex-direction: column;
@@ -1523,7 +1426,6 @@ body {
         display: none;
     }
     
-    /* Keep featured card horizontal, just shrink image */
     .featured-content {
         flex-direction: row;
     }
@@ -1561,7 +1463,6 @@ body {
         font-size: 0.7rem;
     }
     
-    /* Scrolling photos - match desktop gaps */
     .photo-item {
         height: 170px;
     }

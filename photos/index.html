@@ -375,7 +375,6 @@
     <script src="../bomb.js"></script>
 
     <script>
-        // Theme toggle
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = document.getElementById('themeIcon');
         const html = document.documentElement;
@@ -402,11 +401,9 @@
             }
         });
 
-        // All photos for lightbox navigation
         let allPhotos = [];
         let currentPhotoIndex = 0;
 
-        // Create gallery item (no overlay, natural aspect ratio)
         function createGalleryItem(photo, index) {
             return `
                 <div class="gallery-item" data-index="${index}" onclick="openLightbox(${index})">
@@ -415,14 +412,11 @@
             `;
         }
 
-        // Load gallery
         function loadGalleries() {
             if (!PHOTOS_DATA) return;
             
-            // Combine all photos for lightbox
             allPhotos = [];
             
-            // Gallery photos (no overlay, natural aspect ratios)
             if (PHOTOS_DATA.gallery && PHOTOS_DATA.gallery.length > 0) {
                 PHOTOS_DATA.gallery.forEach(photo => allPhotos.push(photo));
                 document.getElementById('galleryGrid').innerHTML = 
@@ -432,7 +426,6 @@
             }
         }
 
-        // Lightbox functionality
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxCaption = document.getElementById('lightboxCaption');
@@ -474,7 +467,6 @@
             if (e.target === lightbox) closeLightbox();
         });
 
-        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('active')) return;
             if (e.key === 'Escape') closeLightbox();
@@ -482,7 +474,6 @@
             if (e.key === 'ArrowLeft') prevPhoto();
         });
 
-        // Load footer
         function loadFooter() {
             if (!PROFILE_DATA) return;
             document.getElementById('footerCopyright').innerHTML = 
@@ -490,7 +481,6 @@
             document.getElementById('footerText').textContent = PROFILE_DATA.footerText;
         }
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             loadGalleries();
             loadFooter();
