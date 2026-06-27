@@ -1,0 +1,17 @@
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.noContent {
+    width: 100%;
+    text-align: center;
+    padding: 40px;
+    color: var(--text-muted);
+    font-family: "HP Simplified", sans-serif;
+    font-size: 1.1rem;
+}

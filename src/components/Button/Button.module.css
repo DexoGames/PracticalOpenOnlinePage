@@ -1,0 +1,33 @@
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: var(--transition);
+    cursor: pointer;
+    border: none;
+    font-family: "HP Simplified", sans-serif;
+}
+
+.primary {
+    background: var(--accent-color);
+    color: white;
+}
+
+.primary:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+.secondary {
+    background: var(--bg-hover);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+.secondary:hover {
+    background: var(--border-color);
+    color: var(--text-primary);
+}

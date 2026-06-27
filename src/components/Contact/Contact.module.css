@@ -1,0 +1,72 @@
+.content {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+    background: var(--bg-card);
+    padding: 50px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+
+.content > p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-bottom: 35px;
+}
+
+.methods {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-hover);
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+    font-family: "HP Simplified", sans-serif;
+    font-size: 1rem;
+}
+
+.item:hover {
+    background: var(--accent-light);
+    border-color: var(--accent-color);
+}
+
+.item i {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+}
+
+.item:hover i {
+    color: var(--accent-color);
+}
+
+.customIcon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
+    filter: brightness(0) invert(1);
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 16px;
+    }
+
+    .methods {
+        flex-direction: column;
+        align-items: center;
+    }
+}

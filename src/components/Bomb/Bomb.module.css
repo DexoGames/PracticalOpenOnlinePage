@@ -1,0 +1,201 @@
+.bombContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    width: 180px;
+    height: 180px;
+    background: #222;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: var(--transition);
+    border: none;
+    padding: 0;
+}
+
+/* fuse cap */
+.bombContainer::before {
+    content: '';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 15px;
+    background: #222;
+    border-radius: 3px 3px 0 0;
+}
+
+/* fuse cord */
+.bombContainer::after {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    border-top: 3px solid #666;
+    border-right: 3px solid #666;
+    border-radius: 0 50% 0 0;
+    transform: translateX(5px);
+    z-index: -1;
+}
+
+.bombContainer.critical {
+    background: #800000;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+    animation: pulse-critical 0.5s infinite;
+}
+
+.bombContainer.critical::before {
+    background: #800000;
+}
+
+@keyframes pulse-critical {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+.bombDisplay {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.timer {
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: "Dealerplate California", monospace;
+    color: #4caf50;
+    text-align: center;
+    line-height: 1;
+    text-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+.defuseBtn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.85rem;
+    font-family: "HP Simplified", sans-serif;
+    transition: var(--transition);
+    text-transform: uppercase;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.defuseBtn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+.bombWarning {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    margin-top: 5px;
+    font-style: italic;
+    max-width: 80%;
+}
+
+/* EXPLOSION OVERLAY - Red Flash */
+.explosionOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(180, 30, 30, 0.85);
+    z-index: 99999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+.explosionOverlay.active {
+    opacity: 1;
+    animation: flash-red 0.4s ease-out;
+}
+
+@keyframes flash-red {
+    0% { background: rgba(255, 100, 100, 1); }
+    50% { background: rgba(200, 50, 50, 0.9); }
+    100% { background: rgba(180, 30, 30, 0.85); }
+}
+
+@media (max-width: 768px) {
+    .bombContainer {
+        bottom: 12px;
+        right: 12px;
+        width: 110px;
+        height: 110px;
+    }
+
+    .bombContainer::before {
+        width: 26px;
+        height: 10px;
+        top: -8px;
+    }
+
+    .bombContainer::after {
+        top: -26px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .timer {
+        font-size: 1.5rem;
+    }
+
+    .defuseBtn {
+        padding: 5px 12px;
+        font-size: 0.7rem;
+    }
+
+    .bombWarning {
+        font-size: 0.55rem;
+        margin-top: 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bombContainer {
+        width: 90px;
+        height: 90px;
+    }
+
+    .bombContainer::before {
+        width: 22px;
+        height: 8px;
+        top: -6px;
+    }
+
+    .bombContainer::after {
+        top: -22px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .timer {
+        font-size: 1.2rem;
+    }
+
+    .defuseBtn {
+        padding: 4px 10px;
+        font-size: 0.6rem;
+    }
+
+    .bombWarning {
+        display: none;
+    }
+}

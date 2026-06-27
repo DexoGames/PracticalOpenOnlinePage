@@ -1,0 +1,59 @@
+.socialLinks {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.socialLinks a {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    border-radius: 10px;
+    color: var(--text-secondary);
+    font-size: 1.3rem;
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+    text-decoration: none;
+}
+
+.socialLinks a:nth-child(1) { background: var(--social-linkedin); color: white; border: none; }
+.socialLinks a:nth-child(2) { background: var(--social-github); color: white; border: none; }
+.socialLinks a:nth-child(3) { background: var(--social-itch); color: white; border: none; }
+.socialLinks a:nth-child(4) { background: var(--social-linktree); color: white; border: none; }
+
+.socialLinks a:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.large a {
+    width: 56px;
+    height: 56px;
+    font-size: 1.5rem;
+}
+
+.customIcon {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
+    filter: brightness(0) invert(1);
+}
+
+.large .customIcon {
+    width: 26px;
+    height: 26px;
+}
+
+@media (max-width: 480px) {
+    .socialLinks a {
+        width: 42px;
+        height: 42px;
+        font-size: 1.1rem;
+    }
+}

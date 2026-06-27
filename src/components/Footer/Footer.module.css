@@ -1,0 +1,14 @@
+.footer {
+    text-align: center;
+    padding: 30px 20px;
+    background: var(--bg-secondary);
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    margin-top: 50px;
+}
+
+.footer p {
+    margin: 5px 0;
+    font-family: "HP Simplified", sans-serif;
+    font-size: 0.95rem;
+}

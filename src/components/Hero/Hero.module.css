@@ -1,0 +1,95 @@
+.hero {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 20px 40px;
+    background: var(--bg-primary);
+    position: relative;
+}
+
+.content {
+    max-width: 800px;
+}
+
+.profileImage {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--accent-color);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    background: var(--bg-card);
+}
+
+.profileImage:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-hover);
+}
+
+.profileImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 12px;
+    font-family: "Dealerplate California", cursive;
+    color: var(--text-dark);
+    letter-spacing: 2px;
+}
+
+.tagline {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    font-family: "HP Simplified", sans-serif;
+}
+
+.description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 70px;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .tagline {
+        font-size: 0.95rem;
+    }
+
+    .description {
+        font-size: 0.95rem;
+    }
+
+    .profileImage {
+        width: 110px;
+        height: 110px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.7rem;
+    }
+
+    .tagline {
+        font-size: 0.85rem;
+    }
+}

@@ -1,0 +1,115 @@
+/* combines the .section layout with .photos-page additions */
+.page {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    scroll-margin-top: 80px;
+    padding: 100px 50px 40px;
+    min-height: 100vh;
+}
+
+.backLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--accent-color);
+    text-decoration: none;
+    margin-bottom: 30px;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.backLink:hover {
+    color: var(--accent-hover);
+}
+
+.backLink i {
+    transition: transform 0.3s ease;
+}
+
+.backLink:hover i {
+    transform: translateX(-5px);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.header p {
+    color: var(--text-secondary);
+}
+
+.gallerySection {
+    margin-bottom: 60px;
+}
+
+.galleryGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.galleryItem {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition);
+    height: 250px;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.galleryItem img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+.galleryItem:hover img {
+    opacity: 0.85;
+}
+
+@media (max-width: 768px) {
+    .page {
+        padding: 70px 12px 30px;
+    }
+
+    .header h1 {
+        font-size: 1.6rem;
+    }
+
+    .header p {
+        font-size: 0.85rem;
+    }
+
+    .galleryGrid {
+        gap: 4px;
+    }
+
+    .galleryItem {
+        height: 120px;
+        max-width: 100%;
+    }
+
+    .galleryItem img {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header h1 {
+        font-size: 1.3rem;
+    }
+
+    .galleryItem {
+        height: 100px;
+    }
+}

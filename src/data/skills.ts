@@ -1,0 +1,38 @@
+import type { SkillsData } from "../types/content";
+
+export const SKILLS_DATA: SkillsData = {
+  languages: {
+    title: "Languages",
+    skills: ["C#", "Java", "Python", "Haskell", "C", "JavaScript", "HTML/CSS"],
+  },
+  software: {
+    title: "Software",
+    skills: [
+      "Unity",
+      "Git",
+      "VSCode",
+      "IntelliJ",
+      "LaTeX",
+      "Photoshop",
+      "Illustrator",
+      "Godot",
+    ],
+  },
+  other: {
+    title: "Other",
+    skills: [
+      "Game Development",
+      "Algorithmics",
+      "Online Networking",
+      "Data Management",
+      "Agile",
+      "Functional Programming",
+      "Classical AI",
+      "Leetcode Challenges",
+      "UI/UX Design",
+      "Game/Level Design",
+      "Graphic Design",
+      "Music Performance",
+    ],
+  },
+};
