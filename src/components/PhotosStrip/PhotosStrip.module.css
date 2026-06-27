@@ -1,33 +1,30 @@
 .photos {
-    padding: 60px 0;
-    overflow: visible;
-    max-width: 100%;
     width: 100%;
-    position: relative;
-    scroll-margin-top: 80px;
+    background: var(--black);
+    color: var(--bone);
+    padding-bottom: 48px;
+    scroll-margin-top: 56px;
 }
 
-.title {
-    padding: 0 40px;
+.headerBand {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.headerInner {
+    padding: 48px 40px 32px;
 }
 
 .scrollWrapper {
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    width: 100vw;
+    width: 100%;
     overflow: hidden;
-    margin-top: 30px;
-    margin-bottom: 30px;
 }
 
 .scrollTrack {
     display: flex;
     gap: 4px;
-    animation: scroll-photos 40s linear infinite;
     width: max-content;
+    animation: scroll-photos 40s linear infinite;
 }
 
 .scrollTrack:hover {
@@ -35,31 +32,21 @@
 }
 
 @keyframes scroll-photos {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
 }
 
 .photoItem {
     flex-shrink: 0;
-    height: 220px;
+    height: 240px;
     overflow: hidden;
     position: relative;
-    cursor: pointer;
 }
 
 .photoItem img {
     height: 100%;
     width: auto;
     object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.photoItem:hover img {
-    transform: scale(1.05);
 }
 
 .overlay {
@@ -67,10 +54,10 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-    padding: 40px 16px 16px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+    padding: 32px 12px 10px;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.2s ease;
 }
 
 .photoItem:hover .overlay {
@@ -78,58 +65,48 @@
 }
 
 .overlay span {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     color: #fff;
-    font-size: 0.9rem;
-    font-weight: 500;
 }
 
 .btnWrapper {
     display: flex;
     justify-content: center;
-    width: 100%;
+    margin-top: 32px;
+    padding: 0 40px;
 }
 
 .viewMoreBtn {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 12px 28px;
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 30px;
-    color: var(--text-primary);
+    padding: 13px 26px;
+    border: 2px solid var(--bone);
+    color: var(--bone);
     text-decoration: none;
-    font-weight: 500;
-    transition: var(--transition);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 .viewMoreBtn:hover {
-    background: var(--accent-color);
-    border-color: var(--accent-color);
-    color: #fff;
-}
-
-.viewMoreBtn i {
-    transition: transform 0.3s ease;
-}
-
-.viewMoreBtn:hover i {
-    transform: translateX(5px);
+    background: var(--orange);
+    border-color: var(--orange);
+    color: var(--orange-ink);
 }
 
 @media (max-width: 768px) {
+    .headerInner {
+        padding: 36px 18px 24px;
+    }
+
     .photoItem {
-        height: 170px;
-    }
-
-    .scrollTrack {
-        gap: 4px;
-    }
-
-    .title {
-        padding: 0 15px;
+        height: 180px;
     }
 }

@@ -1,72 +1,73 @@
-.content {
-    text-align: center;
-    max-width: 700px;
+.contact {
+    width: 100%;
+    background: var(--orange);
+    color: var(--orange-ink);
+    scroll-margin-top: 56px;
+}
+
+.inner {
+    max-width: 1280px;
     margin: 0 auto;
-    background: var(--bg-card);
-    padding: 50px;
-    border-radius: 12px;
-    border: 1px solid var(--border-color);
-}
-
-.content > p {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    margin-bottom: 35px;
-}
-
-.methods {
+    padding: 72px 40px;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 35px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
 }
 
-.item {
-    display: flex;
+.kicker {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+}
+
+.heading {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 0.9;
+    letter-spacing: 0.005em;
+    font-size: clamp(2.4rem, 7vw, 5.5rem);
+    max-width: 16ch;
+}
+
+.sub {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    max-width: 50ch;
+}
+
+.actions {
+    margin: 6px 0 4px;
+}
+
+.emailBtn {
+    display: inline-flex;
     align-items: center;
-    gap: 12px;
-    background: var(--bg-hover);
-    padding: 12px 20px;
-    border-radius: 8px;
-    color: var(--text-primary);
+    gap: 10px;
+    padding: 14px 24px;
+    background: var(--black);
+    color: var(--cream);
+    border: 2px solid var(--black);
     text-decoration: none;
-    transition: var(--transition);
-    border: 1px solid var(--border-color);
-    font-family: "HP Simplified", sans-serif;
-    font-size: 1rem;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    transition: background 0.15s ease, color 0.15s ease;
+    word-break: break-all;
 }
 
-.item:hover {
-    background: var(--accent-light);
-    border-color: var(--accent-color);
-}
-
-.item i {
-    font-size: 1.2rem;
-    color: var(--accent-color);
-}
-
-.item:hover i {
-    color: var(--accent-color);
-}
-
-.customIcon {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    display: inline-block;
-    vertical-align: middle;
-    filter: brightness(0) invert(1);
+.emailBtn:hover {
+    background: transparent;
+    color: var(--orange-ink);
 }
 
 @media (max-width: 768px) {
-    .content {
-        padding: 16px;
-    }
-
-    .methods {
-        flex-direction: column;
-        align-items: center;
+    .inner {
+        padding: 52px 18px;
     }
 }

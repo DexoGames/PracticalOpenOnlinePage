@@ -3,16 +3,24 @@ import { SOCIALS_DATA } from "../../data/socials";
 import styles from "./SocialLinks.module.css";
 
 interface SocialLinksProps {
-  /** Larger icons used in the Contact section. */
+  /** Larger icons (used in the Contact section). */
   large?: boolean;
+  /** Adjust hover colours for use on an orange background. */
+  onOrange?: boolean;
 }
 
-/** Row of brand-coloured social icon links (hero + contact). */
-export function SocialLinks({ large }: SocialLinksProps) {
+/** Row of square social icon links (hero + contact). */
+export function SocialLinks({ large, onOrange }: SocialLinksProps) {
   const activeSocials = SOCIALS_DATA.filter((s) => s.url);
 
   return (
-    <div className={cx(styles.socialLinks, large && styles.large)}>
+    <div
+      className={cx(
+        styles.socialLinks,
+        large && styles.large,
+        onOrange && styles.onOrange,
+      )}
+    >
       {activeSocials.map((social) => (
         <a
           key={social.id}

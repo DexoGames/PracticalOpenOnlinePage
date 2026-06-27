@@ -1,0 +1,30 @@
+.section {
+    width: 100%;
+    scroll-margin-top: 56px;
+}
+
+.headerBand {
+    background: var(--black);
+    color: var(--bone);
+}
+
+.headerInner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 48px 40px 40px;
+}
+
+.empty {
+    background: var(--cream);
+    color: var(--ink-dim);
+    text-align: center;
+    padding: 64px 40px;
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+    .headerInner {
+        padding: 36px 18px 28px;
+    }
+}

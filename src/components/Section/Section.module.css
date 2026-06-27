@@ -1,20 +1,31 @@
 .section {
-    padding: 40px 50px;
-    max-width: 1200px;
+    width: 100%;
+    scroll-margin-top: 56px;
+}
+
+.cream {
+    background: var(--cream);
+    color: var(--ink);
+}
+
+.black {
+    background: var(--black);
+    color: var(--bone);
+}
+
+.inner {
+    max-width: 1280px;
     margin: 0 auto;
-    position: relative;
-    scroll-margin-top: 80px;
+    padding: 56px 40px;
+}
+
+.bleed {
+    max-width: none;
+    padding: 0;
 }
 
 @media (max-width: 768px) {
-    .section {
-        padding: 30px 15px;
-        scroll-margin-top: 60px;
-    }
-}
-
-@media (max-width: 480px) {
-    .section {
-        scroll-margin-top: 50px;
+    .inner {
+        padding: 40px 18px;
     }
 }

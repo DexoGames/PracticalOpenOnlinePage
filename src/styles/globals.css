@@ -1,55 +1,31 @@
 :root {
-    --bg-primary: #1a1a24;
-    --bg-secondary: #252532;
-    --bg-card: #2a2a3a;
-    --bg-hover: #32324a;
-    --border-color: #3a3a4a;
-    --border-light: #454560;
+    /* --- single fixed palette --- */
+    --orange: #ff5a36;
+    --orange-deep: #cf4a25;
+    --orange-ink: #2a0f06; /* text on orange */
 
-    --text-primary: #e0e0e0;
-    --text-secondary: #a0a0a0;
-    --text-muted: #707080;
-    --text-dark: #ffffff;
+    --black: #0d0d0d;
+    --black-soft: #171717; /* raised surfaces on black */
+    --cream: #ece6db; /* warm paper */
+    --cream-soft: #e2dccf; /* alt paper / raised surfaces on cream */
 
-    --accent-color: #ff5f4a;
-    --accent-hover: #ff8474;
-    --accent-light: rgba(224, 122, 95, 0.15);
-    --primary-color: #5dade2;
-    --secondary-color: #7b8fa8;
+    --ink: #14130f; /* text on cream */
+    --ink-dim: #6b6657; /* muted text on cream */
+    --bone: #ece6db; /* text on black */
+    --bone-dim: #8f897c; /* muted text on black */
 
-    /* social brand colors */
-    --social-github: #6e7681;
-    --social-linkedin: #0077b5;
-    --social-itch: #fa5c5c;
-    --social-linktree: #39e09b;
-    --social-email: #e07a5f;
+    --line-on-cream: rgba(20, 19, 15, 0.12);
+    --line-on-black: rgba(236, 230, 219, 0.10);
 
-    --danger-color: #e05555;
-    --success-color: #5cb85c;
-    --warning-color: #f0ad4e;
+    /* skill category accents */
+    --cat-languages: #5dade2;
+    --cat-software: #58d68d;
+    --cat-other: #f4d03f;
 
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.4);
-    --transition: all 0.3s ease;
-}
+    --font-display: "Archivo Black", "Arial Black", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, "Courier New", monospace;
 
-[data-theme="light"] {
-    --bg-primary: #f5f5f5;
-    --bg-secondary: #ffffff;
-    --bg-card: #ffffff;
-    --bg-hover: #f0f0f0;
-    --border-color: #e0e0e0;
-    --border-light: #d0d0d0;
-
-    --text-primary: #2d2d2d;
-    --text-secondary: #5a5a5a;
-    --text-muted: #888888;
-    --text-dark: #1a1a1a;
-
-    --accent-light: rgba(224, 122, 95, 0.1);
-
-    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
+    --radius: 0px; /* everything is square */
 }
 
 * {
@@ -63,49 +39,57 @@ html {
 }
 
 body {
-    font-family: "HP Simplified", "Segoe UI", Arial, sans-serif;
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    line-height: 1.7;
+    font-family: var(--font-mono);
+    background: var(--black);
+    color: var(--ink);
+    line-height: 1.6;
     overflow-x: hidden;
-    transition: background 0.3s ease, color 0.3s ease;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-/* custom font files are in 'public/fonts' folder */
+/* --- self-hosted fonts (SIL OFL) --- */
 @font-face {
-    font-family: 'Dealerplate California';
-    src: url('/fonts/dealerplate%20california.otf') format('opentype');
-    font-weight: normal;
+    font-family: "Archivo Black";
+    src: url("/fonts/archivo-black-400.woff2") format("woff2");
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'HP Simplified';
-    src: url('/fonts/HPSimplified.woff2') format('woff2'),
-         url('/fonts/HPSimplified.woff') format('woff'),
-         url('/fonts/HPSimplified.ttf') format('truetype');
-    font-weight: normal;
+    font-family: "JetBrains Mono";
+    src: url("/fonts/jetbrains-mono-400.woff2") format("woff2");
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'HP Simplified';
-    src: url('/fonts/HPSimplified-Bold.woff2') format('woff2'),
-         url('/fonts/HPSimplified-Bold.woff') format('woff'),
-         url('/fonts/HPSimplified-Bold.ttf') format('truetype');
-    font-weight: bold;
+    font-family: "JetBrains Mono";
+    src: url("/fonts/jetbrains-mono-500.woff2") format("woff2");
+    font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
 
-/* contains all content except bomb elements */
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url("/fonts/jetbrains-mono-700.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+img {
+    display: block;
+}
+
+/* contains all content except the bomb (so the bomb can shake the page) */
 .page-wrapper {
     position: relative;
 }
 
-/* shake applies to page wrapper, not body, so scrollbar doesn't shake */
 .page-wrapper.shake {
     animation: shake 0.5s infinite;
 }

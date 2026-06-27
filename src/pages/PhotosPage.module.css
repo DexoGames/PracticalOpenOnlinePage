@@ -1,58 +1,59 @@
-/* combines the .section layout with .photos-page additions */
 .page {
-    max-width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    scroll-margin-top: 80px;
-    padding: 100px 50px 40px;
+    width: 100%;
     min-height: 100vh;
+    background: var(--cream);
+    color: var(--ink);
+    padding: 88px clamp(18px, 5vw, 60px) 64px;
 }
 
 .backLink {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    color: var(--accent-color);
+    color: var(--orange);
     text-decoration: none;
-    margin-bottom: 30px;
-    font-weight: 500;
-    transition: var(--transition);
+    margin-bottom: 28px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: gap 0.15s ease;
 }
 
 .backLink:hover {
-    color: var(--accent-hover);
-}
-
-.backLink i {
-    transition: transform 0.3s ease;
-}
-
-.backLink:hover i {
-    transform: translateX(-5px);
+    gap: 14px;
 }
 
 .header {
-    text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 36px;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 24px;
 }
 
 .header h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 0.9;
+    font-size: clamp(2.4rem, 8vw, 5rem);
+    margin-bottom: 12px;
 }
 
 .header p {
-    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--ink-dim);
 }
 
 .gallerySection {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
 }
 
 .galleryGrid {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 6px;
     justify-content: center;
 }
 
@@ -60,56 +61,31 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    transition: var(--transition);
     height: 250px;
     flex-grow: 0;
     flex-shrink: 0;
+    background: var(--cream-soft);
 }
 
 .galleryItem img {
     height: 100%;
     width: auto;
     object-fit: contain;
-    transition: transform 0.5s ease;
+    transition: opacity 0.15s ease;
 }
 
 .galleryItem:hover img {
-    opacity: 0.85;
+    opacity: 0.82;
 }
 
 @media (max-width: 768px) {
-    .page {
-        padding: 70px 12px 30px;
-    }
-
-    .header h1 {
-        font-size: 1.6rem;
-    }
-
-    .header p {
-        font-size: 0.85rem;
-    }
-
-    .galleryGrid {
-        gap: 4px;
-    }
-
     .galleryItem {
-        height: 120px;
-        max-width: 100%;
-    }
-
-    .galleryItem img {
-        max-width: 100%;
+        height: 150px;
     }
 }
 
 @media (max-width: 480px) {
-    .header h1 {
-        font-size: 1.3rem;
-    }
-
     .galleryItem {
-        height: 100px;
+        height: 116px;
     }
 }

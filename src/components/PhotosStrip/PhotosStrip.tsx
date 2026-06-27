@@ -1,19 +1,29 @@
 import { Link } from "react-router-dom";
 import { PHOTOS_DATA } from "../../data/photos";
 import { placeholderOnError } from "../../lib/image";
-import { SectionTitle } from "../SectionTitle/SectionTitle";
+import { SectionHeader } from "../SectionHeader/SectionHeader";
 import styles from "./PhotosStrip.module.css";
 
 export function PhotosStrip() {
   const featured = PHOTOS_DATA.featured;
   if (!featured || featured.length === 0) return null;
 
-  // Duplicate the list so the marquee can loop seamlessly (translateX -50%).
+  // Duplicate so the marquee can loop seamlessly (translateX -50%).
   const photos = [...featured, ...featured];
 
   return (
     <section id="photos" className={styles.photos} data-explodable>
-      <SectionTitle className={styles.title}>Dexo Photos</SectionTitle>
+      <div className={styles.headerBand}>
+        <div className={styles.headerInner}>
+          <SectionHeader
+            icon="fa-camera"
+            label="Dexo Photos"
+            description="Photography from wherever I happen to be."
+            tone="black"
+          />
+        </div>
+      </div>
+
       <div className={styles.scrollWrapper}>
         <div className={styles.scrollTrack}>
           {photos.map((photo, i) => (
@@ -30,9 +40,10 @@ export function PhotosStrip() {
           ))}
         </div>
       </div>
+
       <div className={styles.btnWrapper}>
         <Link to="/photos" className={styles.viewMoreBtn}>
-          <span>View All Photos</span>
+          <span>View all photos</span>
           <i className="fas fa-arrow-right"></i>
         </Link>
       </div>

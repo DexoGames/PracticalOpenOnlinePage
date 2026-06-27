@@ -1,62 +1,60 @@
 import { useState } from "react";
 import { PROFILE_DATA } from "../../data/profile";
 import { SKILLS_DATA } from "../../data/skills";
-import { cx } from "../../lib/cx";
 import { Section } from "../Section/Section";
+import { SectionHeader } from "../SectionHeader/SectionHeader";
 import styles from "./About.module.css";
 
 export function About() {
-  const [collapsed, setCollapsed] = useState(true);
+  const [expanded, setExpanded] = useState(false);
+  const paragraphs = PROFILE_DATA.aboutParagraphs;
+  const visible = expanded ? paragraphs : paragraphs.slice(0, 1);
 
   const categories = Object.entries(SKILLS_DATA).filter(
-    ([, category]) => category.skills && category.skills.length > 0,
+    ([, c]) => c.skills && c.skills.length > 0,
   );
 
   return (
-    <Section id="about" title="About Me">
-      <div className={styles.content}>
-        <div className={styles.text}>
-          <div className={cx(styles.paragraphs, collapsed && styles.collapsed)}>
-            {PROFILE_DATA.aboutParagraphs.map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
-            ))}
-          </div>
+    <Section id="about" tone="cream">
+      <SectionHeader
+        icon="fa-user"
+        label="About"
+        description="Who I am and the tools I build with."
+        tone="cream"
+      />
 
+      <div className={styles.body}>
+        <div className={styles.text}>
+          {visible.map((p, i) => (
+            <p key={i}>{p}</p>
+          ))}
           <button
             className={styles.toggle}
-            onClick={() => setCollapsed((c) => !c)}
+            onClick={() => setExpanded((e) => !e)}
           >
-            <span>{collapsed ? "Read More" : "Read Less"}</span>
+            {expanded ? "Read less" : "Read more"}
             <i
-              className={cx("fas fa-chevron-down", styles.toggleIcon)}
-              style={{ transform: collapsed ? "rotate(0deg)" : "rotate(180deg)" }}
+              className={`fas fa-chevron-${expanded ? "up" : "down"}`}
             ></i>
           </button>
+        </div>
 
-          <h3>Skills &amp; Technologies</h3>
-          <div className={styles.skillsAll}>
-            {categories.length === 0 ? (
-              <div className={styles.skillsContainer}>
-                <span className={styles.skillTag}>No skills listed</span>
+        <div className={styles.skills}>
+          <h3 className={styles.skillsTitle}>Skills &amp; Technologies</h3>
+          <div className={styles.skillGroups}>
+            {categories.map(([key, category]) => (
+              <div
+                key={key}
+                className={styles.skillCategory}
+                data-category={key}
+              >
+                {category.skills.map((skill) => (
+                  <span key={skill} className={styles.skillTag} data-explodable>
+                    {skill}
+                  </span>
+                ))}
               </div>
-            ) : (
-              categories.map(([key, category]) => (
-                <div
-                  key={key}
-                  className={styles.skillCategory}
-                  data-category={key}
-                >
-                  <h4>{category.title}</h4>
-                  <div className={styles.skillsContainer}>
-                    {category.skills.map((skill) => (
-                      <span key={skill} className={styles.skillTag} data-explodable>
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))
-            )}
+            ))}
           </div>
         </div>
       </div>

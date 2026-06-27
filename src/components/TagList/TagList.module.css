@@ -2,32 +2,23 @@
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
-    margin-bottom: 15px;
 }
 
 .tags span {
-    background: var(--bg-hover);
-    color: var(--text-muted);
-    padding: 4px 10px;
-    border-radius: 4px;
-    font-size: 0.8rem;
-    border: 1px solid var(--border-color);
-    font-family: "HP Simplified", sans-serif;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 4px 9px;
+    border: 1px solid currentColor;
+    color: currentColor;
+    opacity: 0.85;
+    white-space: nowrap;
 }
 
-/* Featured carousel variant */
-.compact {
-    margin-bottom: 12px;
-}
-
+/* compact variant (featured slide) */
 .compact span {
-    font-size: 0.75rem;
-    padding: 3px 8px;
-}
-
-@media (max-width: 768px) {
-    .compact span {
-        font-size: 0.65rem;
-        padding: 2px 6px;
-    }
+    font-size: 0.6rem;
+    padding: 3px 7px;
 }

@@ -3,98 +3,129 @@
     top: 0;
     left: 0;
     right: 0;
-    padding: 15px 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     z-index: 1000;
-    transition: var(--transition);
-    background: var(--bg-secondary);
-    border-bottom: 1px solid var(--border-color);
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 24px;
+    background: var(--black);
+    color: var(--bone);
+    border-bottom: 2px solid var(--orange);
 }
 
-.navbar.scrolled {
-    background: var(--bg-secondary);
-    backdrop-filter: blur(10px);
-    padding: 12px 50px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+.left {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--bone-dim);
+}
+
+.dot {
+    width: 7px;
+    height: 7px;
+    background: #4ee07a;
 }
 
 .brand {
-    font-size: 1.6rem;
-    font-weight: 600;
-    font-family: "Dealerplate California", cursive;
-    color: var(--accent-color);
-    letter-spacing: 2px;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    color: var(--bone);
+}
+
+.brandSuffix {
+    color: var(--orange);
 }
 
 .links {
     display: flex;
     list-style: none;
-    gap: 8px;
-    align-items: center;
+    gap: 4px;
 }
 
 .links a {
-    color: var(--text-secondary);
-    text-decoration: none;
+    display: block;
+    padding: 8px 12px;
+    font-family: var(--font-mono);
     font-weight: 500;
-    transition: var(--transition);
-    padding: 8px 16px;
-    border-radius: 6px;
-    background: transparent;
-    font-family: "HP Simplified", sans-serif;
-    font-size: 1rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--bone-dim);
+    text-decoration: none;
+    transition: color 0.15s ease;
 }
 
 .links a:hover {
-    background: var(--bg-hover);
-    color: var(--text-primary);
+    color: var(--orange);
 }
 
-@media (max-width: 768px) {
+.cta {
+    flex-shrink: 0;
+    padding: 9px 16px;
+    background: var(--orange);
+    color: var(--orange-ink);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    border: 2px solid var(--orange);
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.cta:hover {
+    background: transparent;
+    color: var(--orange);
+}
+
+@media (max-width: 900px) {
+    .status {
+        display: none;
+    }
+}
+
+@media (max-width: 760px) {
     .navbar {
-        padding: 8px 12px;
-        flex-direction: row;
-        gap: 0;
+        padding: 0 12px;
+        gap: 8px;
     }
 
-    /* prevent navbar shifts when scrolling */
-    .navbar.scrolled {
-        padding: 8px 12px;
-    }
-
-    .brand {
-        font-size: 1.2rem;
-    }
-
-    .links {
-        gap: 2px;
-        flex-wrap: nowrap;
-        justify-content: flex-end;
+    .cta {
+        display: none;
     }
 
     .links a {
-        font-size: 0.75rem;
-        padding: 5px 8px;
-    }
-}
-
-@media (max-width: 480px) {
-    .navbar {
-        padding: 6px 8px;
-    }
-
-    .navbar.scrolled {
-        padding: 6px 8px;
+        padding: 6px 6px;
+        font-size: 0.62rem;
+        letter-spacing: 0.04em;
     }
 
     .brand {
         font-size: 1rem;
     }
+}
 
+@media (max-width: 420px) {
     .links a {
-        font-size: 0.65rem;
-        padding: 4px 5px;
+        padding: 5px 4px;
+        font-size: 0.55rem;
+    }
+
+    .brand {
+        font-size: 0.85rem;
     }
 }

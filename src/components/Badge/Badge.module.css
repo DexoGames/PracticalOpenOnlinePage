@@ -1,38 +1,18 @@
 .devBadge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    background: linear-gradient(135deg, #f39c12, #e67e22);
-    color: #fff;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    z-index: 10;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 6px;
-    box-shadow: 0 2px 8px rgba(243, 156, 18, 0.4);
-    animation: pulse-badge 2s ease-in-out infinite;
-}
-
-.inline {
-    position: static;
-    padding: 4px 10px;
-    font-size: 0.7rem;
-    animation: none;
-    box-shadow: 0 1px 4px rgba(243, 156, 18, 0.3);
+    background: var(--orange);
+    color: var(--orange-ink);
+    padding: 5px 10px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
 }
 
 .devBadge i {
-    font-size: 0.7rem;
-}
-
-.inline i {
     font-size: 0.6rem;
-}
-
-@keyframes pulse-badge {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
 }

@@ -1,95 +1,116 @@
 .hero {
-    min-height: 50vh;
-    display: flex;
+    background-color: var(--cream);
+    background-image:
+        linear-gradient(var(--line-on-cream) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line-on-cream) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: var(--ink);
+    padding-top: 56px; /* fixed navbar */
+}
+
+.inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 60px 40px 64px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 48px;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 100px 20px 40px;
-    background: var(--bg-primary);
-    position: relative;
 }
 
-.content {
-    max-width: 800px;
+.main {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
 }
 
-.profileImage {
-    width: 140px;
-    height: 140px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
+.avatar {
+    flex-shrink: 0;
+    width: 84px;
+    height: 84px;
+    border: 3px solid var(--ink);
     overflow: hidden;
-    border: 4px solid var(--accent-color);
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    background: var(--bg-card);
+    background: var(--cream-soft);
 }
 
-.profileImage:hover {
-    transform: scale(1.05);
-    box-shadow: var(--shadow-hover);
-}
-
-.profileImage img {
+.avatar img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.hero h1 {
-    font-size: 2.8rem;
-    margin-bottom: 12px;
-    font-family: "Dealerplate California", cursive;
-    color: var(--text-dark);
-    letter-spacing: 2px;
+.im {
+    display: block;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    letter-spacing: 0.2em;
+    color: var(--orange);
+    margin-bottom: 4px;
+}
+
+.name {
+    font-family: var(--font-display);
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 0.86;
+    letter-spacing: 0.005em;
+    font-size: clamp(2.8rem, 8vw, 6rem);
+}
+
+.aside {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-dim);
 }
 
 .tagline {
-    font-size: 1.1rem;
-    color: var(--accent-color);
-    margin-bottom: 15px;
-    font-family: "HP Simplified", sans-serif;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
 }
 
-.description {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 30px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.8;
+.bio {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--ink-dim);
+    max-width: 46ch;
 }
 
-@media (max-width: 768px) {
-    .hero {
-        padding-top: 70px;
-    }
+.actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
 
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .tagline {
-        font-size: 0.95rem;
-    }
-
-    .description {
-        font-size: 0.95rem;
-    }
-
-    .profileImage {
-        width: 110px;
-        height: 110px;
+@media (max-width: 900px) {
+    .inner {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding: 48px 18px 52px;
     }
 }
 
-@media (max-width: 480px) {
-    .hero h1 {
-        font-size: 1.7rem;
+@media (max-width: 520px) {
+    .main {
+        gap: 14px;
     }
 
-    .tagline {
-        font-size: 0.85rem;
+    .avatar {
+        width: 64px;
+        height: 64px;
     }
 }

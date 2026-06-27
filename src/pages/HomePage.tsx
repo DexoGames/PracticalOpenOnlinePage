@@ -6,9 +6,9 @@ import { gameToCard, projectToCard } from "../lib/cards";
 import { scrollToSection } from "../lib/scroll";
 import { Navbar } from "../components/Navbar/Navbar";
 import { Hero } from "../components/Hero/Hero";
-import { FeaturedCarousel } from "../components/FeaturedCarousel/FeaturedCarousel";
+import { FeaturedSlider } from "../components/FeaturedSlider/FeaturedSlider";
 import { About } from "../components/About/About";
-import { ProjectsGrid } from "../components/ProjectsGrid/ProjectsGrid";
+import { ProjectsList } from "../components/ProjectsList/ProjectsList";
 import { PhotosStrip } from "../components/PhotosStrip/PhotosStrip";
 import { Contact } from "../components/Contact/Contact";
 import { Footer } from "../components/Footer/Footer";
@@ -16,8 +16,7 @@ import { Footer } from "../components/Footer/Footer";
 export function HomePage() {
   const location = useLocation();
 
-  // When arriving from another route with a hash (e.g. /#about), scroll to it
-  // once the sections have rendered.
+  // Scroll to a hash target (e.g. /#about) once sections have rendered.
   useEffect(() => {
     if (location.hash) {
       const id = setTimeout(() => scrollToSection(location.hash), 0);
@@ -32,17 +31,21 @@ export function HomePage() {
     <>
       <Navbar variant="home" />
       <Hero />
-      <FeaturedCarousel />
+      <FeaturedSlider />
       <About />
-      <ProjectsGrid
+      <ProjectsList
         id="games"
-        title="My Games"
+        icon="fa-gamepad"
+        label="My Games"
+        description="Games I've designed, built, and shipped."
         cards={gameCards}
         emptyMessage="No games yet - check back soon!"
       />
-      <ProjectsGrid
+      <ProjectsList
         id="projects"
-        title="Other Projects"
+        icon="fa-folder-open"
+        label="Other Projects"
+        description="Things I've built outside of games."
         cards={projectCards}
         emptyMessage="No projects yet - check back soon!"
       />

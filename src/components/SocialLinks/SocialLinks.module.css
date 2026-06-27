@@ -1,59 +1,58 @@
 .socialLinks {
     display: flex;
-    justify-content: center;
-    gap: 12px;
+    gap: 8px;
     flex-wrap: wrap;
 }
 
 .socialLinks a {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--bg-card);
-    border-radius: 10px;
-    color: var(--text-secondary);
-    font-size: 1.3rem;
-    transition: var(--transition);
-    border: 1px solid var(--border-color);
+    border: 2px solid currentColor;
+    color: currentColor;
+    font-size: 1.05rem;
     text-decoration: none;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
-.socialLinks a:nth-child(1) { background: var(--social-linkedin); color: white; border: none; }
-.socialLinks a:nth-child(2) { background: var(--social-github); color: white; border: none; }
-.socialLinks a:nth-child(3) { background: var(--social-itch); color: white; border: none; }
-.socialLinks a:nth-child(4) { background: var(--social-linktree); color: white; border: none; }
-
 .socialLinks a:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow);
+    background: var(--orange);
+    border-color: var(--orange);
+    color: var(--orange-ink);
 }
 
 .large a {
-    width: 56px;
-    height: 56px;
-    font-size: 1.5rem;
+    width: 54px;
+    height: 54px;
+    font-size: 1.25rem;
 }
 
 .customIcon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     object-fit: contain;
-    display: inline-block;
-    vertical-align: middle;
-    filter: brightness(0) invert(1);
+    /* render the colour logo as a solid mark that matches the icon colour */
+    filter: brightness(0);
 }
 
 .large .customIcon {
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
 }
 
-@media (max-width: 480px) {
-    .socialLinks a {
-        width: 42px;
-        height: 42px;
-        font-size: 1.1rem;
-    }
+.socialLinks a:hover .customIcon {
+    filter: brightness(0);
+}
+
+/* on an orange background, hover inverts to black instead of orange */
+.onOrange a:hover {
+    background: var(--black);
+    border-color: var(--black);
+    color: var(--cream);
+}
+
+.onOrange a:hover .customIcon {
+    filter: brightness(0) invert(1);
 }

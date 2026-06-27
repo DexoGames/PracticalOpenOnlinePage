@@ -1,7 +1,7 @@
 .lightbox {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.95);
+    background: rgba(8, 8, 8, 0.96);
     z-index: 9999;
     display: flex;
     align-items: center;
@@ -19,57 +19,65 @@
     max-width: 100%;
     max-height: 85vh;
     object-fit: contain;
-    border-radius: 8px;
+    border: 2px solid var(--orange);
 }
 
 .close {
     position: absolute;
-    top: -40px;
+    top: -42px;
     right: 0;
     background: none;
     border: none;
-    color: #fff;
+    color: var(--bone);
     font-size: 2rem;
+    line-height: 1;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: color 0.15s ease;
 }
 
 .close:hover {
-    color: var(--accent-color);
+    color: var(--orange);
 }
 
 .caption {
     text-align: center;
-    color: #fff;
+    color: var(--bone);
     margin-top: 16px;
-    font-size: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
 }
 
 .nav {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.1);
-    border: none;
-    color: #fff;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 2px solid var(--bone);
+    color: var(--bone);
     cursor: pointer;
-    font-size: 1.2rem;
-    transition: background 0.3s ease;
+    font-size: 1.1rem;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
 
 .nav:hover {
-    background: var(--accent-color);
+    background: var(--orange);
+    border-color: var(--orange);
+    color: var(--orange-ink);
 }
 
 .prev {
-    left: -70px;
+    left: -68px;
 }
 
 .next {
-    right: -70px;
+    right: -68px;
 }
 
 @media (max-width: 768px) {
@@ -78,6 +86,6 @@
     }
 
     .lightbox {
-        padding: 15px;
+        padding: 16px;
     }
 }

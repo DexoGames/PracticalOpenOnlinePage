@@ -6,7 +6,7 @@ export interface CardLink {
   variant: "primary" | "secondary";
 }
 
-/** Normalised shape rendered by ProjectCard and the featured carousel. */
+/** Normalised shape rendered by ProjectRow and the featured slider. */
 export interface CardModel {
   id: string;
   title: string;
@@ -17,6 +17,9 @@ export interface CardModel {
   inDevelopment: boolean;
   badge?: Badge;
   links: CardLink[];
+  /** Optional metadata surfaced as `genre · year · platform` annotations. */
+  year?: string;
+  genre?: string;
 }
 
 function platformLabel(platform?: string): string {
@@ -41,6 +44,8 @@ export function gameToCard(game: Game): CardModel {
     tags: game.tags,
     inDevelopment: !!game.inDevelopment,
     links,
+    year: game.year,
+    genre: game.genre,
   };
 }
 
