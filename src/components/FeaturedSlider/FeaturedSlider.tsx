@@ -39,7 +39,7 @@ export function FeaturedSlider() {
           <SectionHeader
             icon="fa-star"
             label="Featured Work"
-            description="My best and most relavent work."
+            description="My best and most relevant work."
             tone="black"
           />
         </div>
