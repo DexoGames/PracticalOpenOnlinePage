@@ -1,4 +1,4 @@
-import type { Badge, Game, Project } from "../types/content";
+import type { Badge, Game, ImageFocus, Project } from "../types/content";
 
 export interface CardLink {
   label: string;
@@ -20,6 +20,7 @@ export interface CardModel {
   /** Optional metadata surfaced as `genre · year · platform` annotations. */
   year?: string;
   genre?: string;
+  imageFocus?: ImageFocus;
 }
 
 function platformLabel(platform?: string): string {
@@ -46,6 +47,7 @@ export function gameToCard(game: Game): CardModel {
     links,
     year: game.year,
     genre: game.genre,
+    imageFocus: game.imageFocus,
   };
 }
 
@@ -68,5 +70,6 @@ export function projectToCard(project: Project): CardModel {
     inDevelopment: !!project.inDevelopment,
     badge: project.badge,
     links,
+    imageFocus: project.imageFocus,
   };
 }

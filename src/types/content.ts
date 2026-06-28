@@ -20,6 +20,13 @@ export interface Badge {
 
 export type Platform = "mobile" | "pc" | string;
 
+export type ImageFocus =
+  | "center"
+  | "left" | "right"
+  | "top" | "bottom"
+  | "top left" | "top right"
+  | "bottom left" | "bottom right";
+
 export interface Game {
   id: string;
   title: string;
@@ -28,6 +35,8 @@ export interface Game {
   description: string;
   year?: string;
   image: string;
+  /** Controls object-position when the cover image is cropped. Defaults to "center". */
+  imageFocus?: ImageFocus;
   tags: string[];
   featured?: boolean;
   featuredOrder?: number;
@@ -42,6 +51,8 @@ export interface Project {
   subtext?: string;
   description: string;
   image: string;
+  /** Controls object-position when the cover image is cropped. Defaults to "center". */
+  imageFocus?: ImageFocus;
   tags: string[];
   featured?: boolean;
   featuredOrder?: number;

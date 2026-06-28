@@ -33,6 +33,7 @@ export function ProjectRow({
         <img
           src={card.image}
           alt={card.title}
+          style={{ objectPosition: card.imageFocus ?? "center" }}
           onError={placeholderOnError(card.title)}
         />
       </div>
