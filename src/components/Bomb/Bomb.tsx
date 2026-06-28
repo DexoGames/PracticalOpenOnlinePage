@@ -221,22 +221,25 @@ export function Bomb() {
   return (
     <>
       <div
-        className={cx(styles.bombContainer, critical && styles.critical)}
+        className={cx(styles.root, critical && styles.critical)}
         ref={containerRef}
       >
-        <div className={styles.bombDisplay}>
-          <div className={styles.timer} style={{ color: timerColor }}>
-            {timeLeft}
-          </div>
-          <button
-            className={styles.defuseBtn}
-            style={defuseStyle}
-            onClick={() => defuseRef.current()}
-          >
-            {defuseLabel}
-          </button>
+        <div className={styles.fuse}>
+          <span className={styles.spark}></span>
         </div>
-        <div className={styles.bombWarning}>Reset before detonation!</div>
+        <div className={styles.cap}></div>
+        <div className={styles.sphere}>
+          <span className={styles.timer} style={{ color: timerColor }}>
+            {timeLeft}
+          </span>
+        </div>
+        <button
+          className={styles.defuseBtn}
+          style={defuseStyle}
+          onClick={() => defuseRef.current()}
+        >
+          {defuseLabel}
+        </button>
       </div>
       <div className={styles.explosionOverlay} ref={overlayRef}></div>
     </>

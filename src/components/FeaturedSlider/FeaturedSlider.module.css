@@ -2,6 +2,7 @@
     width: 100%;
     background: var(--black);
     scroll-margin-top: 56px;
+    border-top: 2px solid var(--orange);
 }
 
 .headerBand {

@@ -47,6 +47,10 @@
 
 .brandSuffix {
     color: var(--orange);
+    /* reserve room for the longest word ("Software") so typing doesn't reflow the nav */
+    display: inline-block;
+    min-width: 5.6em;
+    text-align: left;
 }
 
 .links {

@@ -8,33 +8,36 @@ export function Hero() {
   return (
     <header className={styles.hero} id="hero" data-explodable>
       <div className={styles.inner}>
-        <div className={styles.main}>
-          <div className={styles.avatar}>
-            <img
-              src={PROFILE_DATA.photo}
-              alt={PROFILE_DATA.name}
-              onError={placeholderOnError(PROFILE_DATA.name)}
-            />
+        <div className={styles.topRow}>
+          <div className={styles.who}>
+            <div className={styles.avatar}>
+              <img
+                src={PROFILE_DATA.photo}
+                alt={PROFILE_DATA.name}
+                onError={placeholderOnError(PROFILE_DATA.name)}
+              />
+            </div>
           </div>
-          <div className={styles.nameBlock}>
-            <span className={styles.im}>I&apos;M</span>
-            <h1 className={styles.name}>{PROFILE_DATA.name}</h1>
-          </div>
+          <span className={styles.tag}>// 01 — Introduction</span>
         </div>
 
-        <div className={styles.aside}>
-          <span className={styles.tag}>// 01 — Introduction</span>
-          <p className={styles.tagline}>{PROFILE_DATA.tagline}</p>
+        <h1 className={styles.name}>{PROFILE_DATA.name}</h1>
+
+        <p className={styles.tagline}>{PROFILE_DATA.tagline}</p>
+
+        <div className={styles.bottomRow}>
           <p className={styles.bio}>{PROFILE_DATA.heroBio}</p>
-          <div className={styles.actions}>
-            <Button href="#contact" external={false}>
-              Get in touch
-            </Button>
-            <Button href="#games" variant="secondary" external={false}>
-              View work
-            </Button>
+          <div className={styles.aside}>
+            <div className={styles.actions}>
+              <Button href="#contact" external={false}>
+                Get in touch
+              </Button>
+              <Button href="#games" variant="secondary" external={false}>
+                View work
+              </Button>
+            </div>
+            <SocialLinks />
           </div>
-          <SocialLinks />
         </div>
       </div>
     </header>

@@ -4,6 +4,7 @@
     color: var(--bone);
     padding-bottom: 48px;
     scroll-margin-top: 56px;
+    border-top: 2px solid var(--orange);
 }
 
 .headerBand {

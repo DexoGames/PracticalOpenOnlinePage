@@ -3,6 +3,7 @@
     background: var(--orange);
     color: var(--orange-ink);
     scroll-margin-top: 56px;
+    border-top: 2px solid var(--black);
 }
 
 .inner {

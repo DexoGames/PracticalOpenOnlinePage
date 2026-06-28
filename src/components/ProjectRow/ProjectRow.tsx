@@ -10,7 +10,7 @@ interface ProjectRowProps {
   card: CardModel;
   /** Which side the cover image sits on. ("center" reserved for future use.) */
   imageSide?: "left" | "right" | "center";
-  tone?: "black" | "cream";
+  tone?: "black" | "cream" | "orange";
   /** 1-based position, rendered as a big zero-padded index. */
   index?: number;
 }
@@ -43,7 +43,11 @@ export function ProjectRow({
               {String(index).padStart(2, "0")}
             </span>
           )}
-          <Badge badge={card.badge} inDevelopment={card.inDevelopment} />
+          <Badge
+            badge={card.badge}
+            inDevelopment={card.inDevelopment}
+            className={tone === "orange" ? styles.altBadge : undefined}
+          />
         </div>
         <h3 className={styles.title}>{card.title}</h3>
         {meta.length > 0 && (
