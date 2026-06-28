@@ -17,10 +17,12 @@ interface BadgeProps {
 export function Badge({ badge, inDevelopment, inline, className }: BadgeProps) {
   let icon: string;
   let text: string;
+  let isAward = false;
 
   if (badge) {
     icon = badge.icon || "fa-star";
     text = badge.text;
+    isAward = true;
   } else if (inDevelopment) {
     icon = "fa-code";
     text = "In Development";
@@ -29,7 +31,14 @@ export function Badge({ badge, inDevelopment, inline, className }: BadgeProps) {
   }
 
   return (
-    <span className={cx(styles.devBadge, inline && styles.inline, className)}>
+    <span
+      className={cx(
+        styles.devBadge,
+        isAward && styles.award,
+        inline && styles.inline,
+        className,
+      )}
+    >
       <i className={`fas ${icon}`}></i> {text}
     </span>
   );

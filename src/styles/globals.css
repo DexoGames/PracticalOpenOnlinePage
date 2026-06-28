@@ -17,10 +17,15 @@
     --line-on-cream: rgba(20, 19, 15, 0.12);
     --line-on-black: rgba(236, 230, 219, 0.10);
 
-    /* skill category accents */
-    --cat-languages: #5dade2;
-    --cat-software: #58d68d;
-    --cat-other: #f4d03f;
+    /* gold award accent */
+    --gold: #e8b923;
+    --gold-ink: #3a2a02; /* text on gold */
+    --gold-sheen: rgba(255, 250, 220, 0.85); /* sharp shine band */
+
+    /* skill category accents — vibrant, sit as text on the dark skills band */
+    --cat-languages: #3aabff;
+    --cat-software: #2fe089;
+    --cat-other: #ffc83a;
 
     --font-display: "Archivo Black", "Arial Black", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, "Courier New", monospace;
@@ -36,6 +41,9 @@
 
 html {
     scroll-behavior: smooth;
+    /* stop mobile browsers from auto-inflating small text (keeps our sizes exact) */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {

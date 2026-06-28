@@ -14,6 +14,10 @@ export function About() {
     ([, c]) => c.skills && c.skills.length > 0,
   );
 
+  const allSkills = categories.flatMap(([key, category]) =>
+    category.skills.map((skill) => ({ key, skill })),
+  );
+
   return (
     <Section id="about" tone="cream">
       <SectionHeader
@@ -40,20 +44,30 @@ export function About() {
         </div>
 
         <div className={styles.skills}>
-          <h3 className={styles.skillsTitle}>Skills &amp; Technologies</h3>
-          <div className={styles.skillGroups}>
-            {categories.map(([key, category]) => (
-              <div
-                key={key}
-                className={styles.skillCategory}
+          <div className={styles.skillsHead}>
+            <h3 className={styles.skillsTitle}>Skills &amp; Technologies</h3>
+            <div className={styles.legend}>
+              {categories.map(([key, category]) => (
+                <span
+                  key={key}
+                  className={styles.legendItem}
+                  data-category={key}
+                >
+                  {category.title}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className={styles.skillTags}>
+            {allSkills.map(({ key, skill }) => (
+              <span
+                key={`${key}-${skill}`}
+                className={styles.skillTag}
                 data-category={key}
+                data-explodable
               >
-                {category.skills.map((skill) => (
-                  <span key={skill} className={styles.skillTag} data-explodable>
-                    {skill}
-                  </span>
-                ))}
-              </div>
+                {skill}
+              </span>
             ))}
           </div>
         </div>

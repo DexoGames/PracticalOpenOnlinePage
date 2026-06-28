@@ -1,20 +1,21 @@
 .body {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 48px;
-    margin-top: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    margin-top: 22px;
 }
 
 .text {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
+    max-width: 80ch;
 }
 
 .text p {
     font-family: var(--font-mono);
-    font-size: 0.92rem;
-    line-height: 1.7;
+    font-size: 0.86rem;
+    line-height: 1.55;
     color: var(--ink);
 }
 
@@ -25,14 +26,27 @@
     gap: 8px;
     background: transparent;
     border: none;
-    padding: 4px 0;
+    padding: 2px 0;
     cursor: pointer;
     font-family: var(--font-mono);
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
     color: var(--orange);
+}
+
+.skills {
+    width: 100%;
+}
+
+.skillsHead {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin-bottom: 14px;
 }
 
 .skillsTitle {
@@ -42,54 +56,118 @@
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--ink-dim);
-    margin-bottom: 16px;
 }
 
-.skillGroups {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-.skillCategory {
+.legend {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
+    gap: 8px 18px;
+}
+
+.legendItem {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+}
+
+.legendItem::before {
+    content: "";
+    width: 11px;
+    height: 11px;
+    margin-right: 7px;
+    background: var(--ink);
+}
+
+/* Full-bleed dark band; tags stretch to fill the width and wrap freely (colours
+   mix on a line). Rows alternate black / dark-grey via a striped background that
+   tracks the fixed row height, so there are no dividers between tags. */
+.skillTags {
+    --skill-row-h: 48px;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 2px solid var(--orange);
+    background-color: var(--black);
+    background-image: repeating-linear-gradient(
+        to bottom,
+        var(--black) 0,
+        var(--black) var(--skill-row-h),
+        var(--black-soft) var(--skill-row-h),
+        var(--black-soft) calc(var(--skill-row-h) * 2)
+    );
 }
 
 .skillTag {
+    flex: 1 1 auto;
+    height: var(--skill-row-h);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.02em;
-    padding: 6px 11px;
-    background: var(--cream-soft);
-    border: 1px solid var(--line-on-cream);
-    border-left: 3px solid var(--ink);
+    font-weight: 700;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0 18px;
+    background: transparent;
+    border: none;
+    transition: color 0.12s ease, text-shadow 0.12s ease;
+}
+
+/* vibrant coloured text per category */
+.skillTag[data-category="languages"] {
+    color: var(--cat-languages);
+}
+.skillTag[data-category="software"] {
+    color: var(--cat-software);
+}
+.skillTag[data-category="other"] {
+    color: var(--cat-other);
+}
+
+.legendItem {
     color: var(--ink);
-    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
 }
-
-.skillCategory[data-category="languages"] .skillTag {
-    border-left-color: var(--cat-languages);
+.legendItem[data-category="languages"]::before {
+    background: var(--cat-languages);
 }
-
-.skillCategory[data-category="software"] .skillTag {
-    border-left-color: var(--cat-software);
+.legendItem[data-category="software"]::before {
+    background: var(--cat-software);
 }
-
-.skillCategory[data-category="other"] .skillTag {
-    border-left-color: var(--cat-other);
+.legendItem[data-category="other"]::before {
+    background: var(--cat-other);
 }
 
 .skillTag:hover {
-    background: var(--orange);
-    border-color: var(--orange);
-    color: var(--orange-ink);
+    color: var(--orange);
+    text-shadow: 0 0 12px rgba(255, 90, 54, 0.5);
 }
 
-@media (max-width: 900px) {
-    .body {
-        grid-template-columns: 1fr;
-        gap: 32px;
+@media (max-width: 768px) {
+    .skillTags {
+        --skill-row-h: 25px;
+    }
+    .skillTag {
+        padding: 0 7px;
+        font-size: 0.55rem;
+        letter-spacing: 0.02em;
+    }
+}
+
+@media (max-width: 480px) {
+    .skillTags {
+        --skill-row-h: 21px;
+    }
+    .skillTag {
+        padding: 0 5px;
+        font-size: 0.5rem;
+        letter-spacing: 0.01em;
     }
 }

@@ -63,6 +63,8 @@
 }
 
 .tagline {
+    display: flex;
+    flex-direction: column;
     font-family: var(--font-mono);
     font-weight: 700;
     text-transform: uppercase;
@@ -71,6 +73,10 @@
     line-height: 1.45;
     max-width: 40ch;
     color: var(--ink);
+}
+
+.taglineLine {
+    display: block;
 }
 
 .bottomRow {

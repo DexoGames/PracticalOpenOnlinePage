@@ -23,7 +23,13 @@ export function Hero() {
 
         <h1 className={styles.name}>{PROFILE_DATA.name}</h1>
 
-        <p className={styles.tagline}>{PROFILE_DATA.tagline}</p>
+        <p className={styles.tagline}>
+          {PROFILE_DATA.tagline.split("|").map((line) => (
+            <span key={line} className={styles.taglineLine}>
+              {line.trim()}
+            </span>
+          ))}
+        </p>
 
         <div className={styles.bottomRow}>
           <p className={styles.bio}>{PROFILE_DATA.heroBio}</p>
