@@ -64,7 +64,15 @@ export function Lightbox({ photos, index, onIndexChange, onClose }: LightboxProp
         >
           <i className="fas fa-chevron-right"></i>
         </button>
-        <p className={styles.caption}>{photo.title}</p>
+        <p className={styles.caption}>
+          {photo.dateTaken
+            ? new Date(photo.dateTaken + "T00:00:00").toLocaleDateString("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })
+            : "Date unknown"}
+        </p>
       </div>
     </div>
   );

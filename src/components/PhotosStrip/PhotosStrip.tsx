@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { PHOTOS_DATA } from "../../data/photos";
-import { placeholderOnError } from "../../lib/image";
+import { placeholderOnError, thumbnailFor } from "../../lib/image";
 import { SectionHeader } from "../SectionHeader/SectionHeader";
 import styles from "./PhotosStrip.module.css";
 
@@ -29,7 +29,7 @@ export function PhotosStrip() {
           {photos.map((photo, i) => (
             <div className={styles.photoItem} key={`${photo.id}-${i}`}>
               <img
-                src={encodeURI(photo.image)}
+                src={encodeURI(thumbnailFor(photo.image))}
                 alt={photo.alt}
                 onError={placeholderOnError(photo.title, "300x200")}
               />

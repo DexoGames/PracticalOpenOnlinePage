@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { PHOTOS_DATA } from "../data/photos";
-import { placeholderOnError } from "../lib/image";
+import { placeholderOnError, thumbnailFor } from "../lib/image";
 import { Navbar } from "../components/Navbar/Navbar";
 import { Footer } from "../components/Footer/Footer";
 import { Lightbox } from "../components/Lightbox/Lightbox";
 import styles from "./PhotosPage.module.css";
 
 export function PhotosPage() {
-  const photos = PHOTOS_DATA.gallery;
+  const photos = [...PHOTOS_DATA.gallery].sort((a, b) => {
+    if (a.dateTaken && b.dateTaken) return b.dateTaken.localeCompare(a.dateTaken);
+    if (a.dateTaken) return -1;
+    if (b.dateTaken) return 1;
+    return b.title.localeCompare(a.title);
+  });
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   // Start at the top when navigating in from the home page.
@@ -42,8 +47,9 @@ export function PhotosPage() {
                   onClick={() => setOpenIndex(i)}
                 >
                   <img
-                    src={encodeURI(photo.image)}
+                    src={encodeURI(thumbnailFor(photo.image))}
                     alt={photo.alt}
+                    loading="lazy"
                     onError={placeholderOnError(photo.title, "400x300")}
                   />
                 </div>

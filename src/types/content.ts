@@ -60,6 +60,8 @@ export interface Photo {
   title: string;
   image: string;
   alt: string;
+  /** ISO date string (YYYY-MM-DD) of when the photo was taken, used for sorting and display. */
+  dateTaken?: string;
 }
 
 export interface PhotosData {

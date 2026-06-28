@@ -34,8 +34,8 @@
 .controls {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    justify-content: flex-start;
+    gap: 24px;
     max-width: 1280px;
     margin: 0 auto;
     padding: 20px 40px 48px;

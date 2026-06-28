@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { GAMES_DATA } from "../../data/games";
 import { PROJECTS_DATA } from "../../data/projects";
 import { gameToCard, projectToCard, type CardModel } from "../../lib/cards";
@@ -26,11 +26,25 @@ const pad = (n: number) => String(n).padStart(2, "0");
 export function FeaturedSlider() {
   const cards = useMemo(buildFeaturedCards, []);
   const [index, setIndex] = useState(0);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const resetTimer = () => {
+    if (timerRef.current) clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      setIndex((i) => (i + 1) % cards.length);
+    }, 6000);
+  };
+
+  useEffect(() => {
+    if (cards.length <= 1) return;
+    resetTimer();
+    return () => { if (timerRef.current) clearInterval(timerRef.current); };
+  }, [cards.length]);
 
   if (cards.length === 0) return null;
 
-  const goPrev = () => setIndex((i) => (i - 1 + cards.length) % cards.length);
-  const goNext = () => setIndex((i) => (i + 1) % cards.length);
+  const goPrev = () => { setIndex((i) => (i - 1 + cards.length) % cards.length); resetTimer(); };
+  const goNext = () => { setIndex((i) => (i + 1) % cards.length); resetTimer(); };
 
   return (
     <section id="featured" className={styles.section} data-explodable>
