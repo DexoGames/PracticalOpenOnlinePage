@@ -2,21 +2,21 @@ import type { Profile } from "../types/content";
 
 export const PROFILE_DATA: Profile = {
   name: "Dexter Smith",
-  tagline: "Software Engineering Student | Game Developer | Graphic Designer",
+  tagline: "Software Engineering Student | Indie Game Developer | Graphic Designer",
   photo: "/images/profile/headshot.jpeg",
 
   heroBio:
-    "I'm Dexter, a Software Engineering student at the University Of Southampton with a passion for coding and game development.",
+    "I'm Dexter, a Software Engineering student at the University Of Southampton and hobbyist indie game dev.",
 
   aboutParagraphs: [
-    "Hello! I'm Dexter, a creative and passionate programmer who's been coding one way or another for most my life!",
-    "In the 2020 lockdowm I decided to learn Unity, and since then I've developed mobile games and released them on iOS and Android. I gained many of my skills through hands-on experience and self-taught tricks. In recent years I have been learning industry standard techniques and programs.",
-    "I decided to study Software Engineering at Southampton to gain a wider skill set in all aspects of computing, and have been trying to continue game development in my spare time.",
-    "I'm also Grade 8 drum kit, being a dedicated committe member for my university's jazz and concert bands, and dabble in graphic design and photography (of which you can see further down).",
+    "On top of my degree (of which I've achieved a First in both years so far) I still make games because I can't help it. I just love to create!",
+    "During the 2020 lockdown I taught myself Unity, and ended up shipping mobile games to iOS and Android. Most of what I know came from just doing it. Hands-on, self-directed, and iterating fast. More recently I've been picking up industry-standard tools and techniques to round out my skills.",
+    "I also take part in game jams. I always enjoy sharing my ideas with others, and working to achieve something more than I could ever do myself. Most recently, my team won the Southampton Uni Players Choice Award at the Global Game Jam 2026.",
+    "Outside of my subject, I'm Grade 8 drum kit - being a dedicated committee member for my university's jazz and concert bands - and dabble in graphic design and photography (of which you can see further down).",
   ],
 
   email: "dexogames@outlook.com",
 
   footerYear: 2026,
-  footerText: "Nice is different than Good",
+  footerText: "Big Pipe, Huh?",
 };

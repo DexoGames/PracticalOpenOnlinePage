@@ -90,6 +90,8 @@
     --skill-row-h: 48px;
     width: 100vw;
     margin-left: calc(50% - 50vw);
+    padding-left: 24px;
+    padding-right: 24px;
     display: flex;
     flex-wrap: wrap;
     border-top: 2px solid var(--orange);

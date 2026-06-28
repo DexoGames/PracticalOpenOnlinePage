@@ -37,7 +37,7 @@ export function HomePage() {
         id="games"
         icon="fa-gamepad"
         label="My Games"
-        description="Games I've designed, built, and shipped all by myself!"
+        description="Games I've designed, built, and shipped solo, under Dexo Games."
         cards={gameCards}
         emptyMessage="No games yet - check back soon!"
       />
@@ -45,7 +45,7 @@ export function HomePage() {
         id="projects"
         icon="fa-folder-open"
         label="Other Projects"
-        description="Games I collabarated on"
+        description="Everything else: solo projects and team-made games."
         cards={projectCards}
         emptyMessage="No projects yet - check back soon!"
       />
