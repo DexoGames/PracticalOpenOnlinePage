@@ -30,9 +30,9 @@ export const PROJECTS_DATA: Project[] = [
     image: "/images/projects/apexle-cover.jpg",
     imageFocus: "top",
     tags: ["Website", "UI/UX Design"],
-    featured: false,
-    featuredOrder: 1,
-    inDevelopment: false,
+    featured: true,
+    featuredOrder: 2,
+    inDevelopment: true,
     links: {
       play: "https://apexle.dexo.games",
       github: "https://github.com/DexoGames/Apexle",

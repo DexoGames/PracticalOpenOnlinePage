@@ -13,7 +13,7 @@ export const GAMES_DATA: Game[] = [
     imageFocus: "left",
     tags: ["Unity", "Match Simulation", "Complex Data Structures"],
     featured: true,
-    featuredOrder: 2,
+    featuredOrder: 4,
     inDevelopment: true,
     links: {},
   },
@@ -28,7 +28,7 @@ export const GAMES_DATA: Game[] = [
     image: "/images/games/pileup-cover.jpg",
     tags: ["Unity", "Online Leaderboards"],
     featured: true,
-    featuredOrder: 3,
+    featuredOrder: 5,
     inDevelopment: false,
     links: {
       play: "https://apps.apple.com/app/pile-up-2/id6473653290",
