@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { PHOTOS_DATA } from "../../data/photos";
 import { placeholderOnError, thumbnailFor } from "../../lib/image";
 import { SectionHeader } from "../SectionHeader/SectionHeader";
