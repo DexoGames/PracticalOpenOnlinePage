@@ -8,11 +8,17 @@ import styles from "./Navbar.module.css";
 const BRAND_SUFFIXES = ["Games", "Software", "Photos", "Smith"];
 const BRAND_HOLD_TIMES = [8000, 3000, 3000, 3000, 3000];
 
-const NAV_ITEMS = [
+interface NavItem {
+  label: string;
+  hash?: string;
+  href?: string;
+}
+
+const NAV_ITEMS: NavItem[] = [
   { label: "About", hash: "#about" },
   { label: "Games", hash: "#games" },
   { label: "Projects", hash: "#projects" },
-  { label: "Photos", hash: "#photos" },
+  { label: "Photos", href: "https://photos.dexo.games" },
   { label: "Contact", hash: "#contact" },
 ];
 
@@ -49,10 +55,16 @@ export function Navbar({ variant = "home" }: NavbarProps) {
 
       <ul className={styles.links}>
         {NAV_ITEMS.map((item) => (
-          <li key={item.hash}>
-            <a href={item.hash} onClick={(e) => handleNavClick(e, item.hash)}>
-              {item.label}
-            </a>
+          <li key={item.label}>
+            {item.href ? (
+              <a href={item.href} target="_blank" rel="noopener noreferrer">
+                {item.label}
+              </a>
+            ) : (
+              <a href={item.hash} onClick={(e) => handleNavClick(e, item.hash!)}>
+                {item.label}
+              </a>
+            )}
           </li>
         ))}
       </ul>

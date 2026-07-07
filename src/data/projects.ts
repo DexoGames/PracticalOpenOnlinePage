@@ -55,4 +55,20 @@ export const PROJECTS_DATA: Project[] = [
       github: "https://github.com/DexoGames/Slate",
     },
   },
+  {
+      id: "project4",
+    title: "Versus",
+    subtext: "Web Port of Gridlock+",
+    description:
+      "Play the 3 main games from Gridlock+ with improved UI.",
+    image: "/images/projects/versus-cover.jpg",
+    tags: ["Website", "UI/UX Design"],
+    featured: true,
+    featuredOrder: 3,
+    inDevelopment: true,
+    links: {
+      play: "https://vs.dexo.games",
+      github: "https://github.com/DexoGames/Versus",
+    },
+  },
 ];
