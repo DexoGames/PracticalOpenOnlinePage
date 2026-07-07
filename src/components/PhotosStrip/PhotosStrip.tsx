@@ -18,7 +18,7 @@ export function PhotosStrip() {
           <SectionHeader
             icon="fa-camera"
             label="Dexo Photos"
-            description="Photography from wherever I happen to be."
+            description="I also do photography!."
             tone="black"
           />
         </div>
@@ -42,10 +42,10 @@ export function PhotosStrip() {
       </div>
 
       <div className={styles.btnWrapper}>
-        <Link to="/photos" className={styles.viewMoreBtn}>
+        <a href="https://photos.dexo.games/" className={styles.viewMoreBtn}>
           <span>View all photos</span>
           <i className="fas fa-arrow-right"></i>
-        </Link>
+        </a>
       </div>
     </section>
   );

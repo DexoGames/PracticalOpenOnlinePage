@@ -29,13 +29,30 @@ export const PROJECTS_DATA: Project[] = [
       "Using real telemetry data, you guess the corner of an F1 track, in a wordle-style daily game.",
     image: "/images/projects/apexle-cover.jpg",
     imageFocus: "top",
-    tags: ["Website", "UI/UX Design"],
+    tags: ["Website", "UI/UX Design", "Real-World Data"],
     featured: true,
     featuredOrder: 2,
     inDevelopment: true,
     links: {
       play: "https://apexle.dexo.games",
       github: "https://github.com/DexoGames/Apexle",
+    },
+  },
+    {
+      id: "project3",
+    title: "Slate",
+    subtext: "Film Studio Sim",
+    description:
+      "Take the helm of a new studio, hire directors and actors, address compromises, promote, and try to make a hit!",
+    image: "/images/projects/slate-cover.jpg",
+    imageFocus: "top",
+    tags: ["Website", "UI/UX Design"],
+    featured: true,
+    featuredOrder: 3,
+    inDevelopment: true,
+    links: {
+      play: "https://slate.dexo.games",
+      github: "https://github.com/DexoGames/Slate",
     },
   },
 ];
