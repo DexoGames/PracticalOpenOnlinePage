@@ -8,11 +8,10 @@ export function Contact() {
       <div className={styles.inner}>
         <span className={styles.kicker}>// Contact</span>
         <h2 className={styles.heading}>
-          Let&apos;s build something great together
+          CONTACT MEEEEEE
         </h2>
         <p className={styles.sub}>
-          Interested in working together, or just want to say hi? Reach out
-          anytime.
+          You can email me if you want to get in touch :)
         </p>
         <div className={styles.actions}>
           <a className={styles.emailBtn} href={`mailto:${PROFILE_DATA.email}`}>

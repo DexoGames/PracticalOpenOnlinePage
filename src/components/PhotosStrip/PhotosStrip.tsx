@@ -17,7 +17,7 @@ export function PhotosStrip() {
           <SectionHeader
             icon="fa-camera"
             label="Dexo Photos"
-            description="I also do photography!."
+            description="I also do photography!"
             tone="black"
           />
         </div>

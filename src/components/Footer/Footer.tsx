@@ -47,12 +47,6 @@ export function Footer() {
           ))}
         </div>
 
-        <div className={styles.col}>
-          <h4 className={styles.colTitle}>Get in touch</h4>
-          <a href={`mailto:${PROFILE_DATA.email}`}>{PROFILE_DATA.email}</a>
-          <Link to="/photos">Photo gallery</Link>
-        </div>
-
         <div className={styles.meta}>
           <p>
             &copy; {PROFILE_DATA.footerYear} {PROFILE_DATA.name}.
