@@ -1,5 +1,5 @@
 import type { MouseEvent } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { PROFILE_DATA } from "../../data/profile";
 import { SOCIALS_DATA } from "../../data/socials";
 import { scrollToSection } from "../../lib/scroll";
